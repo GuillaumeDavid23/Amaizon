@@ -1,7 +1,6 @@
 .header-container {
 	max-height: 100px;
 	background-color: #dcd0c1;
-	font-size: 1.2em;
 }
 
 .header-logo-container {
@@ -47,6 +46,7 @@
 	color: #647f94 !important;
 	font-family: 'Dosis SemiBold';
 	transition: 0.2s;
+    font-size: 1.5em;
     text-align: center;
 }
 
@@ -67,7 +67,7 @@
 	box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
 	height: 50px;
 	width: 70px;
-	font-size: 1em !important;
+	font-size: 1.2em !important;
 }
 
 .header-link-container {
@@ -77,6 +77,8 @@
 
 .header-search-input {
 	font-family: 'Dosis Regular';
+	font-size: 1.2em !important;
+
 	height: 50px;
 	border-radius: 30px !important;
 	border-color: black !important;
