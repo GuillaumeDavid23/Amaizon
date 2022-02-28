@@ -1,7 +1,8 @@
 import './styles/App.css'
+import Header from './templates/Header'
 
 function App() {
-	return <div className="App">Coucou</div>
+	return <Header />
 }
 
 export default App

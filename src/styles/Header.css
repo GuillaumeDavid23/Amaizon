@@ -1,0 +1,95 @@
+.header-container {
+	max-height: 100px;
+	background-color: #dcd0c1;
+	font-size: 1.2em;
+}
+
+.header-logo-container {
+	height: 100px;
+	width: auto;
+	display: flex;
+	align-items: center;
+}
+
+.header-toggle {
+	border: 0 !important;
+	color: white !important;
+	width: 60px !important;
+}
+.header-toggle-base {
+	transform: rotate(0deg);
+}
+.header-toggle-rotate {
+	transform: rotate(-90deg);
+}
+
+.icon-bar {
+	display: block;
+	width: 100%;
+	height: 5px;
+	margin-top: 5px;
+	background-color: #fff;
+	box-shadow: 5px 5px 15px grey;
+}
+
+.header-logo {
+	height: 100%;
+	width: auto;
+}
+
+.header-logo-full {
+	height: 40%;
+	width: auto;
+}
+
+.header-text {
+	font-weight: bold;
+	color: #647f94 !important;
+	font-family: 'Dosis SemiBold';
+	transition: 0.2s;
+    text-align: center;
+}
+
+.header-text:hover {
+	font-weight: bold;
+	color: #4f6575 !important;
+	text-decoration: underline;
+	text-decoration-style: dotted;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+.header-btn {
+	background-color: #647f94 !important;
+	color: white;
+	border-color: #647f94 !important;
+	border-radius: 20px !important;
+	box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+	height: 50px;
+	width: 70px;
+	font-size: 1em !important;
+}
+
+.header-link-container {
+	justify-content: center;
+	width: 100%;
+}
+
+.header-search-input {
+	font-family: 'Dosis Regular';
+	height: 50px;
+	border-radius: 30px !important;
+	border-color: black !important;
+	color: black !important;
+	padding-left: 50px !important;
+}
+
+@media (min-width: 992px) {
+	.header-form {
+		width: 50%;
+	}
+	.header-link-container {
+		justify-content: space-evenly;
+		width: 50%;
+	}
+}
