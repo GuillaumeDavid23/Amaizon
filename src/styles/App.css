@@ -1,3 +1,11 @@
+@font-face {
+ font-family: "Dosis Regular";
+ src: url("../assets/font/Dosis-Regular.ttf") format("ttf"),
+}
+@font-face {
+ font-family: "Dosis SemiBold";
+ src: url("../assets/font/Dosis-SemiBold.ttf") format("ttf"),
+}
 .App {
   text-align: center;
 }
