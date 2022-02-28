@@ -1,7 +1,14 @@
 import { Navbar, Nav } from 'react-bootstrap'
+
+//search form components
 import Search from './Form'
+
+//navigation link component
 import Link from './Link'
-const Collapse = () => {
+
+// This components is for create navigation link and forms
+const Navigation = () => {
+	//Array for create navigation link
 	const linkArray = [
 		{
 			name: 'Accueil',
@@ -25,4 +32,4 @@ const Collapse = () => {
 	)
 }
 
-export default Collapse
+export default Navigation

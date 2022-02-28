@@ -1,4 +1,6 @@
 import { Nav } from 'react-bootstrap'
+
+//This component is for create one navigation link with props
 const Link = (props) => {
 	return (
 		<Nav.Link

@@ -1,6 +1,6 @@
 import { Form, FormControl, Button } from 'react-bootstrap'
+//This components is for create search forms
 const Search = () => {
-	
 	return (
 		<Form className="d-flex header-form">
 			<FormControl

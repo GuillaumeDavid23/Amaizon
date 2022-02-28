@@ -1,7 +1,7 @@
 import '../../styles/Header.css'
 import Brand from './components/Brand'
 import Toggle from './components/Toggle'
-import Collapse from './components/Collapse'
+import Navigation from './components/Navigation'
 import {
 	Navbar,
 	Container,
@@ -13,7 +13,7 @@ function Header() {
 			<Container fluid className="header-container">
 				<Brand />
 				<Toggle />
-				<Collapse />
+				<Navigation />
 			</Container>
 		</Navbar>
 	)

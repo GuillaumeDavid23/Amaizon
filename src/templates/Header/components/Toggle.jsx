@@ -1,8 +1,12 @@
 import { Navbar } from 'react-bootstrap'
 import React, { useState } from 'react'
 
+//This components is for Create mobile toggler
 const Toggle = () => {
+	//useState for animate toggler (rotate)
 	const [style, setStyle] = useState('header-toggle-base')
+
+	//Event function for animate toggler (rotate)
 	const rotateToggle = () => {
 		switch (style) {
 			case 'header-toggle-base':
