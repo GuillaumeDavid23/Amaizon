@@ -65,8 +65,8 @@
 	border-color: #647f94 !important;
 	border-radius: 20px !important;
 	box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
-	height: 50px;
-	width: 70px;
+	height: 40px;
+	width: 60px;
 	font-size: 1.2em !important;
 }
 
@@ -74,19 +74,30 @@
 	justify-content: center;
 	width: 100%;
 }
-
+#navbarScroll{
+    background-color: white;
+    padding: 15px;
+}
 .header-search-input {
 	font-family: 'Dosis Regular';
 	font-size: 1.2em !important;
-
-	height: 50px;
+	height: 40px;
 	border-radius: 30px !important;
 	border-color: black !important;
 	color: black !important;
-	padding-left: 50px !important;
+	padding-left: 20px !important;
 }
 
 @media (min-width: 992px) {
+    #navbarScroll{
+        background-color: #dcd0c1;
+        padding: 0;
+    }
+    .header-search-input {
+        height: 50px;
+	    padding-left: 50px !important;
+
+    }
 	.header-form {
 		width: 50%;
 	}
