@@ -6,6 +6,22 @@
  font-family: "Dosis SemiBold";
  src: url("../assets/font/Dosis-SemiBold.ttf") format("ttf"),
 }
+/* Reset CSS */
+* {
+  font-size: 14px;
+}
+
+a {
+  color: black !important;
+  text-decoration: none !important;
+}
+
+li {
+  list-style: none;
+}
+
+/* Défault React CSS: */
+
 .App {
   text-align: center;
 }
