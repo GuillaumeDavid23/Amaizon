@@ -9,7 +9,7 @@ const SocialNetworks = () => {
 	return (
 		<div>
 			<h4 className="text-decoration-underline">Suivez-nous sur:</h4>
-			<div className="d-flex">
+			<div className="d-flex justify-content-evenly">
 				<a href="https://www.facebook.com/LaManuFormation">
 					<FontAwesomeIcon icon={faFacebook} size="xl" />
 				</a>
