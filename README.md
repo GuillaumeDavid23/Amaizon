@@ -1,70 +1,136 @@
-# Getting Started with Create React App
+# Amaizon - Projet d'alternance CDA - LaManu Amiens
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Qu'est-ce que c'est
 
-## Available Scripts
+WIP
 
-In the project directory, you can run:
+## Guide d'installation
 
-### `npm start`
+WIP
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Feuille de route des composants
 
-### `npm test`
+### 1. **Header**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+-   [ ] Logo
+-   [ ] Routes
+-   [ ] Recherche
 
-### `npm run build`
+### 2. **Accueil**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+-   [ ] Bannière
+    -   [ ] Image
+    -   [ ] Texte
+    -   [ ] Bouton
+-   [ ] Liste propriétés
+    -   [ ] Filtres
+        -   [ ] Achat/Location
+        -   [ ] Type
+        -   [ ] Localisation
+        -   [ ] Prix Min/Max
+        -   [ ] Nombre Pièces
+        -   [ ] Nombre Surface
+    -   [ ] Cards
+        -   [ ] Image
+        -   [ ] Titre + Like Icon
+        -   [ ] Description
+        -   [ ] Prix
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 3. **Contact**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+-   [ ] Formulaire
+    -   [ ] Nom + Prénom
+    -   [ ] Email + Tél
+    -   [ ] Sujet
+    -   [ ] Description
+    -   [ ] Bouton "submit"
+-   [ ] Image
 
-### `npm run eject`
+### 4. **Propriété**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+-   [ ] Carousel
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    -   [ ] Images
+    -   [ ] Sélécteur
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+-   [ ] Titre
+-   [ ] Réf
+-   [ ] Description
+-   [ ] Prix + Bouton "voir"
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 5. **Rendez-vous**
 
-## Learn More
+-   [ ] Card
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    -   [ ] Image
+    -   [ ] Titre
+    -   [ ] Description
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+-   [ ] Nom + Prénom
+-   [ ] Email + Date naissance
+-   [ ] Disponibilités
+-   [ ] Bouton "Submit"
 
-### Code Splitting
+### 6. **Mentions**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+-   [ ] Mentions Légales
+-   [ ] Conditions Générales d'Utilisation
+-   [ ] Conditions Générales de Ventes
 
-### Analyzing the Bundle Size
+### 7. **Gestion de compte**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+-   [ ] Préférences Alerte
+    -   [ ] Vente/Location
+    -   [ ] Type de bien
+    -   [ ] Localisation
+    -   [ ] Budget
+    -   [ ] Nombre Pièces
+    -   [ ] Surface
+    -   [ ] Bouton "Modifier"
+-   [ ] Favoris
+    -   [ ] Tableau ascenceur
+-   [ ] Mon Conseiller
+    -   [ ] Nom + Prénom
+    -   [ ] Tél
+    -   [ ] Email
+-   [ ] Info Perso
+    -   [ ] Nom + Prénom
+    -   [ ] Tél
+    -   [ ] Email
 
-### Making a Progressive Web App
+### 8. A propos
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+-   [ ] Description
+-   [ ] Organigramme
+    -   [ ] Liste Administrateurs
+        -   [ ] Image Profil
+        -   [ ] Prénom + Nom
+        -   [ ] Poste
+    -   [ ] Liste Agents
+        -   [ ] Image Profil
+        -   [ ] Prénom + Nom
+        -   [ ] Poste
+-   [ ] Bouton "Contacter"
 
-### Advanced Configuration
+### 9. Footer
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+-   [ ] Liens Mentions
+    -   [ ] Mentions Légales
+    -   [ ] Conditions Générales d'Utilisation
+    -   [ ] Conditions Générales de Ventes
+-   [ ] Navigation
+    -   [ ] Accueil
+    -   [ ] A propos
+    -   [ ] Contact
+-   [ ] Newsletter
+-   [ ] Logo
+-   [ ] Coordonnées Agence
+    -   [ ] Téléphone
+    -   [ ] Adresse
+    -   [ ] Email
+-   [ ] Réseaux Sociaux
+    -   [ ] Facebook
+    -   [ ] Instagram
+    -   [ ] LinkedIn
