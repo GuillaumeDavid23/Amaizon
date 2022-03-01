@@ -1,3 +1,11 @@
 #homeBanner {
     width: 100vw;
 }
+
+#filters {
+    background-color: #ECE6DE;
+}
+
+.card {
+    width: 18rem;
+}
