@@ -6,17 +6,41 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-weight: bold;
+    justify-content: center;
+    padding-top: 50px;
 }
 
+footer a {
+    color: #647f94 !important;
+    font-weight: bold;
+}
+footer ul {
+    padding-left: 0;
+}
 #logoFooter {
-    width: 30%;
+    width: 100%;
+    max-width: 150px;
 }
 
+#mailLink{
+    cursor: pointer;
+    text-decoration: underline;
+}
+.telLink{
+    transition: 0.2s;
 
+}
+.telLink:hover{
+    text-decoration: underline;
+    font-size: larger;
+    transition: 0.2s;
+}
 /* Media query for > large screen */
 @media (min-width: 992px) {
 	footer{
         display: flex;
         flex-direction: row;
+        justify-content: space-evenly;
     }
 }
