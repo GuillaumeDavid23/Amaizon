@@ -1,17 +1,14 @@
-import Input from '../../../templates/Input'
+import { Col, Form, FormControl, FormLabel } from 'react-bootstrap'
+
 
 const Newsletter = () => {
 	return (
-		<div>
-			<h4 className="text-decoration-underline">
-				Je m'inscris à la newsletter:
-			</h4>
-			<Input
-				id="newsletter"
-				type="text"
-				placeholder="Entrez votre adresse email.."
-			/>
-		</div>
+		<Col xs="8" lg="2" className='text-center m-3 m-lg-0'>
+			<Form className="d-flex flex-column">
+				<FormLabel className='fw-bold'>Inscrivez-vous à la newsletters</FormLabel>
+				<FormControl type="email" placeholder="name@example.com" />
+			</Form>
+		</Col>
 	)
 }
 

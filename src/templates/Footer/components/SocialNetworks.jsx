@@ -4,12 +4,13 @@ import {
 	faInstagram,
 	faLinkedin,
 } from '@fortawesome/free-brands-svg-icons'
+import { Col } from 'react-bootstrap'
 
 const SocialNetworks = () => {
 	return (
-		<div>
+		<Col lg="2">
 			<h4 className="text-decoration-underline">Suivez-nous sur:</h4>
-			<div className="d-flex">
+			<div className="d-flex justify-content-evenly">
 				<a href="https://www.facebook.com/LaManuFormation">
 					<FontAwesomeIcon icon={faFacebook} size="xl" />
 				</a>
@@ -20,7 +21,7 @@ const SocialNetworks = () => {
 					<FontAwesomeIcon icon={faLinkedin} size="xl" />
 				</a>
 			</div>
-		</div>
+		</Col>
 	)
 }
 

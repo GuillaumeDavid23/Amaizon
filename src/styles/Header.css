@@ -1,8 +1,10 @@
+/* General container of header */
 .header-container {
 	max-height: 100px;
 	background-color: #dcd0c1;
 }
 
+/* Container of logo img */
 .header-logo-container {
 	height: 100px;
 	width: auto;
@@ -10,18 +12,35 @@
 	align-items: center;
 }
 
+/* Graphic Logo */
+.header-logo {
+	height: 100%;
+	width: auto;
+}
+
+/* Script Logo */
+.header-logo-full {
+	height: 40%;
+	width: auto;
+}
+
+/* Toggler Mobile */
 .header-toggle {
 	border: 0 !important;
 	color: white !important;
 	width: 60px !important;
 }
+
+/* Rotate animation inactive */
 .header-toggle-base {
 	transform: rotate(0deg);
 }
+
+/* Rotate animation active */
 .header-toggle-rotate {
 	transform: rotate(-90deg);
 }
-
+/* Bar of toggler */
 .icon-bar {
 	display: block;
 	width: 100%;
@@ -31,25 +50,25 @@
 	box-shadow: 5px 5px 15px grey;
 }
 
-.header-logo {
-	height: 100%;
-	width: auto;
-}
 
-.header-logo-full {
-	height: 40%;
-	width: auto;
-}
 
+/* Link of Navbar */
 .header-text {
 	font-weight: bold;
 	color: #647f94 !important;
 	font-family: 'Dosis SemiBold';
 	transition: 0.2s;
-    font-size: 1.5em;
-    text-align: center;
+	font-size: 1.5em;
+	text-align: center;
 }
 
+/* Link container of Navbar */
+.header-link-container {
+	justify-content: center;
+	width: 100%;
+}
+
+/* Hover link of Navbar */
 .header-text:hover {
 	font-weight: bold;
 	color: #4f6575 !important;
@@ -59,34 +78,45 @@
 	transition: 0.2s;
 }
 
+/* Search button for Form */
 .header-btn {
 	background-color: #647f94 !important;
 	color: white;
 	border-color: #647f94 !important;
 	border-radius: 20px !important;
 	box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
-	height: 50px;
-	width: 70px;
+	height: 40px;
+	width: 60px;
 	font-size: 1.2em !important;
 }
 
-.header-link-container {
-	justify-content: center;
-	width: 100%;
+/* Dropdown Nav Mobile */
+#navbarScroll {
+	background-color: white;
+	padding: 15px;
 }
 
+/* Search input in Form */
 .header-search-input {
 	font-family: 'Dosis Regular';
 	font-size: 1.2em !important;
-
-	height: 50px;
+	height: 40px;
 	border-radius: 30px !important;
 	border-color: black !important;
 	color: black !important;
-	padding-left: 50px !important;
+	padding-left: 20px !important;
 }
 
+/* Media query for > large screen */
 @media (min-width: 992px) {
+	#navbarScroll {
+		background-color: #dcd0c1;
+		padding: 0;
+	}
+	.header-search-input {
+		height: 50px;
+		padding-left: 50px !important;
+	}
 	.header-form {
 		width: 50%;
 	}

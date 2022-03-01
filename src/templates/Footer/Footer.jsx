@@ -5,16 +5,20 @@ import Newsletter from './components/Newsletter'
 import Credits from './components/Credits'
 import ContactInfos from './components/ContactInfos'
 import SocialNetworks from './components/SocialNetworks'
+import { Row } from 'react-bootstrap'
+
 
 const Footer = () => {
 	return (
-		<footer className="d-flex justify-content-around">
-			<LegalsFooter />
-			<NavFooter />
-			<Newsletter />
-			<Credits />
-			<ContactInfos />
-			<SocialNetworks />
+		<footer>
+			<Row className="justify-content-center justify-content-lg-evenly w-100">
+				<LegalsFooter />
+				<NavFooter />
+				<Newsletter />
+				<ContactInfos />
+				<SocialNetworks />
+				<Credits />
+			</Row>
 		</footer>
 	)
 }
