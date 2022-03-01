@@ -24,7 +24,7 @@ const Navigation = () => {
 				navbarScroll
 			>
 				{linkArray.map((element, index) => (
-					<Link name={element.name} link={element.link} index={index}/>
+					<Link key={element.name + index} name={element.name} link={element.link} index={index}/>
 				))}
 			</Nav>
 			<Search />
