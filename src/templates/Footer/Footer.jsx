@@ -8,7 +8,7 @@ import SocialNetworks from './components/SocialNetworks'
 
 const Footer = () => {
 	return (
-		<footer className="d-flex justify-content-around">
+		<footer className="d-flex justify-content-evenly">
 			<LegalsFooter />
 			<NavFooter />
 			<Newsletter />

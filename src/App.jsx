@@ -1,6 +1,7 @@
 import './styles/App.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Header from './templates/Header'
+import Header from './templates/Header/Header'
 import Footer from './templates/Footer/Footer'
 import About from './pages/About/About'
 import Appointment from './pages/Appointment/Appointment'
