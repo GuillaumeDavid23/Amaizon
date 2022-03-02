@@ -26,7 +26,7 @@ const ConnectForm = () => {
 				password: data.password,
 			})
 
-			fetch(window.env.API_DOMAIN + 'api/user/login', {
+			fetch(process.env.REACT_APP_API_DOMAIN + 'api/user/login', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json;charset=utf-8',
@@ -42,7 +42,7 @@ const ConnectForm = () => {
 							'REACT_TOKEN_AUTH_AMAIZON',
 							JSON.stringify(response.token)
 						)
-						window.location.href = window.env.UI_DOMAIN
+						window.location.href = process.env.REACT_APP_UI_DOMAIN
 					}
 				})
 		} catch (error) {

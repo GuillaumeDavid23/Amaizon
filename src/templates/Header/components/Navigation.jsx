@@ -25,7 +25,7 @@ const Navigation = ({ isConnected }) => {
 	// Gestion de la déconnexion:
 	const disconnect = () => {
 		localStorage.clear()
-		window.location.href = window.env.UI_DOMAIN
+		window.location.href = process.env.REACT_APP_UI_DOMAIN
 	}
 
 	return (
