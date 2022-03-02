@@ -8,4 +8,26 @@
 
 .card {
     width: 18rem;
+    border-radius: 20px;
+}
+
+.fav {
+    cursor: pointer
+}
+
+.card-title {
+    color: #647f94;
+    font-weight: bold
+}
+
+.card-text {
+    text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+}
+
+.price {
+    font-size: 2em;
 }

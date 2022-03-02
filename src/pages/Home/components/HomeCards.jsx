@@ -1,34 +1,43 @@
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { heart as emptyHeart } from '@fortawesome/free-regular-svg-icons'
-// import { heart as fullHeart } from '@fortawesome/free-solid-svg-icons'
+import { useState } from 'react'
+import { Heart, HeartFill } from 'react-bootstrap-icons'
+import { Link } from 'react-router-dom'
+import BtnGeneral from '../../../templates/BtnGeneral'
+import Img from '../../../templates/Img'
 
 const HomeCards = ({ propertyDatas }) => {
-	const { _id, imageUrl, title, description } = propertyDatas
+	const { _id, imageUrl, title, description, amount } = propertyDatas
 
-	// const handleFav = () => {
-	// 	console.log(this.innerHTML)
-	// }
+	const [isFavorite, setFavorite] = useState(false)
 
-	console.log(propertyDatas.imageUrl)
+	const handleFav = (e) => {
+		setFavorite(!isFavorite ? true : false)
+	}
 
 	return (
-		<div class="card">
-			<img
-				src={'http://localhost:5000/' + imageUrl.photo1}
-				class="card-img-top"
-				alt="..."
+		<div className="card">
+			<Img
+				srcValue={'http://localhost:5000/' + imageUrl.photo1}
+				classList="card-img-top"
+				altValue={`Vignette de ${title}`}
 			/>
-			<div class="card-body">
-				<div class="d-flex justify-content-between">
-					<h5 class="card-title">{title}</h5>
-					{/* <div onClick={handleFav}>
-						<FontAwesomeIcon icon={['far', 'heart']} size="xl" />
-					</div> */}
+			<div className="card-body">
+				<div className="d-flex justify-content-between">
+					<h5 className="card-title">{title}</h5>
+					<div className="fav" onClick={(e) => handleFav(e)}>
+						{!isFavorite ? (
+							<Heart size={32} color={'red'} />
+						) : (
+							<HeartFill size={32} color={'red'} />
+						)}
+					</div>
 				</div>
-				<p class="card-text">{description}</p>
-				<a href={`/single/${_id}`} class="btn btn-primary">
-					Go somewhere
-				</a>
+				<p className="card-text">{description}</p>
+				<div className="d-flex justify-content-around">
+					<span className="price">{amount} €</span>
+					<Link to={`/single/${_id}`}>
+						<BtnGeneral text="Voir l'annonce" />
+					</Link>
+				</div>
 			</div>
 		</div>
 	)
