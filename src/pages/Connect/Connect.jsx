@@ -1,4 +1,4 @@
-import ConnectForm from './components/ConnectFrom'
+import ConnectForm from './components/ConnectForm'
 
 const Connect = () => {
 	return (

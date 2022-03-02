@@ -7,8 +7,8 @@ import Search from './Form'
 import Link from './Link'
 
 // Import Vincent pour Bouton d'accès au form login:
-import BtnGeneral from '../../BtnGeneral'
 import { Link as LinkRouterDom } from 'react-router-dom'
+import { Dropdown, Button } from 'react-bootstrap'
 
 // This components is for create navigation link and forms
 const Navigation = ({ isConnected }) => {
@@ -21,6 +21,13 @@ const Navigation = ({ isConnected }) => {
 		{ name: 'A propos', link: '#' },
 		{ name: 'Contact', link: '#' },
 	]
+
+	// Gestion de la déconnexion:
+	const disconnect = () => {
+		localStorage.clear()
+		window.location.href = window.env.UI_DOMAIN
+	}
+
 	return (
 		<Navbar.Collapse id="navbarScroll">
 			<Nav
@@ -39,10 +46,33 @@ const Navigation = ({ isConnected }) => {
 			<Search />
 			{!isConnected ? (
 				<LinkRouterDom to="/connect">
-					<BtnGeneral text="Connexion" />
+					<Button
+						className="header-btn header-btn-connexion"
+						variant="primary"
+					>
+						Connexion
+					</Button>
 				</LinkRouterDom>
 			) : (
-				''
+				<Dropdown>
+					<Dropdown.Toggle
+						variant="primary"
+						id="dropdown-basic"
+						className="header-btn"
+					>
+						Vincent Mancheron
+					</Dropdown.Toggle>
+					<Dropdown.Menu>
+						<Dropdown.Item>
+							<LinkRouterDom to="/backoffice">
+								Accès au profil
+							</LinkRouterDom>
+						</Dropdown.Item>
+						<Dropdown.Item>
+							<span onClick={disconnect}>Déconnexion</span>
+						</Dropdown.Item>
+					</Dropdown.Menu>
+				</Dropdown>
 			)}
 		</Navbar.Collapse>
 	)

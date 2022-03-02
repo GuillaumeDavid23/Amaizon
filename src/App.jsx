@@ -40,6 +40,8 @@ function App() {
 			.then((response) => {
 				if (response.status_code && response.status_code === 200) {
 					setConnexion(true)
+				} else {
+					setConnexion(false)
 				}
 			})
 	}
