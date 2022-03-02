@@ -1,11 +1,13 @@
 @font-face {
- font-family: "Dosis Regular";
- src: url("../assets/font/Dosis-Regular.ttf") format("ttf"),
+  font-family: "Dosis Regular";
+  src: url("../assets/font/Dosis-Regular.ttf") format("ttf"),
 }
+
 @font-face {
- font-family: "Dosis SemiBold";
- src: url("../assets/font/Dosis-SemiBold.ttf") format("ttf"),
+  font-family: "Dosis SemiBold";
+  src: url("../assets/font/Dosis-SemiBold.ttf") format("ttf"),
 }
+
 /* Reset CSS */
 * {
   font-size: 14px;
@@ -57,19 +59,20 @@ li {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
-.btn-general{
-    /* general button for Form */
-    background-color: #647f94 !important;
-    color: white;
-    border-color: #647f94 !important;
-    border-radius: 20px !important;
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
-    height: 60px;
-    width: 90px;
-    font-size: 1.2em !important;
+.btn-general {
+  /* general button for Form */
+  background-color: #647f94 !important;
+  color: white;
+  border-color: #647f94 !important;
+  border-radius: 20px !important;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  height: 60px;
+  width: 90px;
+  font-size: 1.2em !important;
 }

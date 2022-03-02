@@ -6,8 +6,12 @@ import Search from './Form'
 //navigation link component
 import Link from './Link'
 
+// Import Vincent pour Bouton d'accès au form login:
+import BtnGeneral from '../../BtnGeneral'
+import { Link as LinkRouterDom } from 'react-router-dom'
+
 // This components is for create navigation link and forms
-const Navigation = () => {
+const Navigation = ({ isConnected }) => {
 	//Array for create navigation link
 	const linkArray = [
 		{
@@ -24,10 +28,22 @@ const Navigation = () => {
 				navbarScroll
 			>
 				{linkArray.map((element, index) => (
-					<Link key={element.name + index} name={element.name} link={element.link} index={index}/>
+					<Link
+						key={element.name + index}
+						name={element.name}
+						link={element.link}
+						index={index}
+					/>
 				))}
 			</Nav>
 			<Search />
+			{!isConnected ? (
+				<LinkRouterDom to="/connect">
+					<BtnGeneral text="Connexion" />
+				</LinkRouterDom>
+			) : (
+				''
+			)}
 		</Navbar.Collapse>
 	)
 }
