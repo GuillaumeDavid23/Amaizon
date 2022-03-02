@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Col } from 'react-bootstrap'
 
-
 const LegalsFooter = () => {
 	return (
 		<Col xs="6" lg="2">
@@ -9,7 +8,7 @@ const LegalsFooter = () => {
 				<li>
 					<Link to="/legals">Mentions légales</Link>
 				</li>
-				<li>
+				<li className="my-md-3">
 					<Link to="/legals">Conditions générales d'utilisation</Link>
 				</li>
 				<li>

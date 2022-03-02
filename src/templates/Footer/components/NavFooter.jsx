@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Col } from 'react-bootstrap'
 
-
 const NavFooter = () => {
 	return (
 		<Col xs="6" lg="2">
@@ -9,7 +8,7 @@ const NavFooter = () => {
 				<li>
 					<Link to="/">Accueil</Link>
 				</li>
-				<li>
+				<li className="my-md-3">
 					<Link to="/aboutus">A propos</Link>
 				</li>
 				<li>

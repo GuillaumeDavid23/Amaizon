@@ -4,8 +4,16 @@ import Img from '../../Img'
 
 const Credits = () => {
 	return (
-		<Col lg="12" className="d-flex flex-column justify-content-beetween align-items-center">
-			<Img idValue="logoFooter" srcValue={logo} altValue="Logo Amaizon" />
+		<Col
+			lg="12"
+			className="d-flex flex-column justify-content-beetween align-items-center"
+		>
+			<Img
+				idValue="logoFooter"
+				classList="d-md-none"
+				srcValue={logo}
+				altValue="Logo Amaizon"
+			/>
 			<h6>Amaizon ©2021 - Tout droits réservés</h6>
 		</Col>
 	)
