@@ -1,5 +1,5 @@
 import Input from '../../../templates/Input'
-import { Dropdown } from 'react-bootstrap'
+// import { Dropdown } from 'react-bootstrap'
 import { useState, useEffect } from 'react'
 
 const Filters = ({ setProperties }) => {

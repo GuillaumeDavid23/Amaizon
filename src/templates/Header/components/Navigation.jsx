@@ -16,10 +16,10 @@ const Navigation = ({ isConnected }) => {
 	const linkArray = [
 		{
 			name: 'Accueil',
-			link: '#',
+			link: '/',
 		},
-		{ name: 'A propos', link: '#' },
-		{ name: 'Contact', link: '#' },
+		{ name: 'A propos', link: '/aboutus' },
+		{ name: 'Contact', link: '/contactus' },
 	]
 
 	// Gestion de la déconnexion:
@@ -45,7 +45,7 @@ const Navigation = ({ isConnected }) => {
 			</Nav>
 			<Search />
 			{!isConnected ? (
-				<LinkRouterDom to="/connect">
+				<LinkRouterDom to="/connect" className="me-4">
 					<Button
 						className="header-btn header-btn-connexion"
 						variant="primary"
@@ -54,7 +54,7 @@ const Navigation = ({ isConnected }) => {
 					</Button>
 				</LinkRouterDom>
 			) : (
-				<Dropdown>
+				<Dropdown className="me-4">
 					<Dropdown.Toggle
 						variant="primary"
 						id="dropdown-basic"

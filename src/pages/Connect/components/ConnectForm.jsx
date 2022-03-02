@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
-import { Container } from 'react-bootstrap'
+import { Container, Button } from 'react-bootstrap'
 import '../../../styles/Connect.css'
 // import { Redirect } from 'react-router-dom'
 
@@ -21,6 +21,7 @@ const ConnectForm = () => {
 
 	const onSubmit = (data) => {
 		try {
+			console.log(1)
 			let body = JSON.stringify({
 				email: data.email,
 				password: data.password,
@@ -51,12 +52,9 @@ const ConnectForm = () => {
 	}
 
 	return (
-		<Container
-			className="bo_subcontainer"
-			style={{ 'border-radius': '30px' }}
-		>
+		<Container className="bo_subcontainer" style={{ borderRadius: '30px' }}>
 			<form id="connectForm" onSubmit={handleSubmit(onSubmit)}>
-				<div className="mb-3">
+				<div className="my-3">
 					<div className="d-flex justify-content-center align-items-center">
 						<label
 							htmlFor="email"
@@ -83,7 +81,7 @@ const ConnectForm = () => {
 						)}
 					</div>
 				</div>
-				<div className="mb-3">
+				<div className="mb-5">
 					<div className="d-flex justify-content-center align-items-center">
 						<label
 							htmlFor="password"
@@ -138,13 +136,10 @@ const ConnectForm = () => {
 					</label>
 				</div>
 				<div className="d-flex justify-content-center mb-3">
-					<button id="connectBtn" className="px-4">
+					<Button type="submit" className="header-btn">
 						CONNEXION
-					</button>
+					</Button>
 					{/* <button disabled={isSubmitting || !isValid} className="px-4">
-                        CONNEXION
-                    </button> */}
-					{/* <button id="connectBtn" className="btn px-4">
                         CONNEXION
                     </button> */}
 				</div>
