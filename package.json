@@ -44,6 +44,6 @@
     ]
   },
   "react-dotenv": {
-    "whitelist": ["API_DOMAIN"]
+    "whitelist": ["API_DOMAIN", "UI_DOMAIN"]
   }
 }

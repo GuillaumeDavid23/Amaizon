@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import { Heart, HeartFill } from 'react-bootstrap-icons'
 import { Link } from 'react-router-dom'
 import BtnGeneral from '../../../templates/BtnGeneral'
 import Img from '../../../templates/Img'
+import { useEffect, useState } from 'react'
+import Favorite from '../../../templates/Favorite'
 
-const HomeCards = ({ propertyDatas }) => {
-	const { _id, imageUrl, title, description, amount } = propertyDatas
+const HomeCards = (props) => {
+	const { _id, imageUrl, title, description, amount } = props.propertyDatas
+	console.log(imageUrl);
+	const token = props.token
 
-	const [isFavorite, setFavorite] = useState(false)
+	const [favExist, setFav] = useState(false)
 
-	const handleFav = (e) => {
-		setFavorite(!isFavorite ? true : false)
-	}
-
+	useEffect(() => {
+		const requestOptions = {
+			method: 'GET',
+		}
+		fetch('http://localhost:8080/api/user/check/' + token, requestOptions)
+			.then(function (response) {
+				return response.json()
+			})
+			.then(function (resp) {
+				const userData = resp.data
+				setFav(userData.buyer.wishlist.includes(_id))
+			})
+	}, [_id, token])
 	return (
 		<div className="card">
 			<Img
-				srcValue={'http://localhost:5000/' + imageUrl.photo1}
+				srcValue={window.env.API_DOMAIN + imageUrl.photo1}
 				classList="card-img-top"
 				altValue={`Vignette de ${title}`}
 			/>
 			<div className="card-body">
-				<div className="d-flex justify-content-between">
+				<div className="d-flex justify-content-between align-items-center">
 					<h5 className="card-title">{title}</h5>
-					<div className="fav" onClick={(e) => handleFav(e)}>
-						{!isFavorite ? (
-							<Heart size={32} color={'red'} />
-						) : (
-							<HeartFill size={32} color={'red'} />
-						)}
-					</div>
+					<Favorite
+						token={token}
+						id={_id}
+						default={favExist}
+						setFav={setFav}
+					/>
 				</div>
 				<p className="card-text">{description}</p>
 				<div className="d-flex justify-content-around">

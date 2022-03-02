@@ -5,7 +5,8 @@ import Filters from './components/Filters'
 import HomeCards from './components/HomeCards'
 import { useState, useEffect } from 'react'
 
-const Home = () => {
+const Home = (props) => {
+	const token = props.token
 	const [properties, setProperties] = useState([])
 
 	useEffect(() => {
@@ -24,11 +25,11 @@ const Home = () => {
 				altValue="Bannière Accueil Amaizon"
 			/>
 			<Filters setProperties={setProperties} />
-			<div className="row justify-content-around">
+			<div className="row justify-content-evenly">
 				{properties.map((property) => {
 					return (
 						<div key={property._id} className="col-3">
-							<HomeCards propertyDatas={property} />
+							<HomeCards propertyDatas={property} token={token} />
 						</div>
 					)
 				})}

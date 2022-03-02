@@ -49,14 +49,17 @@ function App() {
 			<Router>
 				<Header isConnected={isConnected} />
 				<Routes>
-					<Route exact path="/" element={<Home />} />
+					<Route exact path="/" element={<Home token={token} />} />
 					<Route path="/aboutus" element={<About />} />
 					<Route path="/takeAppointment" element={<Appointment />} />
 					<Route path="/backoffice" element={<Backoffice />} />
 					<Route path="/connect" element={<Connect />} />
 					<Route path="/contactus" element={<Contact />} />
 					<Route path="/legals" element={<Legals />} />
-					<Route path="/single/:id" element={<Single />} />
+					<Route
+						path="/single/:id"
+						element={<Single token={token} />}
+					/>
 				</Routes>
 				<Footer />
 			</Router>

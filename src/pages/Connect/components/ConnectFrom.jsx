@@ -40,7 +40,7 @@ const ConnectFrom = () => {
 							'REACT_TOKEN_AUTH_AMAIZON',
 							JSON.stringify(response.token)
 						)
-						window.location.href = window.env.API_DOMAIN
+						window.location.href = window.env.UI_DOMAIN
 					}
 				})
 		} catch (error) {
