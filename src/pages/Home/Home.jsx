@@ -10,7 +10,7 @@ const Home = (props) => {
 	const [properties, setProperties] = useState([])
 
 	useEffect(() => {
-		fetch(window.env.API_DOMAIN + 'api/property')
+		fetch(process.env.REACT_APP_API_DOMAIN + 'api/property')
 			.then((response) => {
 				return response.json()
 			})
