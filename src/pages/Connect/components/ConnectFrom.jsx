@@ -24,7 +24,7 @@ const ConnectFrom = () => {
 				password: data.password,
 			})
 
-			fetch(window.env.API_DOMAIN + 'user/login', {
+			fetch(window.env.API_DOMAIN + 'api/user/login', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json;charset=utf-8',
@@ -40,7 +40,7 @@ const ConnectFrom = () => {
 							'REACT_TOKEN_AUTH_AMAIZON',
 							JSON.stringify(response.token)
 						)
-						window.location.href = 'http://localhost:3000/'
+						window.location.href = window.env.API_DOMAIN
 					}
 				})
 		} catch (error) {

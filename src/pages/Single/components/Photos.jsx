@@ -1,8 +1,7 @@
-import {  Carousel } from 'react-bootstrap'
-
+import { Carousel } from 'react-bootstrap'
 
 const Photos = (props) => {
-    if (props.data === null) {
+	if (props.data === null) {
 		return (
 			<Carousel>
 				<Carousel.Item>
@@ -14,7 +13,7 @@ const Photos = (props) => {
 				</Carousel.Item>
 			</Carousel>
 		)
-	}else{
+	} else {
 		return (
 			<Carousel>
 				{Object.keys(props.data).map((keyImage) => {
@@ -23,8 +22,7 @@ const Photos = (props) => {
 							<img
 								className="d-block w-100"
 								src={
-									'http://localhost:8080/' +
-									props.data[keyImage]
+									window.env.API_DOMAIN + props.data[keyImage]
 								}
 								alt="First slide"
 							/>
@@ -34,8 +32,6 @@ const Photos = (props) => {
 			</Carousel>
 		)
 	}
-	
-	
 }
 
 export default Photos

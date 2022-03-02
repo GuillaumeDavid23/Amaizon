@@ -11,7 +11,7 @@ const Single = () => {
 	const { id } = useParams()
 
 	useEffect(() => {
-		fetch(window.env.API_DOMAIN + `property/${id}`)
+		fetch(window.env.API_DOMAIN + `api/property/${id}`)
 			.then((response) => {
 				return response.json()
 			})

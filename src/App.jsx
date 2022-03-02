@@ -27,7 +27,7 @@ function App() {
 
 	// Check de la validité du token:
 	if (token) {
-		fetch(window.env.API_DOMAIN + 'user/checkBearer', {
+		fetch(window.env.API_DOMAIN + 'api/user/checkBearer', {
 			method: 'POST',
 			headers: {
 				Authorization: 'Bearer ' + token,

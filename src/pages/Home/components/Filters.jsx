@@ -50,7 +50,7 @@ const Filters = ({ setProperties }) => {
 			surface,
 		}
 
-		fetch(window.env.API_DOMAIN + 'property/searchProperties', {
+		fetch(window.env.API_DOMAIN + 'api/property/searchProperties', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json;charset=utf-8',
