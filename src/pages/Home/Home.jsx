@@ -9,7 +9,7 @@ const Home = () => {
 	const [properties, setProperties] = useState([])
 
 	useEffect(() => {
-		fetch(window.env.API_DOMAIN + 'property')
+		fetch(window.env.API_DOMAIN + 'api/property')
 			.then((response) => {
 				return response.json()
 			})
