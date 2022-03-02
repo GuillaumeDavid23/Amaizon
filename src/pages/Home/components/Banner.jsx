@@ -17,7 +17,11 @@ const Banner = (props) => {
 				l'un de nos agents.
 				<br />
 			</p>
-			<Link to={`/aboutus`} className="LinkBtn" style={{ width: 'fit-content' }}>
+			<Link
+				to={`/contactus`}
+				className="LinkBtn"
+				style={{ width: 'fit-content' }}
+			>
 				<BtnGeneral className="BtnBanner" text="Contactez-nous" />
 			</Link>
 		</div>

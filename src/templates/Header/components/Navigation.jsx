@@ -16,10 +16,10 @@ const Navigation = ({ isConnected }) => {
 	const linkArray = [
 		{
 			name: 'Accueil',
-			link: '#',
+			link: '/',
 		},
-		{ name: 'A propos', link: '#' },
-		{ name: 'Contact', link: '#' },
+		{ name: 'A propos', link: '/aboutus' },
+		{ name: 'Contact', link: '/contactus' },
 	]
 
 	// Gestion de la déconnexion:
@@ -60,7 +60,7 @@ const Navigation = ({ isConnected }) => {
 						id="dropdown-basic"
 						className="header-btn"
 					>
-						Vincent Mancheron
+						Espace Client
 					</Dropdown.Toggle>
 					<Dropdown.Menu>
 						<Dropdown.Item>
