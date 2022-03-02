@@ -24,7 +24,7 @@ const ConnectFrom = () => {
 				password: data.password,
 			})
 
-			fetch('http://localhost:5000/api/user/login', {
+			fetch(window.env.API_DOMAIN + 'user/login', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json;charset=utf-8',

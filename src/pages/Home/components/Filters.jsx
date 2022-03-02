@@ -50,7 +50,7 @@ const Filters = ({ setProperties }) => {
 			surface,
 		}
 
-		fetch('http://localhost:5000/api/property/searchProperties', {
+		fetch(window.env.API_DOMAIN + 'property/searchProperties', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json;charset=utf-8',

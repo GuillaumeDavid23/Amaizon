@@ -9,7 +9,7 @@ const Home = () => {
 	const [properties, setProperties] = useState([])
 
 	useEffect(() => {
-		fetch('http://localhost:5000/api/property')
+		fetch(window.env.API_DOMAIN + 'property')
 			.then((response) => {
 				return response.json()
 			})
