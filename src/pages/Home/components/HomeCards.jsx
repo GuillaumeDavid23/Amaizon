@@ -6,7 +6,6 @@ import Favorite from '../../../templates/Favorite'
 
 const HomeCards = (props) => {
 	const { _id, imageUrl, title, description, amount } = props.propertyDatas
-	console.log(imageUrl);
 	const token = props.token
 
 	const [favExist, setFav] = useState(false)
@@ -31,15 +30,18 @@ const HomeCards = (props) => {
 				classList="card-img-top"
 				altValue={`Vignette de ${title}`}
 			/>
+			<div className='fav'>
+				<Favorite
+					token={token}
+					id={_id}
+					default={favExist}
+					setFav={setFav}
+				/>
+			</div>
 			<div className="card-body">
 				<div className="d-flex justify-content-between align-items-center">
 					<h5 className="card-title">{title}</h5>
-					<Favorite
-						token={token}
-						id={_id}
-						default={favExist}
-						setFav={setFav}
-					/>
+					
 				</div>
 				<p className="card-text">{description}</p>
 				<div className="d-flex justify-content-around">
