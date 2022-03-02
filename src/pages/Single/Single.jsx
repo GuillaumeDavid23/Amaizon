@@ -22,7 +22,7 @@ const Single = () => {
 					{data.imageUrl ? (<Photos data={data.imageUrl}/>) : (<Photos data={null}/>)}
 				</Col>
 				<Col xs="12" lg="5" className="">
-					<Description data={data} />
+					<Description data={data} exist={false}/>
 				</Col>
 			</Row>
 		</Container>
