@@ -31,7 +31,7 @@ const Single = () => {
 					)}
 				</Col>
 				<Col xs="12" lg="5" className="">
-					<Description data={data} />
+					<Description data={data} exist={false}/>
 				</Col>
 			</Row>
 		</Container>
