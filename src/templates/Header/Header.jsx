@@ -7,7 +7,7 @@ import { Navbar, Container } from 'react-bootstrap'
 //This component is for create Header
 function Header({ isConnected }) {
 	return (
-		<Navbar bg="light" expand="lg" className="header-container p-0">
+		<Navbar sticky='top' bg="light" expand="lg" className="header-container p-0">
 			<Container fluid className="header-container">
 				<Brand />
 				<Toggle />

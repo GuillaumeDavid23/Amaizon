@@ -1,13 +1,12 @@
 import { Link } from 'react-router-dom'
 import BtnGeneral from '../../../templates/BtnGeneral'
-import Img from '../../../templates/Img'
 import { useEffect, useState } from 'react'
 import Favorite from '../../../templates/Favorite'
+import { Card } from 'react-bootstrap'
 
 const HomeCards = (props) => {
-	const { _id, imageUrl, title, description, amount } = props.propertyDatas
+	const { _id, imageUrl, title, description, amount, surface, transactionType } = props.propertyDatas
 	const token = props.token
-
 	const [favExist, setFav] = useState(false)
 
 	useEffect(() => {
@@ -24,34 +23,41 @@ const HomeCards = (props) => {
 			})
 	}, [_id, token])
 	return (
-		<div className="card">
-			<Img
-				srcValue={window.env.API_DOMAIN + imageUrl.photo1}
-				classList="card-img-top"
-				altValue={`Vignette de ${title}`}
+		<Card className="mb-5" style={{ width: '18rem' }}>
+			<Card.Img
+				variant="top"
+				src={process.env.REACT_APP_API_DOMAIN + imageUrl.photo1}
 			/>
-			<div className='fav'>
-				<Favorite
-					token={token}
-					id={_id}
-					default={favExist}
-					setFav={setFav}
-				/>
-			</div>
-			<div className="card-body">
-				<div className="d-flex justify-content-between align-items-center">
-					<h5 className="card-title">{title}</h5>
-					
+			<Card.Body>
+				<Card.Title>
+					{title} de {surface} m²
+				</Card.Title>
+				<Card.Text>
+					<p className="card-text">{description}</p>
+					<div className="text-center">
+						<span className="price ">
+							{amount} €{' '}
+							<small className='location'>{transactionType === 'Location' ? '/ Mois' : ''}</small>
+							
+						</span>
+					</div>
+				</Card.Text>
+				<Link
+					to={`/single/${_id}`}
+					className="d-flex justify-content-center"
+				>
+					<BtnGeneral className="w-75" text="Voir l'annonce" />
+				</Link>
+				<div className="d-flex justify-content-center">
+					<Favorite
+						token={token}
+						id={_id}
+						default={favExist}
+						setFav={setFav}
+					/>
 				</div>
-				<p className="card-text">{description}</p>
-				<div className="d-flex justify-content-around">
-					<span className="price">{amount} €</span>
-					<Link to={`/single/${_id}`}>
-						<BtnGeneral text="Voir l'annonce" />
-					</Link>
-				</div>
-			</div>
-		</div>
+			</Card.Body>
+		</Card>
 	)
 }
 

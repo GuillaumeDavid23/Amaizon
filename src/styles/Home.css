@@ -29,10 +29,15 @@
     font-size: 2em;
 }
 
-.fav{
-    display: flex;
-    width: fit-content;
-    border-radius: 50%;
-    width: 50px;
-    background-color: #647f94;
+.location{
+    font-size: 0.7em;
+}
+
+.dropBtn{
+    background: #647f94 !important;
+    border: 1px solid #647f94 !important;
+}
+
+.dropMenu{
+    border: 1px solid #647f94;
 }

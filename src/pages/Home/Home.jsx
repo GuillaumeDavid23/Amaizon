@@ -4,6 +4,8 @@ import '../../styles/Home.css'
 import Filters from './components/Filters'
 import HomeCards from './components/HomeCards'
 import { useState, useEffect } from 'react'
+import { Col, Container, Row } from 'react-bootstrap'
+
 
 const Home = (props) => {
 	const token = props.token
@@ -18,23 +20,29 @@ const Home = (props) => {
 	}, [])
 
 	return (
-		<div>
+		<Container fluid>
 			<Img
 				idValue="homeBanner"
 				srcValue={banner}
 				altValue="Bannière Accueil Amaizon"
 			/>
 			<Filters setProperties={setProperties} />
-			<div className="row justify-content-evenly">
+			<Row className="justify-content-center justify-content-lg-evenly w-100 m-0">
 				{properties.map((property) => {
 					return (
-						<div key={property._id} className="col-3">
+						<Col
+							xs="10"
+							md="5"
+							lg="3"
+							key={property._id}
+							className="d-flex justify-content-center"
+						>
 							<HomeCards propertyDatas={property} token={token} />
-						</div>
+						</Col>
 					)
 				})}
-			</div>
-		</div>
+			</Row>
+		</Container>
 	)
 }
 
