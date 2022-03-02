@@ -13,7 +13,9 @@
   font-size: 14px;
   font-family: "Dosis Regular";
 }
-
+html{
+  width: 100%;
+}
 a {
   color: black !important;
   text-decoration: none !important;

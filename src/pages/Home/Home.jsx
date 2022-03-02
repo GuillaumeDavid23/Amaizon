@@ -1,11 +1,10 @@
-import Img from '../../templates/Img'
-import banner from '../../assets/real-estate-paper-finance-budgeting-concept.jpg'
+
 import '../../styles/Home.css'
 import Filters from './components/Filters'
 import HomeCards from './components/HomeCards'
 import { useState, useEffect } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-
+import Banner from './components/Banner'
 
 const Home = (props) => {
 	const token = props.token
@@ -20,12 +19,8 @@ const Home = (props) => {
 	}, [])
 
 	return (
-		<Container fluid>
-			<Img
-				idValue="homeBanner"
-				srcValue={banner}
-				altValue="Bannière Accueil Amaizon"
-			/>
+		<Container fluid className='w-100 p-0'>
+			<Banner/>
 			<Filters setProperties={setProperties} />
 			<Row className="justify-content-center justify-content-lg-evenly w-100 m-0">
 				{properties.map((property) => {

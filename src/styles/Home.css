@@ -1,5 +1,21 @@
-#homeBanner {
+.homeBanner {
+    background-image: url('../assets/banner.jpg');
+    background-size: cover;
+    height: 500px;
     width: 100%;
+}
+.homeBanner p{
+    width: 50%;
+    font-size: 2em;
+    color: #647f94;
+    font-weight: bold;
+    margin-left: 50px;
+    padding-top: 20px;
+}
+.BtnBanner{
+    font-size: 2em !important;
+    width: fit-content;
+    margin-left: 20%;
 }
 
 #filters {
