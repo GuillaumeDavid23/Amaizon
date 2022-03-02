@@ -8,10 +8,8 @@ import { useState, useEffect } from 'react'
 const Home = () => {
 	const [properties, setProperties] = useState([])
 
-	console.log(properties)
-
 	useEffect(() => {
-		fetch('http://localhost:5000/api/property')
+		fetch(window.env.API_DOMAIN + 'property')
 			.then((response) => {
 				return response.json()
 			})
@@ -25,7 +23,7 @@ const Home = () => {
 				srcValue={banner}
 				altValue="Bannière Accueil Amaizon"
 			/>
-			<Filters />
+			<Filters setProperties={setProperties} />
 			<div className="row justify-content-around">
 				{properties.map((property) => {
 					return (
