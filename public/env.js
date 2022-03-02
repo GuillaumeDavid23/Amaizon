@@ -1,3 +1,3 @@
 window.env = {
-  "API_DOMAIN": "http://localhost:5000/api/"
+  "API_DOMAIN": "http://localhost:5000/"
 };
