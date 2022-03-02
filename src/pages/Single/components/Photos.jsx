@@ -22,7 +22,8 @@ const Photos = (props) => {
 							<img
 								className="d-block w-100"
 								src={
-									window.env.API_DOMAIN + props.data[keyImage]
+									process.env.REACT_APP_API_DOMAIN +
+									props.data[keyImage]
 								}
 								alt="First slide"
 							/>

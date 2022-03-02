@@ -86,8 +86,15 @@
 	border-radius: 20px !important;
 	box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
 	height: 40px;
-	width: 60px;
 	font-size: 1.2em !important;
+}
+
+.header-btn-go {
+	width: 60px;
+}
+
+.header-btn-connexion {
+	width: 120px;
 }
 
 /* Dropdown Nav Mobile */

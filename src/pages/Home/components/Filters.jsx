@@ -50,13 +50,16 @@ const Filters = ({ setProperties }) => {
 			surface,
 		}
 
-		fetch(window.env.API_DOMAIN + 'api/property/searchProperties', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json;charset=utf-8',
-			},
-			body: JSON.stringify(filters),
-		})
+		fetch(
+			process.env.REACT_APP_API_DOMAIN + 'api/property/searchProperties',
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json;charset=utf-8',
+				},
+				body: JSON.stringify(filters),
+			}
+		)
 			.then((response) => {
 				return response.json()
 			})
