@@ -7,7 +7,6 @@ import { Col, Container, Row } from 'react-bootstrap'
 import Banner from './components/Banner'
 
 const Home = (props) => {
-	const token = props.token
 	const [properties, setProperties] = useState([])
 
 	useEffect(() => {
@@ -32,7 +31,7 @@ const Home = (props) => {
 							key={property._id}
 							className="d-flex justify-content-center"
 						>
-							<HomeCards propertyDatas={property} token={token} />
+							<HomeCards propertyDatas={property} setUserInfos={props.setUserInfos} />
 						</Col>
 					)
 				})}

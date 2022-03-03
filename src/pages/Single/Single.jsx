@@ -5,8 +5,9 @@ import '../../styles/Single.css'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-const Single = (props) => {
-	const token = props.token;
+
+const Single = () => {
+
 	const [data, setData] = useState({})
 
 	const { id } = useParams()
@@ -32,7 +33,7 @@ const Single = (props) => {
 					)}
 				</Col>
 				<Col xs="12" lg="5" className="">
-					<Description data={data} token={token} />
+					<Description data={data} />
 				</Col>
 			</Row>
 		</Container>

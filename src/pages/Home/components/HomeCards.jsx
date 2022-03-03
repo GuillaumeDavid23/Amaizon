@@ -3,6 +3,8 @@ import BtnGeneral from '../../../templates/BtnGeneral'
 import { useEffect, useState } from 'react'
 import Favorite from '../../../templates/Favorite'
 import { Card } from 'react-bootstrap'
+import { useContext } from 'react'
+import { Context } from '../../../App'
 
 const HomeCards = (props) => {
 	const {
@@ -14,8 +16,8 @@ const HomeCards = (props) => {
 		surface,
 		transactionType,
 	} = props.propertyDatas
-	const token = props.token
 	const [favExist, setFav] = useState(false)
+	const token = useContext(Context).authToken
 
 	useEffect(() => {
 		const requestOptions = {

@@ -1,10 +1,13 @@
 import BtnGeneral from '../../../templates/BtnGeneral'
 import Favorite from '../../../templates/Favorite'
 import { useEffect, useState } from 'react'
-
+import { useContext } from 'react'
+import { Context } from '../../../App'
 const Description = (props) => {
 	const [favExist, setFav] = useState(false)
-    const {data, token} = props
+    const {data} = props
+	const token = useContext(Context).authToken
+
     
     useEffect(() => { 
         const requestOptions = {

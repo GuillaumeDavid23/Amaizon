@@ -33,10 +33,8 @@ const Login = ({ isConnected }) => {
 						</div>
 					</Dropdown.Toggle>
 					<Dropdown.Menu align="center">
-						<Dropdown.Item>
-							<LinkRouterDom to="/backoffice">
-								Accès au profil
-							</LinkRouterDom>
+						<Dropdown.Item href="/backoffice">
+								<span>Accès au profil</span> 
 						</Dropdown.Item>
 						<Dropdown.Item>
 							<span onClick={disconnect}>Déconnexion</span>

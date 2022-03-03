@@ -1,9 +1,10 @@
 import React from 'react'
 import '../styles/Favorite.css'
-
+import { useContext } from 'react'
+import { Context } from '../App'
 
 const Favorite = (props) => {
-    const token = props.token
+	const token = useContext(Context).authToken
 
 	function handleClick() {
         props.setFav(!props.default)

@@ -24,7 +24,7 @@ export function App() {
 	// Déclaration des states et des contexts:
 	const [isConnected, setConnexion] = useState(false)
 	const [token, setToken] = useState(null)
-	const [userInfos, setUserInfos] = useState({})
+	const [userInfos, setUserInfos] = useState(null)
 
 	// Check de l'existence d'un token:
 	let tokenLS = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_AMAIZON'))
@@ -58,7 +58,7 @@ export function App() {
 				})
 		}
 	}, [token])
-
+	console.log(userInfos);
 	return (
 		<Context.Provider
 			value={{
@@ -70,7 +70,11 @@ export function App() {
 			<Router>
 				<Header />
 				<Routes>
-					<Route exact path="/" element={<Home token={token} />} />
+					<Route
+						exact
+						path="/"
+						element={<Home setUserInfos={setUserInfos} />}
+					/>
 					<Route path="/aboutus" element={<About />} />
 					<Route path="/takeAppointment" element={<Appointment />} />
 					<Route path="/backoffice" element={<Backoffice />} />
