@@ -4,7 +4,7 @@ import contactBanner from '../../assets/img-contact.jpg'
 
 const Contact = () => {
 	return (
-		<div className="d-flex justify-content-around">
+		<div className="d-flex justify-content-around contact">
 			<ContactForm />
 			<Img
 				classList="d-none d-md-block w-50"

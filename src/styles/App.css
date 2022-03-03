@@ -8,6 +8,17 @@
   src: url("../assets/font/Dosis-SemiBold.ttf") format("ttf"),
 }
 
+html, body{
+  height: 100%;
+}
+
+#root{
+  height: 100%;
+}
+.contact{
+  height: 65%;
+}
+
 /* Reset CSS */
 * {
   font-size: 14px;
