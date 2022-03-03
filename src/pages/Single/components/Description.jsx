@@ -29,7 +29,7 @@ const Description = (props) => {
 	}, [data._id, data, token, isConnected])
 
 	return (
-		<div className="description">
+		<div className="description mt-5 mb-5">
 			<div className="d-flex justify-content-between">
 				<h2 className="d-flex align-items-center">
 					{data.title} de {data.surface} m²

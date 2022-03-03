@@ -1,7 +1,8 @@
 // Import Vincent pour Bouton d'accès au form login:
 import { Link as LinkRouterDom } from 'react-router-dom'
 import { Dropdown, Button } from 'react-bootstrap'
-import { BoxArrowInRight, Person } from 'react-bootstrap-icons'
+import { BsBoxArrowInRight, BsPerson } from 'react-icons/bs'
+
 
 const Login = ({ isConnected }) => {
 	// Gestion de la déconnexion:
@@ -16,7 +17,7 @@ const Login = ({ isConnected }) => {
 					<Button className="header-btn header-btn-connexion h-auto">
 						<div className="d-flex align-items-center">
 							<span className="me-2">Connexion</span>
-							<BoxArrowInRight size={25} />
+							<BsBoxArrowInRight size={25} />
 						</div>
 					</Button>
 				</LinkRouterDom>
@@ -29,12 +30,12 @@ const Login = ({ isConnected }) => {
 					>
 						<div className="d-flex align-items-center">
 							<span className="me-2">Espace Client</span>
-							<Person size={25} />
+							<BsPerson size={25} />
 						</div>
 					</Dropdown.Toggle>
 					<Dropdown.Menu align="center">
 						<Dropdown.Item href="/backoffice">
-								<span>Accès au profil</span> 
+							<span>Accès au profil</span>
 						</Dropdown.Item>
 						<Dropdown.Item>
 							<span onClick={disconnect}>Déconnexion</span>

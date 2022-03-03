@@ -1,5 +1,5 @@
 import { Col } from 'react-bootstrap'
-import { Facebook, Instagram, Linkedin } from 'react-bootstrap-icons'
+import { BsFacebook, BsInstagram, BsLinkedin } from 'react-icons/bs'
 
 const SocialNetworks = () => {
 	return (
@@ -7,16 +7,16 @@ const SocialNetworks = () => {
 			<h4 className="text-decoration-underline">Suivez-nous sur:</h4>
 			<div className="d-flex justify-content-center">
 				<a href="https://www.facebook.com/LaManuFormation">
-					<Facebook size={32} />
+					<BsFacebook size={32} />
 				</a>
 				<a
 					href="https://www.instagram.com/lamanuformation/"
 					className="mx-3"
 				>
-					<Instagram size={32} />
+					<BsInstagram size={32} />
 				</a>
 				<a href="https://www.linkedin.com/school/la-manu-ecole-superieure-des-metiers-du-numerique/">
-					<Linkedin size={32} />
+					<BsLinkedin size={32} />
 				</a>
 			</div>
 		</Col>
