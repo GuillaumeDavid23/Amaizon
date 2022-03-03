@@ -117,17 +117,14 @@ const ConnectForm = () => {
 								{errors.password.message}
 							</span>
 						)}
-						<a
-							href="/"
-							className="align-self-center"
-						>
+						<a href="/" className="align-self-center">
 							Mot de passe oublié ?
 						</a>
 					</div>
 				</div>
 
 				<div id="pwHelp" className="d-flex justify-content-around">
-					<div className="d-flex">
+					<div className="d-flex align-items-center">
 						<CheckBox
 							id={'revealPassword'}
 							className="me-2"
@@ -141,7 +138,7 @@ const ConnectForm = () => {
 						</label>
 					</div>
 				</div>
-				<div className="my-3 text-center">
+				<div className="my-3 d-flex justify-content-center align-items-center">
 					<CheckBox id={'rememberMe'} className="me-2" />
 					<label htmlFor="rememberMe" className="form-check-label">
 						Se souvenir de moi?
