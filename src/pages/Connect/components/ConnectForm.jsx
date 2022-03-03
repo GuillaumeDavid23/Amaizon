@@ -66,7 +66,7 @@ const ConnectForm = () => {
 					<div className="d-flex justify-content-center align-items-center flex-column text-center">
 						<label
 							htmlFor="email"
-							className="form-label w-25 text-center fw-bold"
+							className="form-label text-center fw-bold"
 						>
 							Adresse Email:
 						</label>
@@ -96,7 +96,7 @@ const ConnectForm = () => {
 					<div className="d-flex justify-content-center align-items-center flex-column text-center">
 						<label
 							htmlFor="password"
-							className="form-label w-25 text-center fw-bold"
+							className="form-label text-center fw-bold"
 						>
 							Mot de passe:
 						</label>

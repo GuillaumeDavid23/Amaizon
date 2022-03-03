@@ -1,3 +1,12 @@
 .connectForm form div label{
     font-size: 1.2em !important;
 }
+
+.invalid-feedback{
+    font-size: 1em;
+}
+
+a:hover{
+    text-decoration: underline;
+    transition: 0.5s;
+}
