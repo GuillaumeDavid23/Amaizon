@@ -1,5 +1,5 @@
 import { Col } from 'react-bootstrap'
-import {Facebook, Instagram, Linkedin} from 'react-bootstrap-icons'
+import { Facebook, Instagram, Linkedin } from 'react-bootstrap-icons'
 
 const SocialNetworks = () => {
 	return (
