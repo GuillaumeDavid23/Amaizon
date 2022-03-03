@@ -76,3 +76,12 @@ li {
   width: 90px;
   font-size: 1.2em !important;
 }
+
+.bo_subcontainer {
+  margin: 1rem 0;
+  padding: 2rem;
+  background-color: #ece6de;
+  border: 1px solid black;
+  color: #647f94;
+  font-family: 'Dosis SemiBold';
+}

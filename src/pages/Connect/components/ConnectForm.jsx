@@ -1,7 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import { Container, Button } from 'react-bootstrap'
-import '../../../styles/Connect.css'
 // import { Redirect } from 'react-router-dom'
 
 const ConnectForm = () => {
@@ -21,7 +20,6 @@ const ConnectForm = () => {
 
 	const onSubmit = (data) => {
 		try {
-			console.log(1)
 			let body = JSON.stringify({
 				email: data.email,
 				password: data.password,
