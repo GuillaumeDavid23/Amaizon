@@ -9,15 +9,14 @@ import Link from './Link'
 // Import Vincent pour Bouton d'accès au form login:
 import { Link as LinkRouterDom } from 'react-router-dom'
 import { Dropdown, Button } from 'react-bootstrap'
+import { useContext } from 'react'
+import { Context } from '../../../App'
 
 // This components is for create navigation link and forms
-const Navigation = ({ isConnected }) => {
+const Navigation = () => {
 	//Array for create navigation link
 	const linkArray = [
-		{
-			name: 'Accueil',
-			link: '/',
-		},
+		{ name: 'Accueil', link: '/' },
 		{ name: 'A propos', link: '/aboutus' },
 		{ name: 'Contact', link: '/contactus' },
 	]
@@ -27,6 +26,8 @@ const Navigation = ({ isConnected }) => {
 		localStorage.clear()
 		window.location.href = process.env.REACT_APP_UI_DOMAIN
 	}
+
+	let isConnected = useContext(Context).connected
 
 	return (
 		<Navbar.Collapse id="navbarScroll">

@@ -5,13 +5,18 @@ import Navigation from './components/Navigation'
 import { Navbar, Container } from 'react-bootstrap'
 
 //This component is for create Header
-function Header({ isConnected }) {
+function Header() {
 	return (
-		<Navbar sticky='top' bg="light" expand="lg" className="header-container p-0">
+		<Navbar
+			sticky="top"
+			bg="light"
+			expand="lg"
+			className="header-container p-0"
+		>
 			<Container fluid className="header-container">
 				<Brand />
 				<Toggle />
-				<Navigation isConnected={isConnected} />
+				<Navigation />
 			</Container>
 		</Navbar>
 	)

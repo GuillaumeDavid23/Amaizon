@@ -5,7 +5,15 @@ import Favorite from '../../../templates/Favorite'
 import { Card } from 'react-bootstrap'
 
 const HomeCards = (props) => {
-	const { _id, imageUrl, title, description, amount, surface, transactionType } = props.propertyDatas
+	const {
+		_id,
+		imageUrl,
+		title,
+		description,
+		amount,
+		surface,
+		transactionType,
+	} = props.propertyDatas
 	const token = props.token
 	const [favExist, setFav] = useState(false)
 
@@ -13,7 +21,10 @@ const HomeCards = (props) => {
 		const requestOptions = {
 			method: 'GET',
 		}
-		fetch('http://localhost:8080/api/user/check/' + token, requestOptions)
+		fetch(
+			process.env.REACT_APP_API_DOMAIN + 'api/user/check/' + token,
+			requestOptions
+		)
 			.then(function (response) {
 				return response.json()
 			})
@@ -37,8 +48,9 @@ const HomeCards = (props) => {
 					<div className="text-center">
 						<span className="price ">
 							{amount} €{' '}
-							<small className='location'>{transactionType === 'Location' ? '/ Mois' : ''}</small>
-							
+							<small className="location">
+								{transactionType === 'Location' ? '/ Mois' : ''}
+							</small>
 						</span>
 					</div>
 				</Card.Text>
