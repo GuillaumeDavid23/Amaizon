@@ -1,4 +1,4 @@
-import { set, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { Button } from 'react-bootstrap'
 import { useState, useContext } from 'react'
 import { Context } from '../../../App'
@@ -19,18 +19,30 @@ const ContactForm = () => {
 	const { isValid, isSubmitting, isSubmitted, isSubmitSuccessful } = formState
 
 	let isConnected = useContext(Context).connected
-	// let userInfos = useContext(Context).userInfos
+	let userInfos = useContext(Context).userInfos
 
 	const onSubmit = (data) => {
 		try {
-			let body = JSON.stringify({
-				lastname: data.lastname,
-				firstname: data.firstname,
-				email: data.email,
-				tel: data.tel,
-				subject: data.subject,
-				message: data.message,
-			})
+			var body
+			if (isConnected) {
+				body = JSON.stringify({
+					lastname: userInfos.lastname,
+					firstname: userInfos.firstname,
+					email: userInfos.email,
+					tel: userInfos.tel,
+					subject: data.subject,
+					message: data.message,
+				})
+			} else {
+				body = JSON.stringify({
+					lastname: data.lastname,
+					firstname: data.firstname,
+					email: data.email,
+					tel: data.tel,
+					subject: data.subject,
+					message: data.message,
+				})
+			}
 
 			fetch(process.env.REACT_APP_API_DOMAIN + 'api/user/sendMessage', {
 				method: 'POST',
@@ -74,10 +86,15 @@ const ContactForm = () => {
 								{...register('lastname', {
 									required:
 										'Vous devez indiquer votre nom de famille.',
+									pattern: {
+										value: /^[a-z ,.'-]+$/i,
+										message:
+											'Entrer un nom de famille valide',
+									},
 								})}
 								onBlur={() => console.log(isValid)}
 							/>
-							{errors.lastname && (
+							{errors?.lastname && (
 								<span className="invalid-feedback">
 									{errors.lastname.message}
 								</span>
@@ -93,10 +110,14 @@ const ContactForm = () => {
 								{...register('firstname', {
 									required:
 										'Vous devez indiquer votre prénom.',
+									pattern: {
+										value: /^[a-z ,.'-]+$/i,
+										message: 'Entrer un prénom valide',
+									},
 								})}
 								onBlur={() => console.log(isValid)}
 							/>
-							{errors.firstname && (
+							{errors?.firstname && (
 								<span className="invalid-feedback">
 									{errors.firstname.message}
 								</span>
@@ -114,10 +135,14 @@ const ContactForm = () => {
 								{...register('email', {
 									required:
 										'Vous devez indiquer votre email.',
+									pattern: {
+										value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+										message: 'Entrer une email valide',
+									},
 								})}
 								onBlur={() => console.log(isValid)}
 							/>
-							{errors.email && (
+							{errors?.email && (
 								<span className="invalid-feedback">
 									{errors.email.message}
 								</span>
@@ -131,12 +156,15 @@ const ContactForm = () => {
 								}
 								placeholder="Votre téléphone"
 								{...register('tel', {
-									required:
-										'Vous devez indiquer votre téléphone.',
+									pattern: {
+										value: /^((\+)33|0|0033)[1-9](\d{2}){4}$/g,
+										message:
+											'Entrer un numéro de téléphone valide',
+									},
 								})}
 								onBlur={() => console.log(isValid)}
 							/>
-							{errors.tel && (
+							{errors?.tel && (
 								<span className="invalid-feedback">
 									{errors.tel.message}
 								</span>
@@ -156,10 +184,16 @@ const ContactForm = () => {
 						}
 						placeholder="Le sujet de votre message"
 						{...register('subject', {
-							required: true,
+							required:
+								'Vous devez entrer le sujet de votre message.',
 						})}
 						onBlur={() => console.log(isValid)}
 					/>
+					{errors?.subject && (
+						<span className="invalid-feedback">
+							{errors.subject.message}
+						</span>
+					)}
 				</div>
 				<div className="my-3">
 					<textarea
@@ -171,10 +205,15 @@ const ContactForm = () => {
 						}
 						placeholder="Votre message"
 						{...register('message', {
-							required: true,
+							required: 'Vous devez entrer votre message.',
 						})}
 						onBlur={() => console.log(isValid)}
 					/>
+					{errors?.message && (
+						<span className="invalid-feedback">
+							{errors.message.message}
+						</span>
+					)}
 				</div>
 				<div className="d-flex justify-content-center align-items-center my-3">
 					<Button type="submit" className="header-btn">
