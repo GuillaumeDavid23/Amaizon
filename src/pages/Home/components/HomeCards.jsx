@@ -32,16 +32,17 @@ const HomeCards = (props) => {
 				<Card.Title>
 					{title} de {surface} m²
 				</Card.Title>
-				<Card.Text>
+				<div>
 					<p className="card-text">{description}</p>
 					<div className="text-center">
 						<span className="price ">
 							{amount} €{' '}
-							<small className='location'>{transactionType === 'Location' ? '/ Mois' : ''}</small>
-							
+							<small className="location">
+								{transactionType === 'Location' ? '/ Mois' : ''}
+							</small>
 						</span>
 					</div>
-				</Card.Text>
+				</div>
 				<Link
 					to={`/single/${_id}`}
 					className="d-flex justify-content-center"

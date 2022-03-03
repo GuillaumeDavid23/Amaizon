@@ -1,22 +1,24 @@
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
-import { Container, Button } from 'react-bootstrap'
-// import { Redirect } from 'react-router-dom'
+import { Container, Button, Alert } from 'react-bootstrap'
+import CheckBox from '../../../templates/CheckBox'
 
 const ConnectForm = () => {
 	const [passwordRevealed, revealPassword] = useState(false)
+	const [notFound, setNotFound] = useState('')
 
 	const {
 		register,
 		handleSubmit,
-		formState: { errors, ...formState },
+		formState: {
+			errors,
+			isValid,
+		},
 	} = useForm({
 		mode: 'onBlur',
 		reValidateMode: 'onBlur',
 		shouldFocusError: true,
 	})
-
-	const { isValid, isSubmitting, isSubmitted, isSubmitSuccessful } = formState
 
 	const onSubmit = (data) => {
 		try {
@@ -42,6 +44,8 @@ const ConnectForm = () => {
 							JSON.stringify(response.token)
 						)
 						window.location.href = process.env.REACT_APP_UI_DOMAIN
+					}else{
+						setNotFound(response.error)
 					}
 				})
 		} catch (error) {
@@ -52,38 +56,47 @@ const ConnectForm = () => {
 	return (
 		<Container className="bo_subcontainer" style={{ borderRadius: '30px' }}>
 			<form id="connectForm" onSubmit={handleSubmit(onSubmit)}>
+				<Alert
+					className={notFound === '' ? 'd-none' : ''}
+					variant="warning"
+				>
+					Votre email / mot de passe est invalide
+				</Alert>
 				<div className="my-3">
-					<div className="d-flex justify-content-center align-items-center">
+					<div className="d-flex justify-content-center align-items-center flex-column text-center">
 						<label
 							htmlFor="email"
-							className="form-label w-25 text-end me-3"
+							className="form-label w-25 text-center fw-bold"
 						>
 							Adresse Email:
 						</label>
 						<input
 							type="email"
 							className={
-								!errors.mail
+								!errors.email
 									? 'form-control w-50'
 									: 'form-control w-50 is-invalid'
 							}
 							{...register('email', {
 								required: 'Vous devez indiquer votre email.',
+								pattern: {
+									value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+									message: 'Entrer une email valide',
+								},
 							})}
-							onBlur={() => console.log(isValid)}
 						/>
-						{errors.email && (
-							<span className="invalid-feedback">
+						{errors?.email && (
+							<span className="invalid-feedback fw-bold">
 								{errors.email.message}
 							</span>
 						)}
 					</div>
 				</div>
-				<div className="mb-5">
-					<div className="d-flex justify-content-center align-items-center">
+				<div className="mb-4">
+					<div className="d-flex justify-content-center align-items-center flex-column text-center">
 						<label
 							htmlFor="password"
-							className="form-label w-25 text-end me-3"
+							className="form-label w-25 text-center fw-bold"
 						>
 							Mot de passe:
 						</label>
@@ -95,21 +108,30 @@ const ConnectForm = () => {
 									: 'form-control w-50 is-invalid'
 							}
 							{...register('password', {
-								required: true,
+								required:
+									'Vous devez remplir votre mot de passe',
 							})}
-							onBlur={() => console.log(isValid)}
 						/>
-					</div>
-					<div className="d-flex flex-column align-items-center">
-						<div id="emptyPasswordError" className="error"></div>
+						{errors?.password && (
+							<span className="invalid-feedback fw-bold">
+								{errors.password.message}
+							</span>
+						)}
+						<a
+							href="/"
+							className="align-self-center"
+						>
+							Mot de passe oublié ?
+						</a>
 					</div>
 				</div>
+
 				<div id="pwHelp" className="d-flex justify-content-around">
 					<div className="d-flex">
-						<input
-							type="checkbox"
-							className="form-check-input me-1"
-							onChange={(e) => revealPassword(e.target.checked)}
+						<CheckBox
+							id={'revealPassword'}
+							className="me-2"
+							change={(e) => revealPassword(e.target.checked)}
 						/>
 						<label
 							htmlFor="passwordVisibility"
@@ -118,28 +140,21 @@ const ConnectForm = () => {
 							Afficher le mot de passe
 						</label>
 					</div>
-					<a href="/index.php?nav=pwForgotten" className="me-4">
-						Mot de passe oublié ?
-					</a>
 				</div>
 				<div className="my-3 text-center">
-					<input
-						type="checkbox"
-						className="form-check-input"
-						id="rememberMe"
-						name="rememberMe"
-					/>
+					<CheckBox id={'rememberMe'} className="me-2" />
 					<label htmlFor="rememberMe" className="form-check-label">
 						Se souvenir de moi?
 					</label>
 				</div>
 				<div className="d-flex justify-content-center mb-3">
-					<Button type="submit" className="header-btn">
+					<Button
+						type="submit"
+						disabled={!isValid}
+						className="header-btn"
+					>
 						CONNEXION
 					</Button>
-					{/* <button disabled={isSubmitting || !isValid} className="px-4">
-                        CONNEXION
-                    </button> */}
 				</div>
 			</form>
 		</Container>
