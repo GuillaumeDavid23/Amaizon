@@ -5,11 +5,14 @@ const SocialNetworks = () => {
 	return (
 		<Col lg="2">
 			<h4 className="text-decoration-underline">Suivez-nous sur:</h4>
-			<div className="d-flex justify-content-evenly">
+			<div className="d-flex justify-content-center">
 				<a href="https://www.facebook.com/LaManuFormation">
 					<Facebook size={32} />
 				</a>
-				<a href="https://www.instagram.com/lamanuformation/">
+				<a
+					href="https://www.instagram.com/lamanuformation/"
+					className="mx-3"
+				>
 					<Instagram size={32} />
 				</a>
 				<a href="https://www.linkedin.com/school/la-manu-ecole-superieure-des-metiers-du-numerique/">

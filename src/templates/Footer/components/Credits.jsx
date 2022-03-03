@@ -10,7 +10,7 @@ const Credits = () => {
 		>
 			<Img
 				idValue="logoFooter"
-				classList="d-md-none"
+				classList="d-lg-none"
 				srcValue={logo}
 				altValue="Logo Amaizon"
 			/>
