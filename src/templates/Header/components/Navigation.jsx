@@ -7,17 +7,19 @@ import Link from './Link'
 //Login/profil button component
 import Login from './Login'
 
+import { useContext } from 'react'
+import { Context } from '../../../App'
+
 // This components is for create navigation link and forms
-const Navigation = ({ isConnected }) => {
+const Navigation = () => {
 	//Array for create navigation link
 	const linkArray = [
-		{
-			name: 'Accueil',
-			link: '/',
-		},
+		{ name: 'Accueil', link: '/' },
 		{ name: 'A propos', link: '/aboutus' },
 		{ name: 'Contact', link: '/contactus' },
 	]
+
+	let isConnected = useContext(Context).connected
 
 	return (
 		<Navbar.Collapse id="navbarScroll" className="text-center">
