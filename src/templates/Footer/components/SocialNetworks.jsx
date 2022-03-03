@@ -3,7 +3,7 @@ import { Facebook, Instagram, Linkedin } from 'react-bootstrap-icons'
 
 const SocialNetworks = () => {
 	return (
-		<Col lg="2">
+		<Col xs="6" md="4" lg="2">
 			<h4 className="text-decoration-underline">Suivez-nous sur:</h4>
 			<div className="d-flex justify-content-center">
 				<a href="https://www.facebook.com/LaManuFormation">

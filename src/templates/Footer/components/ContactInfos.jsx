@@ -7,14 +7,16 @@ const ContactInfos = () => {
 	}
 
 	return (
-		<Col xs="6" lg="2">
+		<Col xs="6" md="4" lg="2">
 			<ul>
 				<h4 className="text-decoration-underline">Nos coordonnées:</h4>
 				<li>
-					<a className='telLink' href="tel:0986271704">09 86 27 17 04</a>
+					<a className="telLink" href="tel:0986271704">
+						09 86 27 17 04
+					</a>
 				</li>
 				<li>70 rue des Jacobins, 80000 Amiens</li>
-				<li id='mailLink' onClick={(e) => handleClick(e)}>
+				<li id="mailLink" onClick={(e) => handleClick(e)}>
 					Cliquez ici pour voir l'email
 				</li>
 			</ul>
