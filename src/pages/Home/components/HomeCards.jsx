@@ -18,23 +18,26 @@ const HomeCards = (props) => {
 	} = props.propertyDatas
 	const [favExist, setFav] = useState(false)
 	const token = useContext(Context).authToken
+	const isConnected = useContext(Context).connected
 
 	useEffect(() => {
-		const requestOptions = {
-			method: 'GET',
+		if (isConnected) {
+			const requestOptions = {
+				method: 'GET',
+			}
+			fetch(
+				process.env.REACT_APP_API_DOMAIN + 'api/user/check/' + token,
+				requestOptions
+			)
+				.then(function (response) {
+					return response.json()
+				})
+				.then(function (resp) {
+					const userData = resp.data
+					setFav(userData.buyer.wishlist.includes(_id))
+				})
 		}
-		fetch(
-			process.env.REACT_APP_API_DOMAIN + 'api/user/check/' + token,
-			requestOptions
-		)
-			.then(function (response) {
-				return response.json()
-			})
-			.then(function (resp) {
-				const userData = resp.data
-				setFav(userData.buyer.wishlist.includes(_id))
-			})
-	}, [_id, token])
+	}, [_id, token, isConnected])
 	return (
 		<Card className="mb-5" style={{ width: '18rem' }}>
 			<Card.Img
@@ -63,12 +66,7 @@ const HomeCards = (props) => {
 					<BtnGeneral className="w-75" text="Voir l'annonce" />
 				</Link>
 				<div className="d-flex justify-content-center">
-					<Favorite
-						token={token}
-						id={_id}
-						default={favExist}
-						setFav={setFav}
-					/>
+					<Favorite id={_id} default={favExist} setFav={setFav} />
 				</div>
 			</Card.Body>
 		</Card>

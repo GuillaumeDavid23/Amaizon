@@ -5,15 +5,20 @@ import { Context } from '../App'
 
 const Favorite = (props) => {
 	const token = useContext(Context).authToken
+	const isConnected = useContext(Context).connected
 
 	function handleClick() {
-        props.setFav(!props.default)
-
-		if (!props.default) {
-			addFav()
-		} else {
-			removeFav()
-		}
+		if (isConnected){
+			props.setFav(!props.default)
+	
+			if (!props.default) {
+				addFav()
+			} else {
+				removeFav()
+			}
+		} else{
+			window.location.href = process.env.REACT_APP_UI_DOMAIN + 'register'
+		} 
 	}
 
 	function addFav() {

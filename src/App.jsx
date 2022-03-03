@@ -58,7 +58,6 @@ export function App() {
 				})
 		}
 	}, [token])
-	console.log(userInfos);
 	return (
 		<Context.Provider
 			value={{
