@@ -30,15 +30,20 @@
 	color: white !important;
 	width: 60px !important;
 }
+.header-toggle:focus {
+	box-shadow: none !important;
+}
 
 /* Rotate animation inactive */
 .header-toggle-base {
 	transform: rotate(0deg);
+	transition: 0.5s;
 }
 
 /* Rotate animation active */
 .header-toggle-rotate {
 	transform: rotate(-90deg);
+	transition: 0.5s;
 }
 /* Bar of toggler */
 .icon-bar {
