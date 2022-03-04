@@ -1,7 +1,8 @@
-import { Container } from 'react-bootstrap'
+import { Container, Button } from 'react-bootstrap'
 import { useContext } from 'react'
 import { Context } from '../../../App'
 import jwtDecode from 'jwt-decode'
+import { Link } from 'react-router-dom'
 
 const BeforeVerif = () => {
 	let email = useContext(Context).userInfos.email
@@ -16,12 +17,20 @@ const BeforeVerif = () => {
 			className="bo_subcontainer w-50"
 			style={{ borderRadius: '30px' }}
 		>
-			<p className="text-center">Vous devez vérifier votre email !</p>
+			<p className="text-center">
+				Vous devez vérifier votre email pour pouvoir vous connecter à
+				notre site !
+			</p>
 			<p className="text-center">
 				Rendez-vous sur votre boite mail{' '}
 				<span style={{ color: 'black' }}>{email}</span> et cliquer sur
 				le lien !
 			</p>
+			<Link to="/" className="d-flex justify-content-center">
+				<Button className="btn-general" style={{ width: '200px' }}>
+					Retour à la page d'accueil
+				</Button>
+			</Link>
 		</Container>
 	)
 }
