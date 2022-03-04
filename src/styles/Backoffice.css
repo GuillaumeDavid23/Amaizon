@@ -1,0 +1,65 @@
+.container {
+	max-width: 100%;
+}
+
+.bo_main-container {
+	display: flex;
+	flex-direction: row;
+}
+
+.bo_flex {
+	display: flex;
+	flex-direction: column;
+}
+
+.bo_spaced {
+	justify-content: space-between;
+}
+
+.bo_text {
+	color: #647f94;
+	font-family: 'Dosis SemiBold';
+}
+
+.bo_subcontainer {
+	margin: 1rem 0;
+	padding: 2rem;
+
+	background-color: #ece6de;
+	border: 1px solid black;
+
+	color: #647f94;
+	font-family: 'Dosis SemiBold';
+}
+
+.bo_subcontainer p {
+	font-size: 1.5rem;
+	margin-bottom: 0px;
+}
+
+.bo_scrollable {
+	height: 20vh;
+	overflow-y: scroll;
+}
+
+.bo_btn {
+	background-color: transparent;
+	color: #647f94;
+
+	border: 0px;
+
+	width: auto;
+
+	font-size: 1.75rem;
+}
+
+.bo_btn:hover {
+	background-color: transparent;
+	color: #647f94;
+}
+
+.bo_btn:focus {
+	background-color: transparent;
+	color: #647f94;
+	box-shadow: none;
+}

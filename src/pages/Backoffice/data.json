@@ -1,0 +1,52 @@
+{
+	"user": {
+		"firstname": "Benjamin",
+		"lastname": "RAULT",
+		"email": "b_rault@outlook.fr",
+		"phone": "07 07 07 07 07"
+	},
+	"agent": {
+		"firstname": "Maurice",
+		"lastname": "GARNIER",
+		"email": "mgarnier@amaizon.com",
+		"phone": "06 06 06 06 06"
+	},
+	"prefs": {
+		"sell": "Location",
+		"type": "Maison",
+		"location": "Amiens",
+		"budget": 600,
+		"rooms": 3,
+		"surface": 50
+	},
+	"favs": [
+		{
+			"_id": "0V0DSQ8CQFV1",
+			"ref": "MAI25501",
+			"title": "Super Maison !",
+			"location": "Amiens",
+			"price": 80000
+		},
+		{
+			"_id": "0V0DSQ8CQFV2",
+			"ref": "MAI25502",
+			"title": "Super Maison !",
+			"location": "Amiens",
+			"price": 80000
+		},
+		{
+			"_id": "0V0DSQ8CQFV3",
+			"ref": "MAI25503",
+			"title": "Super Maison !",
+			"location": "Amiens",
+			"price": 80000
+		},
+		{
+			"_id": "0V0DSQ8CQFV4",
+			"ref": "MAI25504",
+			"title": "Super Maison !",
+			"location": "Amiens",
+			"price": 80000
+		}
+	]
+}
