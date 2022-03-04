@@ -22,7 +22,6 @@ const RegisterForm = () => {
 			if (data.password !== data.passwordRepeat) {
 				setPasswordsMatch(false)
 			} else {
-				console.log(data.newsletter)
 				let body = JSON.stringify({
 					lastname: data.lastname,
 					firstname: data.firstname,
@@ -47,7 +46,11 @@ const RegisterForm = () => {
 					})
 					.then((response) => {
 						if (response.status_code === 201) {
-							window.location.href = '/'
+							localStorage.setItem(
+								'REACT_TOKEN_AUTH_AMAIZON',
+								JSON.stringify(response.token)
+							)
+							window.location.href = '/emailVerification/before'
 						}
 					})
 			}

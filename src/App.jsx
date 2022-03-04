@@ -13,6 +13,7 @@ import Home from './pages/Home/Home'
 import Legals from './pages/Legals/Legals'
 import Register from './pages/Register/Register'
 import Single from './pages/Single/Single'
+import VerifEmail from './pages/VerifEmail/VerifEmail'
 
 export const Context = createContext({
 	connected: false,
@@ -48,9 +49,17 @@ export function App() {
 				})
 				.then((response) => {
 					if (response.status_code && response.status_code === 200) {
-						// On set la connexion à true:
-						setConnexion(true)
-						setUserInfos(response.userInfos)
+						// On gère la vérification de l'email:
+						if (
+							response.userInfos &&
+							response.userInfos === undefined
+						) {
+							// On set la connexion à true:
+							setConnexion(true)
+							setUserInfos(userInfos)
+						} else {
+							setConnexion(false)
+						}
 					} else {
 						setConnexion(false)
 						localStorage.clear()
@@ -82,6 +91,10 @@ export function App() {
 					<Route
 						path="/single/:id"
 						element={<Single token={token} />}
+					/>
+					<Route
+						path="/emailVerification/:token"
+						element={<VerifEmail />}
 					/>
 				</Routes>
 				<Footer />
