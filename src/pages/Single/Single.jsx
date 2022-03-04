@@ -25,7 +25,7 @@ const Single = () => {
 
 	return (
 		<Container className="mt-5 mb-5">
-			<Row className="justify-content-between align-items-center">
+			<Row className="justify-content-evenly align-items-center">
 				<Col xs="12" lg="6" className="d-flex flex-column">
 					{data.imageUrl ? (
 						<Photos data={data.imageUrl} />

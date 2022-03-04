@@ -6,7 +6,7 @@ const Photos = (props) => {
 			<Carousel>
 				<Carousel.Item>
 					<img
-						className="d-block w-100"
+						className="w-100"
 						src={require('../../../assets/announceDefault.png')}
 						alt="First slide"
 					/>
@@ -15,12 +15,12 @@ const Photos = (props) => {
 		)
 	} else {
 		return (
-			<Carousel>
+			<Carousel className="imgCaroussel">
 				{Object.keys(props.data).map((keyImage) => {
 					return (
 						<Carousel.Item key={keyImage}>
 							<img
-								className="d-block w-100"
+								className="img-fluid"
 								src={
 									process.env.REACT_APP_API_DOMAIN +
 									props.data[keyImage]
