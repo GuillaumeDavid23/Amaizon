@@ -4,8 +4,6 @@ import { useEffect, useState, useContext } from 'react'
 import { Context } from '../../../App'
 import Favorite from '../../../templates/Favorite'
 import { Card } from 'react-bootstrap'
-import { useContext } from 'react'
-import { Context } from '../../../App'
 
 const HomeCards = (props) => {
 	const {
@@ -20,8 +18,6 @@ const HomeCards = (props) => {
 	const [favExist, setFav] = useState(false)
 	const token = useContext(Context).authToken
 	const isConnected = useContext(Context).connected
-
-	const token = props.token
 
 	// // Préparation des datas avec le useContext:
 	// const context = useContext(Context)
