@@ -150,3 +150,8 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+/* Forms connect et register */
+#connectForm, #registerForm {
+  font-size: 1.5em !important;
+}

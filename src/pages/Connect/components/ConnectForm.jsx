@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import { Container, Button, Alert } from 'react-bootstrap'
 import CheckBox from '../../../templates/CheckBox'
+import { Link } from 'react-router-dom'
 
 const ConnectForm = () => {
 	const [passwordRevealed, revealPassword] = useState(false)
@@ -10,10 +11,7 @@ const ConnectForm = () => {
 	const {
 		register,
 		handleSubmit,
-		formState: {
-			errors,
-			isValid,
-		},
+		formState: { errors, isValid },
 	} = useForm({
 		mode: 'onBlur',
 		reValidateMode: 'onBlur',
@@ -44,7 +42,7 @@ const ConnectForm = () => {
 							JSON.stringify(response.token)
 						)
 						window.location.href = process.env.REACT_APP_UI_DOMAIN
-					}else{
+					} else {
 						setNotFound(response.error)
 					}
 				})
@@ -117,15 +115,11 @@ const ConnectForm = () => {
 								{errors.password.message}
 							</span>
 						)}
-						<a
-							href="/"
-							className="align-self-center"
-						>
+						<a href="/" className="align-self-center">
 							Mot de passe oublié ?
 						</a>
 					</div>
 				</div>
-
 				<div id="pwHelp" className="d-flex justify-content-around">
 					<div className="d-flex">
 						<CheckBox
@@ -146,6 +140,11 @@ const ConnectForm = () => {
 					<label htmlFor="rememberMe" className="form-check-label">
 						Se souvenir de moi?
 					</label>
+				</div>
+				<div className="my-3 text-center">
+					<Link to="/register">
+						Pas encore de compte ? Inscrivez-vous !
+					</Link>
 				</div>
 				<div className="d-flex justify-content-center mb-3">
 					<Button
