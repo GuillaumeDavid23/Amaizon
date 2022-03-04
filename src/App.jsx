@@ -52,7 +52,7 @@ export function App() {
 						// On gère la vérification de l'email:
 						if (
 							response.userInfos &&
-							response.userInfos === undefined
+							response.userInfos.status
 						) {
 							// On set la connexion à true:
 							setConnexion(true)
