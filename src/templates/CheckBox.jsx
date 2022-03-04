@@ -1,6 +1,4 @@
-import React from 'react'
-
-const CheckBox = ({id, className, change}) => {
+const CheckBox = ({ id, className, change }) => {
 	return (
 		<label className={'switch ' + (className ? className : '')}>
 			<input type="checkbox" id={id} onChange={change} />

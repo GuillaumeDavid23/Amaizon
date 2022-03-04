@@ -11,6 +11,7 @@ import Connect from './pages/Connect/Connect'
 import Contact from './pages/Contact/Contact'
 import Home from './pages/Home/Home'
 import Legals from './pages/Legals/Legals'
+import Register from './pages/Register/Register'
 import Single from './pages/Single/Single'
 
 export const Context = createContext({
@@ -80,6 +81,7 @@ export function App() {
 					<Route path="/connect" element={<Connect />} />
 					<Route path="/contactus" element={<Contact />} />
 					<Route path="/legals" element={<Legals />} />
+					<Route path="/register" element={<Register />} />
 					<Route
 						path="/single/:id"
 						element={<Single token={token} />}
