@@ -115,7 +115,11 @@
 	color: black !important;
 	padding-left: 20px !important;
 }
-
+.dropdown-menu[data-bs-popper]{
+	position: absolute;
+	width: 100%;
+	text-align: center;
+}
 /* Media query for > large screen */
 @media (min-width: 992px) {
 	#navbarScroll {
