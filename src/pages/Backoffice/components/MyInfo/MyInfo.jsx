@@ -170,13 +170,6 @@ export const MyInfo = (props) => {
 												incorrecte
 											</p>
 										)}
-									{/* <input
-										type="button"
-										onClick={() =>
-											console.log(errors.email)
-										}
-										value="debug"
-									/> */}
 								</div>
 							</form>
 						</>
