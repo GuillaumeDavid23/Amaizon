@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import BtnGeneral from '../../../templates/BtnGeneral'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
+import { Context } from '../../../App'
 import Favorite from '../../../templates/Favorite'
 import { Card } from 'react-bootstrap'
 import { useContext } from 'react'
@@ -20,6 +21,16 @@ const HomeCards = (props) => {
 	const token = useContext(Context).authToken
 	const isConnected = useContext(Context).connected
 
+	const token = props.token
+
+	// // Préparation des datas avec le useContext:
+	// const context = useContext(Context)
+	// const token = context.authToken
+	// const userData = context.userInfos
+	// if (userData !== {}) {
+	// 	setFav(userData.buyer.wishlist.includes(_id))
+	// }
+
 	useEffect(() => {
 		if (isConnected) {
 			const requestOptions = {
@@ -38,6 +49,7 @@ const HomeCards = (props) => {
 				})
 		}
 	}, [_id, token, isConnected])
+	
 	return (
 		<Card className="mb-5" style={{ width: '18rem' }}>
 			<Card.Img

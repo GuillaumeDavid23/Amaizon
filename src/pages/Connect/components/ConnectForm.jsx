@@ -41,7 +41,14 @@ const ConnectForm = () => {
 							'REACT_TOKEN_AUTH_AMAIZON',
 							JSON.stringify(response.token)
 						)
-						window.location.href = process.env.REACT_APP_UI_DOMAIN
+						if (response.message === 'Utilisateur connecté !') {
+							window.location.href =
+								process.env.REACT_APP_UI_DOMAIN
+						} else {
+							window.location.href =
+								process.env.REACT_APP_UI_DOMAIN +
+								'emailVerification/before'
+						}
 					} else {
 						setNotFound(response.error)
 					}
@@ -58,7 +65,7 @@ const ConnectForm = () => {
 					className={notFound === '' ? 'd-none' : ''}
 					variant="warning"
 				>
-					Votre email / mot de passe est invalide
+					{notFound}
 				</Alert>
 				<div className="my-3">
 					<div className="d-flex justify-content-center align-items-center flex-column text-center">
