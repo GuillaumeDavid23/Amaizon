@@ -3,6 +3,7 @@ import Favorite from '../../../templates/Favorite'
 import { useEffect, useState } from 'react'
 import { useContext } from 'react'
 import { Context } from '../../../App'
+import { Link } from 'react-router-dom'
 const Description = (props) => {
 	const [favExist, setFav] = useState(false)
 	const { data } = props
@@ -48,7 +49,9 @@ const Description = (props) => {
 			<p>{data.description}</p>
 			<div className="d-flex justify-content-between align-items-center">
 				<h3>Prix : {data.amount} €</h3>
-				<BtnGeneral text="Prendre RDV" className="btnRdv" />
+				<Link to={`/takeAppointment/${data._id}`}>
+					<BtnGeneral text="Prendre RDV" className="btnRdv" />
+				</Link>
 			</div>
 		</div>
 	)

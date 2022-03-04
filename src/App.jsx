@@ -76,7 +76,7 @@ export function App() {
 						element={<Home setUserInfos={setUserInfos} />}
 					/>
 					<Route path="/aboutus" element={<About />} />
-					<Route path="/takeAppointment" element={<Appointment />} />
+					<Route path="/takeAppointment/:id" element={<Appointment />} />
 					<Route path="/backoffice" element={<Backoffice />} />
 					<Route path="/connect" element={<Connect />} />
 					<Route path="/contactus" element={<Contact />} />
