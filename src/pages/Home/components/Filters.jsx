@@ -78,7 +78,7 @@ const Filters = ({ setProperties }) => {
 	])
 
 	return (
-		<Container className="d-flex justify-content-center p-4">
+		<Container className="d-flex justify-content-center p-4 sticky-top">
 			<Row
 				id="filters"
 				className="d-none d-lg-flex justify-content-around p-4 rounded-pill "
