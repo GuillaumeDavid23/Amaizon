@@ -63,137 +63,152 @@ const RegisterForm = () => {
 		<Container className="bo_subcontainer" style={{ borderRadius: '30px' }}>
 			<form id="registerForm" onSubmit={handleSubmit(onSubmit)}>
 				<div className="d-flex justify-content-around my-3">
-					<input
-						type="text"
-						className={
-							!errors.lastname
-								? 'form-control w-50 mx-3 rounded-pill'
-								: 'form-control w-50 mx-3 rounded-pill is-invalid'
-						}
-						placeholder="Votre nom"
-						{...register('lastname', {
-							required:
-								'Vous devez indiquer votre nom de famille.',
-							pattern: {
-								value: /^[a-z ,.'-]+$/i,
-								message: 'Entrer un nom de famille valide',
-							},
-						})}
-					/>
-					{errors?.lastname && (
-						<span className="invalid-feedback fw-bold">
-							{errors.lastname.message}
-						</span>
-					)}
-					<input
-						type="text"
-						className={
-							!errors.firstname
-								? 'form-control w-50 mx-3 rounded-pill'
-								: 'form-control w-50 mx-3 rounded-pill is-invalid'
-						}
-						placeholder="Votre prénom"
-						{...register('firstname', {
-							required: 'Vous devez indiquer votre prénom.',
-							pattern: {
-								value: /^[a-z ,.'-]+$/i,
-								message: 'Entrer un prénom valide',
-							},
-						})}
-					/>
-					{errors?.firstname && (
-						<span className="invalid-feedback fw-bold">
-							{errors.firstname.message}
-						</span>
-					)}
+					<div className="d-flex flex-column w-50 mx-3">
+						<input
+							type="text"
+							className={
+								!errors.lastname
+									? 'form-control rounded-pill'
+									: 'form-control rounded-pill is-invalid'
+							}
+							placeholder="Votre nom"
+							{...register('lastname', {
+								required:
+									'Vous devez indiquer votre nom de famille.',
+								pattern: {
+									value: /^[a-z ,.'-]+$/i,
+									message: 'Entrer un nom de famille valide',
+								},
+							})}
+						/>
+						{errors?.lastname && (
+							<span className="invalid-feedback fw-bold">
+								{errors.lastname.message}
+							</span>
+						)}
+					</div>{' '}
+					<div className="d-flex flex-column w-50 mx-3">
+						<input
+							type="text"
+							className={
+								!errors.firstname
+									? 'form-control rounded-pill'
+									: 'form-control rounded-pill is-invalid'
+							}
+							placeholder="Votre prénom"
+							{...register('firstname', {
+								required: 'Vous devez indiquer votre prénom.',
+								pattern: {
+									value: /^[a-z ,.'-]+$/i,
+									message: 'Entrer un prénom valide',
+								},
+							})}
+						/>
+						{errors?.firstname && (
+							<span className="invalid-feedback fw-bold">
+								{errors.firstname.message}
+							</span>
+						)}
+					</div>
 				</div>
 				<div className="d-flex justify-content-around my-3">
-					<input
-						type="email"
-						className={
-							!errors.email
-								? 'form-control w-50 mx-3 rounded-pill'
-								: 'form-control w-50 mx-3 rounded-pill is-invalid'
-						}
-						placeholder="Votre email"
-						{...register('email', {
-							required: 'Vous devez indiquer votre email.',
-							pattern: {
-								value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-								message: 'Entrer une email valide',
-							},
-						})}
-					/>
-					{errors?.email && (
-						<span className="invalid-feedback fw-bold">
-							{errors.email.message}
-						</span>
-					)}
-					<input
-						type="tel"
-						className={
-							!errors.tel
-								? 'form-control w-50 mx-3 rounded-pill'
-								: 'form-control w-50 mx-3 rounded-pill is-invalid'
-						}
-						placeholder="Votre téléphone (facultatif)"
-						{...register('tel', {
-							pattern: {
-								value: /^((\+)33|0|0033)[1-9](\d{2}){4}$/g,
-								message: 'Entrer un numéro de téléphone valide',
-							},
-						})}
-					/>
-					{errors?.tel && (
-						<span className="invalid-feedback fw-bold">
-							{errors.tel.message}
-						</span>
-					)}
+					<div className="d-flex flex-column w-50 mx-3">
+						<input
+							type="email"
+							className={
+								!errors.email
+									? 'form-control rounded-pill'
+									: 'form-control rounded-pill is-invalid'
+							}
+							placeholder="Votre email"
+							{...register('email', {
+								required: 'Vous devez indiquer votre email.',
+								pattern: {
+									value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+									message: 'Entrer une email valide',
+								},
+							})}
+						/>
+						{errors?.email && (
+							<span className="invalid-feedback fw-bold">
+								{errors.email.message}
+							</span>
+						)}
+					</div>
+					<div className="d-flex flex-column w-50 mx-3">
+						<input
+							type="tel"
+							className={
+								!errors.tel
+									? 'form-control rounded-pill'
+									: 'form-control rounded-pill is-invalid'
+							}
+							placeholder="Votre téléphone (facultatif)"
+							{...register('tel', {
+								pattern: {
+									value: /^((\+)33|0|0033)[1-9](\d{2}){4}$/g,
+									message:
+										'Entrer un numéro de téléphone valide',
+								},
+							})}
+						/>
+						{errors?.tel && (
+							<span className="invalid-feedback fw-bold">
+								{errors.tel.message}
+							</span>
+						)}
+					</div>
 				</div>
 				<div className="d-flex justify-content-around my-3">
-					<input
-						type={!passwordRevealed ? 'password' : 'text'}
-						className={
-							!errors.email
-								? 'form-control w-50 mx-3 rounded-pill'
-								: 'form-control w-50 mx-3 rounded-pill is-invalid'
-						}
-						placeholder="Mot de passe"
-						{...register('password', {
-							required: 'Vous devez indiquer votre mot de passe.',
-							pattern: {
-								value: /^(?=.[a-z])(?=.[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/i,
-								message: 'Entrer un mot de passe valide',
-							},
-						})}
-					/>
-					{errors?.password && (
-						<span className="invalid-feedback fw-bold">
-							{errors.password.message}
-						</span>
-					)}
-					<input
-						type={!passwordRevealed ? 'password' : 'text'}
-						className={
-							!errors.email
-								? 'form-control w-50 mx-3 rounded-pill'
-								: 'form-control w-50 mx-3 rounded-pill is-invalid'
-						}
-						placeholder="Confirmez votre mot de passe"
-						{...register('passwordRepeat', {
-							required:
-								'Vous devez réindiquer votre mot de passe.',
-							pattern: {
-								value: /^(?=.[a-z])(?=.[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/i,
-								message: 'Entrer un mot de passe valide',
-							},
-						})}
-					/>
-					{errors?.passwordRepeat && (
-						<span className="invalid-feedback fw-bold">
-							{errors.passwordRepeat.message}
-						</span>
-					)}
+					<div className="d-flex flex-column w-50 mx-3">
+						{' '}
+						<input
+							type={!passwordRevealed ? 'password' : 'text'}
+							className={
+								!errors.password
+									? 'form-control rounded-pill'
+									: 'form-control rounded-pill is-invalid'
+							}
+							placeholder="Mot de passe"
+							{...register('password', {
+								required:
+									'Vous devez indiquer votre mot de passe.',
+								pattern: {
+									value: /^(?=.[a-z])(?=.[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/i,
+									message: 'Entrer un mot de passe valide',
+								},
+							})}
+						/>
+						{errors?.password && (
+							<span className="invalid-feedback fw-bold">
+								{errors.password.message}
+							</span>
+						)}
+					</div>
+					<div className="d-flex flex-column w-50 mx-3">
+						<input
+							type={!passwordRevealed ? 'password' : 'text'}
+							className={
+								!errors.passwordRepeat
+									? 'form-control rounded-pill'
+									: 'form-control rounded-pill is-invalid'
+							}
+							placeholder="Confirmez votre mot de passe"
+							{...register('passwordRepeat', {
+								required:
+									'Vous devez réindiquer votre mot de passe.',
+								pattern: {
+									value: /^(?=.[a-z])(?=.[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/i,
+									message: 'Entrer un mot de passe valide',
+								},
+							})}
+						/>
+						{errors?.passwordRepeat && (
+							<span className="invalid-feedback fw-bold">
+								{errors.passwordRepeat.message}
+							</span>
+						)}
+					</div>
 				</div>
 				<div id="pwHelp" className="d-flex justify-content-around my-3">
 					<Alert

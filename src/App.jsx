@@ -49,25 +49,55 @@ export function App() {
 				})
 				.then((response) => {
 					if (response.status_code && response.status_code === 200) {
-						// On gère la vérification de l'email:
-						if (
-							response.userInfos &&
-							response.userInfos === undefined
-						) {
-							// On set la connexion à true:
-							setConnexion(true)
-							setUserInfos(userInfos)
+						// On set la connexion à true:
+						setConnexion(true)
+						setUserInfos(response.userInfos)
+					} else {
+						// On check le refreshToken:
+						let refreshToken = JSON.parse(
+							localStorage.getItem(
+								'REACT_REFRESH_TOKEN_AUTH_AMAIZON'
+							)
+						)
+						if (refreshToken) {
+							// Check de la validité du token:
+							fetch(
+								process.env.REACT_APP_API_DOMAIN +
+									'api/user/checkResetToken/' +
+									refreshToken,
+								{ method: 'GET' }
+							)
+								.then((response) => {
+									return response.json()
+								})
+								.then((response) => {
+									if (
+										response.status_code &&
+										response.status_code === 200
+									) {
+										localStorage.setItem(
+											'REACT_TOKEN_AUTH_AMAIZON',
+											JSON.stringify(response.token)
+										)
+										// On set la connexion à true:
+										setConnexion(true)
+										setUserInfos(response.userInfos)
+									} else {
+										setConnexion(false)
+										localStorage.clear()
+										setToken(null)
+									}
+								})
 						} else {
 							setConnexion(false)
+							localStorage.clear()
+							setToken(null)
 						}
-					} else {
-						setConnexion(false)
-						localStorage.clear()
-						setToken(null)
 					}
 				})
 		}
 	}, [token])
+
 	return (
 		<Context.Provider
 			value={{
@@ -85,7 +115,10 @@ export function App() {
 						element={<Home setUserInfos={setUserInfos} />}
 					/>
 					<Route path="/aboutus" element={<About />} />
-					<Route path="/takeAppointment/:id" element={<Appointment />} />
+					<Route
+						path="/takeAppointment/:id"
+						element={<Appointment />}
+					/>
 					<Route path="/backoffice" element={<Backoffice />} />
 					<Route path="/connect" element={<Connect />} />
 					<Route path="/contactus" element={<Contact />} />

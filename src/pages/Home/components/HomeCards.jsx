@@ -16,8 +16,12 @@ const HomeCards = (props) => {
 		transactionType,
 	} = props.propertyDatas
 	const [favExist, setFav] = useState(false)
-	const token = useContext(Context).authToken
+	// const token = useContext(Context).authToken
 	const isConnected = useContext(Context).connected
+
+	let refreshToken = JSON.parse(
+		localStorage.getItem('REACT_REFRESH_TOKEN_AUTH_AMAIZON')
+	)
 
 	// // Préparation des datas avec le useContext:
 	// const context = useContext(Context)
@@ -33,19 +37,21 @@ const HomeCards = (props) => {
 				method: 'GET',
 			}
 			fetch(
-				process.env.REACT_APP_API_DOMAIN + 'api/user/check/' + token,
+				process.env.REACT_APP_API_DOMAIN +
+					'api/user/checkResetToken/' +
+					refreshToken,
 				requestOptions
 			)
 				.then(function (response) {
 					return response.json()
 				})
 				.then(function (resp) {
-					const userData = resp.data
+					const userData = resp.userInfos.user
 					setFav(userData.buyer.wishlist.includes(_id))
 				})
 		}
-	}, [_id, token, isConnected])
-	
+	}, [_id, isConnected])
+
 	return (
 		<Card className="mb-5" style={{ width: '18rem' }}>
 			<Card.Img
