@@ -7,7 +7,7 @@ const AppointmentForm = (props) => {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors, isValid },
+		formState: { errors },
 	} = useForm({
 		mode: 'onBlur',
 		reValidateMode: 'onBlur',
@@ -39,7 +39,9 @@ const AppointmentForm = (props) => {
 					return response.json()
 				})
 				.then((response) => {
-					
+					if(response.message === "Envoi réussi."){
+						window.location.href = process.env.REACT_APP_UI_DOMAIN
+					}
 				})
 		} catch (error) {
 			console.log(error)

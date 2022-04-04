@@ -1,0 +1,50 @@
+.bo_pref_main {
+	background-color: #ece6de;
+
+	border: 1px solid black;
+	border-radius: 30px;
+}
+
+.bo_pref_text {
+	color: #647f94;
+	font-family: 'Dosis SemiBold';
+}
+
+p.bo_pref_p {
+	font-size: 1.5rem;
+	margin-bottom: 0px;
+}
+
+.bo_pref_btn {
+	background-color: transparent;
+	border: 0px;
+
+	width: auto;
+
+	font-size: 2rem;
+}
+
+.bo_pref_btn:hover {
+	background-color: transparent;
+	color: #647f94;
+}
+
+.bo_pref_btn:focus {
+	background-color: transparent;
+	color: #647f94;
+	box-shadow: none;
+}
+
+.bo_pref_subform {
+	display: flex;
+	flex-direction: column;
+	width: 70%;
+}
+
+.bo_pref_subform select {
+	height: 2rem;
+}
+
+.bo_pref_subform input {
+	height: 2rem;
+}

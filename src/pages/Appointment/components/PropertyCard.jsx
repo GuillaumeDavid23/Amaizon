@@ -36,7 +36,7 @@ const PropertyCard = (props) => {
 					className="d-flex justify-content-center"
 				>
 					<BtnGeneral
-						className="w-50"
+						className="w-50 h-50 mt-5"
 						text="Retourner vers l'annonce"
 					/>
 				</Link>
