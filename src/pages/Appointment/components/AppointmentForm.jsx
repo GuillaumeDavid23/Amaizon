@@ -7,7 +7,7 @@ const AppointmentForm = (props) => {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors, isValid },
+		formState: { errors },
 	} = useForm({
 		mode: 'onBlur',
 		reValidateMode: 'onBlur',

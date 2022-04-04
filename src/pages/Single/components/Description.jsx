@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useContext } from 'react'
 import { Context } from '../../../App'
 import { Link } from 'react-router-dom'
+
 const Description = (props) => {
 	const [favExist, setFav] = useState(false)
 	const { data } = props

@@ -41,7 +41,7 @@ export const getUser = async () => {
 			...init,
 		})
 
-		if (res.status == 200) {
+		if (res.status === 200) {
 			const user = await res.json()
 			return user.data
 		} else {
