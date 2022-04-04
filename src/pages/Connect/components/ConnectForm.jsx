@@ -96,7 +96,6 @@ const ConnectForm = () => {
 									value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
 									message: 'Entrer une email valide',
 								},
-								value: 'vmancheron@yahoo.fr',
 							})}
 						/>
 						{errors?.email && (
@@ -124,7 +123,6 @@ const ConnectForm = () => {
 							{...register('password', {
 								required:
 									'Vous devez remplir votre mot de passe',
-								value: 'Ve7smdpm6xwfn5',
 							})}
 						/>
 						{errors?.password && (
