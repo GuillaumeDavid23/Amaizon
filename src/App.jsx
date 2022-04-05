@@ -123,7 +123,14 @@ export function App() {
 					<Route path="/backoffice" element={<Backoffice />} />
 					<Route path="/connect" element={<Connect />} />
 					<Route path="/contactus" element={<Contact />} />
-					<Route path="/forgetPass" element={<ForgetPass />} />
+					<Route
+						path="/forgetPass"
+						element={<ForgetPass step="before" />}
+					/>
+					<Route
+						path="/resetPassword/:id/:token"
+						element={<ForgetPass step="after" />}
+					/>
 					<Route path="/legals" element={<Legals />} />
 					<Route path="/register" element={<Register />} />
 					<Route

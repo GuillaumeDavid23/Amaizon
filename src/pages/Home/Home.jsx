@@ -16,6 +16,8 @@ const Home = (props) => {
 			.then((response) => setProperties(response.properties))
 	}, [])
 
+	// console.log(properties)
+
 	return (
 		<Container fluid className="w-100 p-0">
 			<Banner />
