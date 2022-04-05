@@ -90,6 +90,11 @@ li {
   font-size: 1.2em !important;
 }
 
+.btn-general:hover{
+  background-color: #3d5160 !important;
+
+}
+
 .bo_subcontainer {
   margin: 1rem 0;
   padding: 2rem;
@@ -165,4 +170,31 @@ input:checked + .slider:before {
 /* Forms connect et register */
 #connectForm, #registerForm {
   font-size: 1.5em !important;
+}
+
+@keyframes flashEaseIn {
+  0% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+    transform: translateX(-20px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+}
+
+
+.flash{
+  opacity: 0;
+  transform: translateX(100px);
+  position: fixed;
+  z-index: 9999;
+  top: 20%;
+  right: 0;
+  animation: flashEaseIn 5s ease-in-out 0s 1 normal;
 }

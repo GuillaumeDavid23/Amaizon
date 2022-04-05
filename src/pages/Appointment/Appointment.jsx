@@ -21,7 +21,7 @@ const Appointment = () => {
 	}, [id])
 	return (
 		<Container>
-			<Row className="mt-5 mb-5 justify-content-evenly ">
+			<Row className="mt-5 mb-5 justify-content-evenly">
 				<Col xs="12" lg="5">
 					<PropertyCard data={properties} />
 				</Col>

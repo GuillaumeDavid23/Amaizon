@@ -6,4 +6,9 @@
     font-size: 1.2em;
 }
 
-
+.imgCaroussel{
+    display: block;
+    height: 350px;
+    width: 100%;
+    object-fit: cover;
+}

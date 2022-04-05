@@ -66,7 +66,7 @@ const HomeCards = (props) => {
 					<p className="card-text">{description}</p>
 					<div className="text-center">
 						<span className="price ">
-							{amount} €{' '}
+							{amount.toLocaleString('FR')} €{' '}
 							<small className="location text-secondary">
 								{transactionType === 'Location' ? '/ Mois' : ''}
 							</small>

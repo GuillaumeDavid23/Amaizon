@@ -1,6 +1,15 @@
 import Input from '../../../templates/Input'
 import { useState, useEffect } from 'react'
-import { Col, Container, Row, Dropdown } from 'react-bootstrap'
+import {
+	Col,
+	Container,
+	Row,
+	Dropdown,
+	FormControl,
+	Button,
+	Collapse
+} from 'react-bootstrap'
+import { BsChevronDown, BsChevronUp, BsSearch } from 'react-icons/bs'
 
 const Filters = ({ setProperties }) => {
 	const [transactionType, setTransactionType] = useState('')
@@ -8,8 +17,13 @@ const Filters = ({ setProperties }) => {
 	const [location, setLocation] = useState('')
 	const [minPrice, setMinPrice] = useState('')
 	const [maxPrice, setMaxPrice] = useState('')
-	const [roomNumber, setRoomNumber] = useState('')
-	const [surface, setSurface] = useState('')
+	const [roomNumberMin, setRoomNumberMin] = useState('')
+	const [roomNumberMax, setRoomNumberMax] = useState('')
+	const [surfaceMin, setSurfaceMin] = useState('')
+	const [surfaceMax, setSurfaceMax] = useState('')
+	const [search, setSearch] = useState('')
+
+	const [open, setOpen] = useState(false)
 
 	const handleTransactionType = (e) => {
 		setTransactionType(e.target.value)
@@ -31,25 +45,37 @@ const Filters = ({ setProperties }) => {
 		setMaxPrice(e.target.value)
 	}
 
-	const handleRoomNumber = (e) => {
-		setRoomNumber(e.target.value)
+	const handleRoomNumberMin = (e) => {
+		setRoomNumberMin(e.target.value)
+	}
+	const handleRoomNumberMax = (e) => {
+		setRoomNumberMax(e.target.value)
 	}
 
-	const handleSurface = (e) => {
-		setSurface(e.target.value)
+	const handleSurfaceMin = (e) => {
+		setSurfaceMin(e.target.value)
+	}
+	const handleSurfaceMax = (e) => {
+		setSurfaceMax(e.target.value)
 	}
 
-	useEffect(() => {
+	const handleSearch = (e) => {
+		setSearch(e.target.value)
+	}
+
+	function handleSearchClick() {
 		let filters = {
 			transactionType,
 			propertyType,
 			location,
 			minPrice,
 			maxPrice,
-			roomNumber,
-			surface,
+			roomNumberMin,
+			roomNumberMax,
+			surfaceMin,
+			surfaceMax,
+			search,
 		}
-
 		fetch(
 			process.env.REACT_APP_API_DOMAIN + 'api/property/searchProperties',
 			{
@@ -66,127 +92,64 @@ const Filters = ({ setProperties }) => {
 			.then((response) => {
 				setProperties(response.data)
 			})
-	}, [
-		transactionType,
-		propertyType,
-		location,
-		minPrice,
-		maxPrice,
-		roomNumber,
-		surface,
-		setProperties,
-	])
+	}
 
 	return (
-		<Container className="d-flex justify-content-center p-4">
+		<Container className="d-flex justify-content-center mt-4 mb-4">
 			<Row
 				id="filters"
-				className="d-none d-lg-flex justify-content-around p-4 rounded-pill "
+				className="d-flex justify-content-around p-4 w-100"
 			>
-				<Col xs="10" lg="2">
-					<select
-						className="form-select rounded-pill"
-						onChange={handleTransactionType}
-						name="transactionType"
-						id="transactionType"
+				<Row className="justify-content-center align-items-center flex-column flex-lg-row w-100">
+					<Col xs="12" lg="8" className='d-flex flex-column flex-lg-row justify-content-center'>
+						<FormControl
+							type="search"
+							placeholder="Effectuez votre recherche..."
+							className="me-2 header-search-input"
+							aria-label="Search"
+							onChange={handleSearch}
+						/>
+						<Button
+							className="custom-btn mt-3 mb-3 mt-lg-0 mb-lg-0"
+							onClick={() => handleSearchClick()}
+							aria-controls="filtersAdvanced"
+							aria-expanded={open}
+						>
+							Rechercher <BsSearch className='ms-2' />
+						</Button>
+					</Col>
+					<Col
+						xs="12"
+						lg="12"
+						className="d-flex justify-content-center mt-3"
 					>
-						<option value="">Acheter ou Louer</option>
-						<option value="Achat">Acheter</option>
-						<option value="Location">Louer</option>
-					</select>
-				</Col>
-				<Col xs="10" lg="2">
-					<select
-						className="form-select rounded-pill"
-						onChange={handlePropertyType}
-						name="propertyType"
-						id="propertyType"
+						<button
+							href="#"
+							className="custom-btn-advanced"
+							onClick={() => setOpen(!open)}
+							aria-controls="filtersAdvanced"
+							aria-expanded={open}
+						>
+							Recherche avancé
+							{open ? (
+								<BsChevronDown className="ms-1" />
+							) : (
+								<BsChevronUp className="ms-1" />
+							)}
+						</button>
+					</Col>
+				</Row>
+				<Collapse in={open} className="mt-3">
+					<Row
+						id="filtersAdvanced"
+						className="justify-content-center"
 					>
-						<option value="">Type de bien</option>
-						<option value="Maison">Maison</option>
-						<option value="Appartement">Appartement</option>
-					</select>
-				</Col>
-				<Col xs="5" lg="2">
-					<Input
-						id="location"
-						type="text"
-						placeholder="Localisation"
-						onBlur={handleLocation}
-					/>
-				</Col>
-				<Col xs="5" lg="1">
-					<Input
-						id="minPrice"
-						type="text"
-						placeholder="Prix Min"
-						onChange={handleMinPrice}
-					/>
-				</Col>
-				<Col xs="5" lg="1">
-					<Input
-						id="maxPrice"
-						type="text"
-						placeholder="Prix Max"
-						onChange={handleMaxPrice}
-					/>
-				</Col>
-				<Col xs="5" lg="1">
-					<Input
-						id="roomNumber"
-						type="number"
-						placeholder="Pièces"
-						onChange={handleRoomNumber}
-					/>
-				</Col>
-				<Col xs="5" lg="1">
-					<Input
-						id="surface"
-						type="number"
-						placeholder="Surface"
-						onChange={handleSurface}
-					/>
-				</Col>
-
-				{/* <Dropdown>
-					<Dropdown.Toggle variant="light" id="dropdown-basic">
-						Prix Min/Max
-					</Dropdown.Toggle>
-					<Dropdown.Menu>
-						<Dropdown.Item>
-							<Input
-								id="minPrice"
-								type="text"
-								placeholder="Prix Min"
-								onChange={handleMinPrice}
-							/>
-						</Dropdown.Item>
-						<Dropdown.Item>
-							<Input
-								id="maxPrice"
-								type="text"
-								placeholder="Prix Max"
-								onChange={handleMaxPrice}
-							/>
-						</Dropdown.Item>
-					</Dropdown.Menu>
-				</Dropdown> */}
-			</Row>
-			<Row
-				id="filters"
-				className="d-lg-none justify-content-around p-4 rounded-pill w-100 "
-			>
-				<Dropdown>
-					<Dropdown.Toggle
-						className="w-100 dropBtn"
-						variant="success"
-						id="dropdown-basic"
-					>
-						Filtre de recherche
-					</Dropdown.Toggle>
-
-					<Dropdown.Menu className="w-100 row dropMenu">
-						<Col className="mb-3" xs="12" lg="2">
+						<Col xs="10" lg="2">
+							<div>
+								<label className="fw-bold text-center w-100">
+									Type de vente
+								</label>
+							</div>
 							<select
 								className="form-select rounded-pill"
 								onChange={handleTransactionType}
@@ -198,60 +161,104 @@ const Filters = ({ setProperties }) => {
 								<option value="Location">Louer</option>
 							</select>
 						</Col>
-						<Col className="mb-3" xs="12" lg="2">
+						<Col xs="10" lg="2">
+							<div>
+								<label className="fw-bold text-center w-100">
+									Type de bien
+								</label>
+							</div>
 							<select
 								className="form-select rounded-pill"
 								onChange={handlePropertyType}
 								name="propertyType"
 								id="propertyType"
 							>
-								<option value="">Type de bien</option>
+								<option value="">Choisissez une valeur</option>
 								<option value="Maison">Maison</option>
 								<option value="Appartement">Appartement</option>
 							</select>
 						</Col>
-						<Col className="mb-3" xs="12" lg="2">
+						<Col xs="5" lg="2">
+							<div>
+								<label className="fw-bold text-center w-100">
+									Localisation
+								</label>
+							</div>
 							<Input
 								id="location"
 								type="text"
-								placeholder="Localisation"
+								placeholder="Amiens, Paris.."
 								onBlur={handleLocation}
 							/>
 						</Col>
-						<Col className="mb-3" xs="12" lg="1">
-							<Input
-								id="minPrice"
-								type="text"
-								placeholder="Prix Min"
-								onChange={handleMinPrice}
-							/>
+						<Col xs="7" lg="2">
+							<div>
+								<label className="fw-bold text-center w-100">
+									Prix
+								</label>
+							</div>
+							<div className="d-flex align-items-center">
+								<Input
+									id="minPrice"
+									type="text"
+									placeholder="Min"
+									onChange={handleMinPrice}
+								/>
+								<strong className="ms-2 me-2">-</strong>
+								<Input
+									id="maxPrice"
+									type="text"
+									placeholder="Max"
+									onChange={handleMaxPrice}
+								/>
+							</div>
 						</Col>
-						<Col className="mb-3" xs="12" lg="1">
-							<Input
-								id="maxPrice"
-								type="text"
-								placeholder="Prix Max"
-								onChange={handleMaxPrice}
-							/>
+						<Col xs="6" lg="2">
+							<div>
+								<label className="fw-bold text-center w-100">
+									Pièce
+								</label>
+							</div>
+							<div className="d-flex align-items-center">
+								<Input
+									id="roomNumberMin"
+									type="number"
+									placeholder="Min"
+									onChange={handleRoomNumberMin}
+								/>
+								<strong className="ms-2 me-2">-</strong>
+								<Input
+									id="roomNumberMax"
+									type="number"
+									placeholder="Max"
+									onChange={handleRoomNumberMax}
+								/>
+							</div>
 						</Col>
-						<Col className="mb-3" xs="12" lg="1">
-							<Input
-								id="roomNumber"
-								type="number"
-								placeholder="Pièces"
-								onChange={handleRoomNumber}
-							/>
+						<Col xs="6" lg="2" className="d-flex flex-column">
+							<div>
+								<label className="fw-bold text-center w-100">
+									Surface
+								</label>
+							</div>
+							<div className="d-flex align-items-center">
+								<Input
+									id="surface"
+									type="number"
+									placeholder="Min"
+									onChange={handleSurfaceMin}
+								/>
+								<strong className="ms-2 me-2">-</strong>
+								<Input
+									id="surfaceMax"
+									type="number"
+									placeholder="Max"
+									onChange={handleSurfaceMax}
+								/>
+							</div>
 						</Col>
-						<Col className="mb-3" xs="12" lg="1">
-							<Input
-								id="surface"
-								type="number"
-								placeholder="Surface"
-								onChange={handleSurface}
-							/>
-						</Col>
-					</Dropdown.Menu>
-				</Dropdown>
+					</Row>
+				</Collapse>
 			</Row>
 		</Container>
 	)

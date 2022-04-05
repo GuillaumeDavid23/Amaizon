@@ -36,7 +36,7 @@ const Navigation = () => {
 					/>
 				))}
 			</Nav>
-			<Search />
+			{/* <Search /> */}
 			<Login isConnected={isConnected} />
 		</Navbar.Collapse>
 	)

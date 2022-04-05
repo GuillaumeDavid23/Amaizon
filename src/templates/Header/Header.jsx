@@ -8,10 +8,9 @@ import { Navbar, Container } from 'react-bootstrap'
 function Header() {
 	return (
 		<Navbar
-			sticky="top"
 			bg="light"
 			expand="lg"
-			className="header-container p-0"
+			className="header-container p-0 sticky-lg-top"
 		>
 			<Container fluid className="header-container">
 				<Brand />
