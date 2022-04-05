@@ -21,6 +21,9 @@ const Single = () => {
 			.then((response) => {
 				setData(response.property)
 			})
+			.catch((error) => {
+				console.log(error)
+			})
 	}, [id])
 
 	return (
