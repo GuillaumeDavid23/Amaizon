@@ -20,9 +20,11 @@ const ConnectForm = () => {
 
 	const onSubmit = (data) => {
 		try {
+			let { email, password, rememberMe } = data
 			let body = JSON.stringify({
-				email: data.email,
-				password: data.password,
+				email,
+				password,
+				rememberMe,
 			})
 
 			fetch(process.env.REACT_APP_API_DOMAIN + 'api/user/login', {
@@ -41,6 +43,12 @@ const ConnectForm = () => {
 							'REACT_TOKEN_AUTH_AMAIZON',
 							JSON.stringify(response.token)
 						)
+						if (response.refreshToken) {
+							localStorage.setItem(
+								'REACT_REFRESH_TOKEN_AUTH_AMAIZON',
+								JSON.stringify(response.refreshToken)
+							)
+						}
 						if (response.message === 'Utilisateur connecté !') {
 							window.location.href =
 								process.env.REACT_APP_UI_DOMAIN
@@ -143,7 +151,10 @@ const ConnectForm = () => {
 					</div>
 				</div>
 				<div className="my-3 d-flex justify-content-center align-items-center">
-					<CheckBox id={'rememberMe'} className="me-2" />
+					<label className={'switch me-2'}>
+						<input type="checkbox" {...register('rememberMe')} />
+						<span className="slider round"></span>
+					</label>
 					<label htmlFor="rememberMe" className="form-check-label">
 						Se souvenir de moi?
 					</label>

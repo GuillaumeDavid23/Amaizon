@@ -1,9 +1,9 @@
-const user = {
-	email: 'b_rault@outlook.fr',
-	password: 'Azertyuiop2022',
-}
+export const connect_user = async (email = null, password = null) => {
+	const user = {
+		email: email ? email : 'b_rault@outlook.fr',
+		password: password ? password : 'Bbcwpa469',
+	}
 
-export const connect_user = async () => {
 	let init = {
 		method: 'POST',
 		headers: {
@@ -13,9 +13,12 @@ export const connect_user = async () => {
 	}
 
 	try {
-		const res = await fetch('http://localhost:8080/api/user/login', {
-			...init,
-		})
+		const res = await fetch(
+			process.env.REACT_APP_API_DOMAIN + 'api/user/login',
+			{
+				...init,
+			}
+		)
 
 		const data = await res.json()
 
@@ -26,24 +29,37 @@ export const connect_user = async () => {
 	}
 }
 
-export const getUser = async () => {
-	const { id, token } = await connect_user()
-	let init = {
-		method: 'GET',
-		headers: {
-			Authorization: 'bearer ' + token,
-			'Content-Type': 'application/json',
-		},
+export const getUser = async (email = null, password = null) => {
+	const user = {
+		email: email ? email : 'b_rault@outlook.fr',
+		password: password ? password : 'Bbcwpa469',
 	}
 
 	try {
-		const res = await fetch('http://localhost:8080/api/user/' + id, {
-			...init,
-		})
+		const { id, token } = await connect_user(user.email, user.password)
+
+		let init = {
+			method: 'GET',
+			headers: {
+				Authorization: 'bearer ' + token,
+				'Content-Type': 'application/json',
+			},
+		}
+
+		const res = await fetch(
+			process.env.REACT_APP_API_DOMAIN + 'api/user/' + id,
+			{
+				...init,
+			}
+		)
 
 		if (res.status === 200) {
 			const user = await res.json()
-			return user.data
+
+			console.log('utils::token', token)
+			console.log('utils::user', user.data)
+
+			return { token: token, user: user.data }
 		} else {
 			console.error(res.status)
 			return null
