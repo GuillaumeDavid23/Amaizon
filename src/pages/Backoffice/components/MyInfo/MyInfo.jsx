@@ -4,6 +4,8 @@ import * as Bootstrap from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 
 export const MyInfo = (props) => {
+	const { user, roundness, token } = props
+
 	const {
 		register,
 		handleSubmit,
@@ -12,16 +14,54 @@ export const MyInfo = (props) => {
 	} = useForm()
 
 	const onSubmit = (data) => {
+		console.log('MyInfo::onSubmit_data')
 		console.log(data)
-		setUserInfo(tmpUserInfo)
+
+		const updatedUser = { ...userInfo, ...data }
+
+		console.log('MyInfo::UpdatedUser')
+		console.log(updatedUser)
+
+		// Locking form
+
+		// Set loading button
+		setIsLoading(true)
+
+		// Call UpdateUser API
+		let init = {
+			method: 'PUT',
+			headers: {
+				Authorization: 'bearer ' + token,
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(updatedUser),
+		}
+
+		fetch(
+			process.env.REACT_APP_API_DOMAIN + 'api/user/buyer/' + updatedUser._id,
+			{ ...init }
+		)
+			.then((response) => {
+				if (response.status[0] == 2) {
+					// set local changes
+					setUserInfo(updatedUser)
+				}
+			})
+			.catch((error) => {
+				// Print error message
+				console.error(error)
+			})
+
+		setIsLoading(false)
+
+		// Unlock form
 		setIsModifying(false)
 	}
 
-	const { user, roundness } = props
+	const [userInfo, setUserInfo] = React.useState(user)
+	const [tmpUserInfo, setTmpUserInfo] = React.useState(user)
 
-	const [userInfo, setUserInfo] = React.useState(user ? user : null)
-	const [tmpUserInfo, setTmpUserInfo] = React.useState(user ? user : null)
-
+	const [isLoading, setIsLoading] = React.useState(false)
 	const [isModifying, setIsModifying] = React.useState(false)
 
 	const style = {
@@ -30,6 +70,7 @@ export const MyInfo = (props) => {
 
 	return (
 		<Bootstrap.Container className={`bo_subcontainer`} style={style}>
+			{console.log(userInfo)}
 			<Bootstrap.Row>
 				<Bootstrap.Col>
 					<h2>Mes informations personnelles</h2>
@@ -203,12 +244,19 @@ export const MyInfo = (props) => {
 							>
 								Annuler
 							</Bootstrap.Button>
-							<Bootstrap.Button
-								className={`bo_pref_text bo_pref_btn`}
-								onClick={handleSubmit(onSubmit)}
-							>
-								Enregistrer
-							</Bootstrap.Button>
+							{isLoading ? (
+								<Bootstrap.Spinner
+									animation="border"
+									role="status"
+								></Bootstrap.Spinner>
+							) : (
+								<Bootstrap.Button
+									className={`bo_pref_text bo_pref_btn`}
+									onClick={handleSubmit(onSubmit)}
+								>
+									Enregistrer
+								</Bootstrap.Button>
+							)}
 						</Bootstrap.Col>
 					</>
 				) : (
