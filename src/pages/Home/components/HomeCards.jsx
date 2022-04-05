@@ -16,41 +16,35 @@ const HomeCards = (props) => {
 		transactionType,
 	} = props.propertyDatas
 	const [favExist, setFav] = useState(false)
-	// const token = useContext(Context).authToken
 	const isConnected = useContext(Context).connected
 
-	let refreshToken = JSON.parse(
-		localStorage.getItem('REACT_REFRESH_TOKEN_AUTH_AMAIZON')
+	const token = JSON.parse(
+		localStorage.getItem('REACT_TOKEN_AUTH_AMAIZON')
 	)
-
-	// // Préparation des datas avec le useContext:
-	// const context = useContext(Context)
-	// const token = context.authToken
-	// const userData = context.userInfos
-	// if (userData !== {}) {
-	// 	setFav(userData.buyer.wishlist.includes(_id))
-	// }
 
 	useEffect(() => {
 		if (isConnected) {
 			const requestOptions = {
-				method: 'GET',
+				method: 'POST',
+				headers: {
+					Authorization: 'Bearer ' + token,
+				},
 			}
 			fetch(
 				process.env.REACT_APP_API_DOMAIN +
-					'api/user/checkResetToken/' +
-					refreshToken,
+					'api/user/checkBearer/',
+					
 				requestOptions
 			)
 				.then(function (response) {
 					return response.json()
 				})
 				.then(function (resp) {
-					const userData = resp.userInfos.user
-					setFav(userData.buyer.wishlist.includes(_id))
+					setFav(resp.userInfos.buyer.wishlist.includes(_id))
+					console.log(resp.userInfos)
 				})
 		}
-	}, [_id, isConnected])
+	}, [_id, isConnected, token])
 
 	return (
 		<Card className="mb-5" style={{ width: '18rem' }}>
@@ -66,7 +60,7 @@ const HomeCards = (props) => {
 					<p className="card-text">{description}</p>
 					<div className="text-center">
 						<span className="price ">
-							{amount.toLocaleString('FR')} €{' '}
+							{amount?.toLocaleString('FR')} €{' '}
 							<small className="location text-secondary">
 								{transactionType === 'Location' ? '/ Mois' : ''}
 							</small>

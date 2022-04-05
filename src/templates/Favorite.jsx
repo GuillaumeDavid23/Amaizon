@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/Favorite.css'
 import { useContext } from 'react'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Flash from './Flash'
 
 import { Context } from '../App'
@@ -26,9 +26,6 @@ const Favorite = (props) => {
 			setTimeout(() => setShowMessage(false), 5000)
 		}
 	}
-	useEffect(() => {
-		setShowMessage(false)
-	}, [])
 	function addFav() {
 		const requestOptions = {
 			method: 'GET',
