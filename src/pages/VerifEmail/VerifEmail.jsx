@@ -5,11 +5,11 @@ import AfterVerif from './components/AfterVerif'
 const VerifEmail = () => {
 	const { token } = useParams()
 
-	if (token === 'before') {
-		return <BeforeVerif />
-	} else {
-		return <AfterVerif />
-	}
+	return (
+		<div className="d-flex justify-content-center">
+			{token === 'before' ? <BeforeVerif /> : <AfterVerif />}
+		</div>
+	)
 }
 
 export default VerifEmail

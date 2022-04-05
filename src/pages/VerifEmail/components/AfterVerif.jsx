@@ -14,7 +14,7 @@ const AfterVerif = () => {
 			<p className="text-center">
 				N'hésitez pas à nous contacter via la page de Contact !
 			</p>
-			<Link to="/" className="d-flex justify-content-center">
+			<Link to="/" className="d-flex justify-content-center mt-3">
 				<Button className="btn-general" style={{ width: '200px' }}>
 					Retour à la page d'accueil
 				</Button>

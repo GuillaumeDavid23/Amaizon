@@ -15,7 +15,7 @@ const BeforeVerif = () => {
 
 	return (
 		<Container
-			className="bo_subcontainer w-50"
+			className="bo_subcontainer w-75"
 			style={{ borderRadius: '30px' }}
 		>
 			<p className="text-center">
@@ -24,10 +24,10 @@ const BeforeVerif = () => {
 			</p>
 			<p className="text-center">
 				Rendez-vous sur votre boite mail{' '}
-				<span style={{ color: 'black' }}>{email}</span> et cliquer sur
-				le lien !
+				<span style={{ fontSize: '1em', color: 'black' }}>{email}</span>{' '}
+				et cliquer sur le lien !
 			</p>
-			<Link to="/" className="d-flex justify-content-center">
+			<Link to="/" className="d-flex justify-content-center mt-3">
 				<Button className="btn-general" style={{ width: '200px' }}>
 					Retour à la page d'accueil
 				</Button>
