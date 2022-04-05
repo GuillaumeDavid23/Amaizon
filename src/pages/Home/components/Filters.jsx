@@ -11,8 +11,10 @@ import {
 import { BsChevronDown, BsChevronUp, BsSearch } from 'react-icons/bs'
 
 const Filters = ({ setProperties }) => {
-	const lastSearch = JSON.parse(localStorage.getItem('LAST_SEARCH_FILTERS'))
-
+	var lastSearch = JSON.parse(localStorage.getItem('LAST_SEARCH_FILTERS'))
+	if(!lastSearch){
+		lastSearch = {}
+	}
 	const [transactionType, setTransactionType] = useState(
 		lastSearch.transactionType ? lastSearch.transactionType : ''
 	)
