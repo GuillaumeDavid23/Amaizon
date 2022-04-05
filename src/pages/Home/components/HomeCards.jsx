@@ -41,13 +41,12 @@ const HomeCards = (props) => {
 				})
 				.then(function (resp) {
 					setFav(resp.userInfos.buyer.wishlist.includes(_id))
-					console.log(resp.userInfos)
 				})
 		}
 	}, [_id, isConnected, token])
 
 	return (
-		<Card className="mb-5" style={{ width: '18rem' }}>
+		<Card className="mb-5" style={{ width: '18rem' }} id={_id}>
 			<Card.Img
 				variant="top"
 				src={process.env.REACT_APP_API_DOMAIN + imageUrl.photo1}

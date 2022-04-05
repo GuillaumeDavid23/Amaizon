@@ -16,7 +16,10 @@ const Home = (props) => {
 			})
 			.then((response) => setProperties(response.properties))
 	}, [])
-
+	const locate = window.location.hash.substr(1);
+	if(locate){
+		setTimeout(() => (window.location.href = '#' + locate), 300)
+	}
 	return (
 		<Container fluid className='w-100 p-0'>
 			<Banner/>
