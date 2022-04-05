@@ -130,9 +130,7 @@ const ConnectForm = () => {
 								{errors.password.message}
 							</span>
 						)}
-						<a href="/" className="align-self-center">
-							Mot de passe oublié ?
-						</a>
+						<Link to="/forgetPass">Mot de passe oublié ?</Link>
 					</div>
 				</div>
 				<div id="pwHelp" className="d-flex justify-content-around">
