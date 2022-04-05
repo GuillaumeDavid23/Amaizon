@@ -5,7 +5,7 @@ const Profil = (props) => {
 	const { srcValue, altValue, name, role } = props
 
 	return (
-		<div className="d-flex flex-column my-3 mx-4">
+		<div className="d-flex flex-column align-items-center">
 			<Img
 				classList="profilAvatar"
 				srcValue={srcValue}

@@ -73,6 +73,7 @@
 	font-size: 1.2em !important;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .custom-btn-advanced{
