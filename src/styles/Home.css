@@ -6,15 +6,16 @@
 }
 .homeBanner p{
     width: 50%;
-    font-size: 2em;
+    font-size: 1.8rem;
     color: #647f94;
     font-weight: bold;
     margin-left: 50px;
     padding-top: 20px;
 }
 .BtnBanner{
-    font-size: 2em !important;
-    width: 200px;
+    font-size: 1.8rem !important;
+    width: auto;
+    height: auto;
 }
 .LinkBtn{
     margin-left: 20%;
@@ -22,6 +23,7 @@
 
 #filters {
     background-color: #ECE6DE;
+    border-radius: 30px;
 }
 
 .card {
@@ -58,4 +60,30 @@
 
 .dropMenu{
     border: 1px solid #647f94;
+}
+
+/* Search button for Form */
+.custom-btn {
+	background-color: #647f94 !important;
+	color: white;
+	border-color: #647f94 !important;
+	border-radius: 20px !important;
+	box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+	height: 40px;
+	font-size: 1.2em !important;
+    display: flex;
+    align-items: center;
+}
+
+.custom-btn-advanced{
+    color: black;
+    text-decoration: underline;
+    background-color: transparent;
+    border: 0;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.custom-btn:hover {
+	background-color: #3a4f5f !important;
 }
