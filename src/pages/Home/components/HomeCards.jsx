@@ -67,19 +67,22 @@ const HomeCards = (props) => {
 					<div className="text-center">
 						<span className="price ">
 							{amount} €{' '}
-							<small className="location">
+							<small className="location text-secondary">
 								{transactionType === 'Location' ? '/ Mois' : ''}
 							</small>
 						</span>
 					</div>
 				</div>
-				<Link
-					to={`/single/${_id}`}
-					className="d-flex justify-content-center"
-				>
-					<BtnGeneral className="w-75" text="Voir l'annonce" />
-				</Link>
-				<div className="d-flex justify-content-center">
+				<div className="d-flex justify-content-center align-items-center">
+					<Link
+						to={`/single/${_id}`}
+						className="d-flex justify-content-center"
+					>
+						<BtnGeneral
+							className="w-100 h-50"
+							text="Voir l'annonce"
+						/>
+					</Link>
 					<Favorite id={_id} default={favExist} setFav={setFav} />
 				</div>
 			</Card.Body>

@@ -8,17 +8,17 @@ const Favorite = (props) => {
 	const isConnected = useContext(Context).connected
 
 	function handleClick() {
-		if (isConnected){
+		if (isConnected) {
 			props.setFav(!props.default)
-	
+
 			if (!props.default) {
 				addFav()
 			} else {
 				removeFav()
 			}
-		} else{
-			window.location.href = process.env.REACT_APP_UI_DOMAIN + 'register'
-		} 
+		} else {
+			window.location.href = process.env.REACT_APP_UI_DOMAIN + 'connect'
+		}
 	}
 
 	function addFav() {
@@ -48,21 +48,18 @@ const Favorite = (props) => {
 		fetch(
 			'http://localhost:8080/api/user/wishlist/' + props.id,
 			requestOptions
-		).then(function (response) {
-		})
+		).then(function (response) {})
 	}
 
-    
-    let animationClasses = props.default ? 'is-active' : ''
-    let moreClass = props.className ? props.className : ''
+	let animationClasses = props.default ? 'is-active' : ''
+	let moreClass = props.className ? props.className : ''
 
-	return(
-        <div
-            className={`heart ${animationClasses} ${moreClass}`}
-            onClick={handleClick}
-        ></div>
-    )
-	
+	return (
+		<div
+			className={`heart ${animationClasses} ${moreClass}`}
+			onClick={handleClick}
+		></div>
+	)
 }
 
 export default Favorite
