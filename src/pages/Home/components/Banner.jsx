@@ -19,7 +19,7 @@ const Banner = (props) => {
 			</p>
 			<Link
 				to={`/contactus`}
-				className="LinkBtn"
+				className="LinkBtn mt-5"
 				style={{ width: 'fit-content' }}
 			>
 				<BtnGeneral className="BtnBanner" text="Contactez-nous" />
