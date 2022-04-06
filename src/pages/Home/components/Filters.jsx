@@ -1,5 +1,5 @@
 import Input from '../../../templates/Input'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
 	Col,
 	Container,
@@ -15,6 +15,7 @@ const Filters = ({ setProperties }) => {
 	if(!lastSearch){
 		lastSearch = {}
 	}
+	
 	const [transactionType, setTransactionType] = useState(
 		lastSearch.transactionType ? lastSearch.transactionType : ''
 	)
@@ -45,7 +46,7 @@ const Filters = ({ setProperties }) => {
 	const [search, setSearch] = useState(
 		lastSearch.search ? lastSearch.search : ''
 	)
-
+	
 	const [open, setOpen] = useState(false)
 
 	const handleTransactionType = (e) => {
@@ -85,6 +86,8 @@ const Filters = ({ setProperties }) => {
 	const handleSearch = (e) => {
 		setSearch(e.target.value)
 	}
+
+	useEffect(() => handleSearchClick())
 
 	function handleSearchClick() {
 		let filters = {
@@ -180,7 +183,7 @@ const Filters = ({ setProperties }) => {
 								</label>
 							</div>
 							<select
-								className="form-select rounded-pill"
+								className="form-select "
 								onChange={handleTransactionType}
 								name="transactionType"
 								id="transactionType"
@@ -194,7 +197,7 @@ const Filters = ({ setProperties }) => {
 											: false
 									}
 								>
-									Acheter
+									Achat
 								</option>
 								<option
 									value="Location"
@@ -204,7 +207,7 @@ const Filters = ({ setProperties }) => {
 											: false
 									}
 								>
-									Louer
+									Location
 								</option>
 							</select>
 						</Col>
@@ -215,7 +218,7 @@ const Filters = ({ setProperties }) => {
 								</label>
 							</div>
 							<select
-								className="form-select rounded-pill"
+								className="form-select "
 								onChange={handlePropertyType}
 								name="propertyType"
 								id="propertyType"
@@ -262,20 +265,20 @@ const Filters = ({ setProperties }) => {
 								</label>
 							</div>
 							<div className="d-flex align-items-center">
-								<Input
+								<FormControl
 									id="minPrice"
 									type="text"
 									placeholder="Min"
 									onChange={handleMinPrice}
-									value={minPrice ? minPrice : ''}
+									value={minPrice}
 								/>
 								<strong className="ms-2 me-2">-</strong>
-								<Input
+								<FormControl
 									id="maxPrice"
 									type="text"
 									placeholder="Max"
 									onChange={handleMaxPrice}
-									value={maxPrice ? maxPrice : ''}
+									value={maxPrice}
 								/>
 							</div>
 						</Col>
@@ -286,19 +289,19 @@ const Filters = ({ setProperties }) => {
 								</label>
 							</div>
 							<div className="d-flex align-items-center">
-								<Input
+								<FormControl
 									id="roomNumberMin"
 									type="number"
 									placeholder="Min"
 									onChange={handleRoomNumberMin}
-									value={roomNumberMin ? roomNumberMin : ''}
+									value={roomNumberMin}
 								/>
 								<strong className="ms-2 me-2">-</strong>
-								<Input
+								<FormControl
 									id="roomNumberMax"
 									type="number"
 									placeholder="Max"
-									value={roomNumberMax ? roomNumberMax : ''}
+									value={roomNumberMax}
 									onChange={handleRoomNumberMax}
 								/>
 							</div>
@@ -310,7 +313,7 @@ const Filters = ({ setProperties }) => {
 								</label>
 							</div>
 							<div className="d-flex align-items-center">
-								<Input
+								<FormControl
 									id="surfaceMin"
 									type="number"
 									placeholder="Min"
@@ -318,7 +321,7 @@ const Filters = ({ setProperties }) => {
 									value={surfaceMin ? surfaceMin : ''}
 								/>
 								<strong className="ms-2 me-2">-</strong>
-								<Input
+								<FormControl
 									id="surfaceMax"
 									type="number"
 									placeholder="Max"

@@ -24,13 +24,13 @@ const Home = (props) => {
 		<Container fluid className='w-100 p-0'>
 			<Banner/>
 			<Filters setProperties={setProperties} />
-			<Row className="justify-content-center justify-content-lg-evenly w-100 m-0">
+			<Row className="justify-content-center justify-content-lg-center">
 				{properties.map((property) => {
 					return (
 						<Col
-							xs="10"
-							md="5"
-							lg="3"
+							xs="12"
+							md="7"
+							lg="4"
 							key={property._id}
 							className="d-flex justify-content-center"
 						>
