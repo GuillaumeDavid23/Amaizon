@@ -3,20 +3,10 @@ import * as Bootstrap from 'react-bootstrap'
 
 import { useForm } from 'react-hook-form'
 
-import * as util from '../utils'
-
 import './Preferences.css'
 
-const default_pref = {
-	sell: '',
-	type: '',
-	location: '',
-	budget: '',
-	rooms: '',
-	surface: '',
-}
-
 const handle_no_value = (value, price = false, surface = false) => {
+	console.log(value)
 	if (value === '') return 'Non défini'
 	if (price) return value ? value + ' €' : '- €'
 	if (surface) return value ? value + ' m²' : '- m²'
@@ -24,8 +14,7 @@ const handle_no_value = (value, price = false, surface = false) => {
 }
 
 const getURLUpdate = (userId) => {
-	const BASE_URL = 'http://127.0.0.1:8080/api/'
-	const URL = BASE_URL + 'user/buyer/' + userId
+	const URL = process.env.REACT_APP_API_DOMAIN + 'api/user/buyer/' + userId
 	console.log(URL)
 	return URL
 }
@@ -38,44 +27,63 @@ export const Prefs = (props) => {
 		formState: { errors },
 	} = useForm()
 
-	const {user:U, prefs } = props
-
-	const [user, setUser] = React.useState(U)
+	const {user, token, setUser } = props
 
 	const [isModifying, setIsModifying] = React.useState(false)
 	const [isFetching, setIsFetching] = React.useState(false)
-	const [Pref, setPrefs] = React.useState(prefs ? prefs : default_pref)
-	const [tmpPrefs, setTmpPrefs] = React.useState(prefs ? prefs : default_pref)
+
+	const [Pref, setPrefs] = React.useState()
+	const [tmpPrefs, setTmpPrefs] = React.useState()
+
+	React.useEffect(()=>{
+		if(!Pref){
+			setPrefs(user?.buyer)
+		}
+		if(!tmpPrefs){
+			setTmpPrefs(user?.buyer)
+		}
+
+	}, [user, Prefs, tmpPrefs])
 
 
-	const onSubmit = (data) => {
-		setPrefs(tmpPrefs)
-		setIsModifying(false)
-	}
+	console.log("Pref::Prefs")
+	console.log(Prefs)
+
+	console.log("Pref::Tmp")
+	console.log(tmpPrefs)
 
 	const onSubmitFetch = (data) => {
 		setIsFetching(true)
+		console.log("Pref::data")
+		console.log(data)
+
+		const updatedUser = {...user, buyer:{...user.buyer, ...data}}
 
 		const init = {
 			method: 'PUT',
 			headers: {
-				Authorization: 'bearer ' + user.token,
+				Authorization: 'bearer ' + token,
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify(data),
+			body: JSON.stringify(updatedUser),
 		}
-		fetch(getURLUpdate(user.id), init)
-			.then((rep) => {
-				rep.json().then((data) => {
-					console.log(data)
 
-					setPrefs(tmpPrefs)
+		fetch(getURLUpdate(user._id), {...init})
+			.then((rep) => {
+				rep.json().then(() => {
+					setUser(updatedUser)
+
+					setPrefs(data)
+
+					console.log("Pref::Modified")
+					console.log(Prefs)
+
 					setIsModifying(false)
-					setIsFetching(false)
 				})
 			})
 			.catch((err) => {
 				console.error(err)
+			}).finally(()=>{
 				setIsFetching(false)
 			})
 	}
@@ -102,19 +110,19 @@ export const Prefs = (props) => {
 				>
 					{isModifying ? (
 						// Form
-						<form onSubmit={handleSubmit(onSubmit)}>
+						<form onSubmit={handleSubmit(onSubmitFetch)}>
 							<div style={{ display: 'flex' }}>
 								<Bootstrap.Col className={`bo_text`}>
 									<div className={`bo_pref_subform`}>
 										{/* Transaction type */}
 										<label>Transaction : </label>
 										<select
-											value={tmpPrefs.sell}
-											{...register('sell')}
+											value={tmpPrefs.type}
+											{...register('type')}
 											onChange={(e) => {
 												setTmpPrefs({
 													...tmpPrefs,
-													sell: e.target.value,
+													type: e.target.value,
 												})
 											}}
 										>
@@ -128,12 +136,12 @@ export const Prefs = (props) => {
 										{/* Type */}
 										<label>Type : </label>
 										<select
-											value={tmpPrefs.type}
-											{...register('type')}
+											value={tmpPrefs.propertyType}
+											{...register('propertyType')}
 											onChange={(e) => {
 												setTmpPrefs({
 													...tmpPrefs,
-													type: e.target.value,
+													propertyType: e.target.value,
 												})
 											}}
 										>
@@ -150,12 +158,12 @@ export const Prefs = (props) => {
 										<label>Localisation : </label>
 										<input
 											type="text"
-											value={tmpPrefs.location}
-											{...register('location')}
+											value={tmpPrefs.city}
+											{...register('city')}
 											onChange={(e) => {
 												setTmpPrefs({
 													...tmpPrefs,
-													location: e.target.value,
+													city: e.target.value,
 												})
 											}}
 										/>
@@ -167,12 +175,12 @@ export const Prefs = (props) => {
 										<label>Budget : </label>
 										<input
 											type="number"
-											value={tmpPrefs.budget}
-											{...register('budget')}
+											value={tmpPrefs.budgetMax}
+											{...register('budgetMax')}
 											onChange={(e) => {
 												setTmpPrefs({
 													...tmpPrefs,
-													budget: e.target.value,
+													budgetMax: e.target.value,
 												})
 											}}
 										/>
@@ -195,12 +203,12 @@ export const Prefs = (props) => {
 										<label>Surface : </label>
 										<input
 											type="number"
-											value={tmpPrefs.surface}
-											{...register('surface')}
+											value={tmpPrefs.surfaceMin}
+											{...register('surfaceMin')}
 											onChange={(e) => {
 												setTmpPrefs({
 													...tmpPrefs,
-													surface: e.target.value,
+													surfaceMin: e.target.value,
 												})
 											}}
 										/>
@@ -214,20 +222,20 @@ export const Prefs = (props) => {
 							<Bootstrap.Col>
 								<p className={`bo_pref_p bo_pref_text`}>
 									Vente/Location :{' '}
-									{handle_no_value(Pref?.sell)}
+									{handle_no_value(Pref?.type)}
 								</p>
 								<p className={`bo_pref_p bo_pref_text`}>
-									Type de bien : {handle_no_value(Pref?.type)}
+									Type de bien : {handle_no_value(Pref?.propertyType)}
 								</p>
 								<p className={`bo_pref_p bo_pref_text`}>
 									Localisation :{' '}
-									{handle_no_value(Pref?.location)}
+									{handle_no_value(Pref?.city)}
 								</p>
 							</Bootstrap.Col>
 							<Bootstrap.Col>
 								<p className={`bo_pref_p bo_pref_text`}>
 									Budget :{' '}
-									{handle_no_value(Pref?.budget, true, false)}
+									{handle_no_value(Pref?.budgetMax, true, false)}
 								</p>
 								<p className={`bo_pref_p bo_pref_text`}>
 									Nombre de pièces :{' '}
@@ -236,7 +244,7 @@ export const Prefs = (props) => {
 								<p className={`bo_pref_p bo_pref_text`}>
 									Surface :{' '}
 									{handle_no_value(
-										Pref?.surface,
+										Pref?.surfaceMin,
 										false,
 										true
 									)}
@@ -267,7 +275,7 @@ export const Prefs = (props) => {
 							</Bootstrap.Button>
 							<Bootstrap.Button
 								className={`bo_pref_text bo_pref_btn`}
-								onClick={handleSubmit(onSubmit)}
+								onClick={handleSubmit(onSubmitFetch)}
 							>
 								{isFetching ? (
 									<Bootstrap.Spinner />

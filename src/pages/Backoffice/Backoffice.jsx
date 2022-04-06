@@ -28,7 +28,7 @@ const Backoffice = () => {
 						}}
 					>
 						<bt.Col className={``} sm={7}>
-							<Prefs user={user} setUser={setUser} prefs={dataPrefs} />
+							<Prefs user={user} setUser={setUser} token={token}/>
 						</bt.Col>
 						<bt.Col className={``} sm={4}>
 							<MyAgent agent={dataAgent} roundness="30px" />
@@ -41,7 +41,7 @@ const Backoffice = () => {
 						}}
 					>
 						<bt.Col className={``} sm={7}>
-							<MyFavs user={user} setUser={setUser} roundness="30px" />
+							<MyFavs user={user} setUser={setUser} token={token} roundness="30px" />
 						</bt.Col>
 						<bt.Col className={``} sm={4}>
 							<MyInfo
