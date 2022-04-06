@@ -6,9 +6,10 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { BsBorderAll } from 'react-icons/bs'
 import { MdLocationSearching, MdArchitecture } from 'react-icons/md'
+import { Link } from 'react-router-dom'
+import BtnGeneral from '../../templates/BtnGeneral'
 
 const Single = () => {
-
 	const [data, setData] = useState({})
 
 	const { id } = useParams()
@@ -28,6 +29,15 @@ const Single = () => {
 
 	return (
 		<Container className="mt-4 mb-4">
+			<Link
+				to={{ pathname: '/', hash: '#'+id }}
+				className="d-flex justify-content-center w-25"
+			>
+				<BtnGeneral
+					className="w-75 h-50"
+					text="<< Retour à la recherche"
+				/>
+			</Link>
 			<Row className="justify-content-evenly align-items-center">
 				<Col xs="12" lg="5" className="d-flex flex-column">
 					{data.imageUrl ? (

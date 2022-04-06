@@ -13,7 +13,7 @@ const Login = ({ isConnected }) => {
 	return (
 		<div>
 			{!isConnected ? (
-				<LinkRouterDom to="/connect" className="me-4">
+				<LinkRouterDom to="/connect" className="me-lg-4">
 					<Button className="header-btn header-btn-connexion h-auto">
 						<div className="d-flex align-items-center">
 							<span className="me-2">Connexion</span>
@@ -22,7 +22,7 @@ const Login = ({ isConnected }) => {
 					</Button>
 				</LinkRouterDom>
 			) : (
-				<Dropdown className="me-4">
+				<Dropdown className="me-lg-4">
 					<Dropdown.Toggle
 						variant="primary"
 						id="dropdown-basic"

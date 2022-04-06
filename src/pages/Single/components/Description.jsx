@@ -14,18 +14,22 @@ const Description = (props) => {
 	useEffect(() => {
 		if (isConnected) {
 			const requestOptions = {
-				method: 'GET',
+				method: 'POST',
+				headers: {
+					Authorization: 'Bearer ' + token,
+				},
 			}
 			fetch(
-				'http://localhost:8080/api/user/check/' + token,
+				process.env.REACT_APP_API_DOMAIN + 'api/user/checkBearer/',
+
 				requestOptions
 			)
 				.then(function (response) {
 					return response.json()
 				})
 				.then(function (resp) {
-					const userData = resp.data
-					setFav(userData.buyer.wishlist.includes(data._id))
+					setFav(resp.userInfos.buyer.wishlist.includes(data._id))
+					console.log(resp.userInfos)
 				})
 		}
 	}, [data._id, data, token, isConnected])

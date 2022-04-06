@@ -1,27 +1,67 @@
 import Input from '../../../templates/Input'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import {
 	Col,
 	Container,
 	Row,
-	Dropdown,
 	FormControl,
 	Button,
-	Collapse
+	Collapse,
 } from 'react-bootstrap'
-import { BsChevronDown, BsChevronUp, BsSearch } from 'react-icons/bs'
+import { BsChevronDown, BsChevronUp, BsSearch, BsFillCircleFill } from 'react-icons/bs'
 
-const Filters = ({ setProperties }) => {
-	const [transactionType, setTransactionType] = useState('')
-	const [propertyType, setPropertyType] = useState('')
-	const [location, setLocation] = useState('')
-	const [minPrice, setMinPrice] = useState('')
-	const [maxPrice, setMaxPrice] = useState('')
-	const [roomNumberMin, setRoomNumberMin] = useState('')
-	const [roomNumberMax, setRoomNumberMax] = useState('')
-	const [surfaceMin, setSurfaceMin] = useState('')
-	const [surfaceMax, setSurfaceMax] = useState('')
-	const [search, setSearch] = useState('')
+const Filters = ({ setProperties, properties }) => {
+	const [filtersActive, setFiltersActive] = useState(false)
+	var lastSearch = JSON.parse(localStorage.getItem('LAST_SEARCH_FILTERS'))
+	if (!lastSearch) {
+		lastSearch = {}
+	}else{
+		if (isObjEmpty(lastSearch) && !filtersActive) {
+			setFiltersActive(true)
+		}
+	}
+	console.log(filtersActive);
+
+	function isObjEmpty(obj) {
+		let find = false
+		for (var prop in obj) {
+			if(obj[prop] !== ''){
+				find = true
+			}
+		}
+		return find
+	}
+
+	const [transactionType, setTransactionType] = useState(
+		lastSearch.transactionType ? lastSearch.transactionType : ''
+	)
+	const [propertyType, setPropertyType] = useState(
+		lastSearch.propertyType ? lastSearch.propertyType : ''
+	)
+	const [location, setLocation] = useState(
+		lastSearch.location ? lastSearch.location : ''
+	)
+	const [minPrice, setMinPrice] = useState(
+		lastSearch.minPrice ? lastSearch.minPrice : ''
+	)
+	const [maxPrice, setMaxPrice] = useState(
+		lastSearch.maxPrice ? lastSearch.maxPrice : ''
+	)
+	const [roomNumberMin, setRoomNumberMin] = useState(
+		lastSearch.roomNumberMin ? lastSearch.roomNumberMin : ''
+	)
+	const [roomNumberMax, setRoomNumberMax] = useState(
+		lastSearch.roomNumberMax ? lastSearch.roomNumberMax : ''
+	)
+	const [surfaceMin, setSurfaceMin] = useState(
+		lastSearch.surfaceMin ? lastSearch.surfaceMin : ''
+	)
+	const [surfaceMax, setSurfaceMax] = useState(
+		lastSearch.surfaceMax ? lastSearch.surfaceMax : ''
+	)
+	const [search, setSearch] = useState(
+		lastSearch.search ? lastSearch.search : ''
+	)
 
 	const [open, setOpen] = useState(false)
 
@@ -63,6 +103,10 @@ const Filters = ({ setProperties }) => {
 		setSearch(e.target.value)
 	}
 
+	if (properties.length === 0){
+		handleSearchClick()
+	}
+	
 	function handleSearchClick() {
 		let filters = {
 			transactionType,
@@ -76,8 +120,10 @@ const Filters = ({ setProperties }) => {
 			surfaceMax,
 			search,
 		}
+		localStorage.setItem('LAST_SEARCH_FILTERS', JSON.stringify(filters))
 		fetch(
-			process.env.REACT_APP_API_DOMAIN + 'api/property/searchProperties',
+			process.env.REACT_APP_API_DOMAIN +
+				'api/property/searchProperties',
 			{
 				method: 'POST',
 				headers: {
@@ -101,13 +147,18 @@ const Filters = ({ setProperties }) => {
 				className="d-flex justify-content-around p-4 w-100"
 			>
 				<Row className="justify-content-center align-items-center flex-column flex-lg-row w-100">
-					<Col xs="12" lg="8" className='d-flex flex-column flex-lg-row justify-content-center'>
+					<Col
+						xs="12"
+						lg="8"
+						className="d-flex flex-column flex-lg-row justify-content-center"
+					>
 						<FormControl
 							type="search"
 							placeholder="Effectuez votre recherche..."
 							className="me-2 header-search-input"
 							aria-label="Search"
 							onChange={handleSearch}
+							value={search}
 						/>
 						<Button
 							className="custom-btn mt-3 mb-3 mt-lg-0 mb-lg-0"
@@ -115,7 +166,7 @@ const Filters = ({ setProperties }) => {
 							aria-controls="filtersAdvanced"
 							aria-expanded={open}
 						>
-							Rechercher <BsSearch className='ms-2' />
+							Rechercher <BsSearch className="ms-2" />
 						</Button>
 					</Col>
 					<Col
@@ -130,6 +181,11 @@ const Filters = ({ setProperties }) => {
 							aria-controls="filtersAdvanced"
 							aria-expanded={open}
 						>
+							{filtersActive ? (
+								<BsFillCircleFill size={12} color='green' className='me-2' />
+							) : (
+								''
+							)}
 							Recherche avancé
 							{open ? (
 								<BsChevronDown className="ms-1" />
@@ -151,14 +207,32 @@ const Filters = ({ setProperties }) => {
 								</label>
 							</div>
 							<select
-								className="form-select rounded-pill"
+								className="form-select "
 								onChange={handleTransactionType}
 								name="transactionType"
 								id="transactionType"
 							>
 								<option value="">Acheter ou Louer</option>
-								<option value="Achat">Acheter</option>
-								<option value="Location">Louer</option>
+								<option
+									value="Achat"
+									selected={
+										transactionType === 'Achat'
+											? true
+											: false
+									}
+								>
+									Achat
+								</option>
+								<option
+									value="Location"
+									selected={
+										transactionType === 'Location'
+											? true
+											: false
+									}
+								>
+									Location
+								</option>
 							</select>
 						</Col>
 						<Col xs="10" lg="2">
@@ -168,14 +242,30 @@ const Filters = ({ setProperties }) => {
 								</label>
 							</div>
 							<select
-								className="form-select rounded-pill"
+								className="form-select "
 								onChange={handlePropertyType}
 								name="propertyType"
 								id="propertyType"
 							>
 								<option value="">Choisissez une valeur</option>
-								<option value="Maison">Maison</option>
-								<option value="Appartement">Appartement</option>
+								<option
+									value="Maison"
+									selected={
+										propertyType === 'Maison' ? true : false
+									}
+								>
+									Maison
+								</option>
+								<option
+									value="Appartement"
+									selected={
+										propertyType === 'Appartement'
+											? true
+											: false
+									}
+								>
+									Appartement
+								</option>
 							</select>
 						</Col>
 						<Col xs="5" lg="2">
@@ -189,6 +279,7 @@ const Filters = ({ setProperties }) => {
 								type="text"
 								placeholder="Amiens, Paris.."
 								onBlur={handleLocation}
+								value={location ? location : ''}
 							/>
 						</Col>
 						<Col xs="7" lg="2">
@@ -198,18 +289,20 @@ const Filters = ({ setProperties }) => {
 								</label>
 							</div>
 							<div className="d-flex align-items-center">
-								<Input
+								<FormControl
 									id="minPrice"
 									type="text"
 									placeholder="Min"
 									onChange={handleMinPrice}
+									value={minPrice}
 								/>
 								<strong className="ms-2 me-2">-</strong>
-								<Input
+								<FormControl
 									id="maxPrice"
 									type="text"
 									placeholder="Max"
 									onChange={handleMaxPrice}
+									value={maxPrice}
 								/>
 							</div>
 						</Col>
@@ -220,17 +313,19 @@ const Filters = ({ setProperties }) => {
 								</label>
 							</div>
 							<div className="d-flex align-items-center">
-								<Input
+								<FormControl
 									id="roomNumberMin"
 									type="number"
 									placeholder="Min"
 									onChange={handleRoomNumberMin}
+									value={roomNumberMin}
 								/>
 								<strong className="ms-2 me-2">-</strong>
-								<Input
+								<FormControl
 									id="roomNumberMax"
 									type="number"
 									placeholder="Max"
+									value={roomNumberMax}
 									onChange={handleRoomNumberMax}
 								/>
 							</div>
@@ -242,18 +337,20 @@ const Filters = ({ setProperties }) => {
 								</label>
 							</div>
 							<div className="d-flex align-items-center">
-								<Input
-									id="surface"
+								<FormControl
+									id="surfaceMin"
 									type="number"
 									placeholder="Min"
 									onChange={handleSurfaceMin}
+									value={surfaceMin ? surfaceMin : ''}
 								/>
 								<strong className="ms-2 me-2">-</strong>
-								<Input
+								<FormControl
 									id="surfaceMax"
 									type="number"
 									placeholder="Max"
 									onChange={handleSurfaceMax}
+									value={surfaceMax ? surfaceMax : ''}
 								/>
 							</div>
 						</Col>

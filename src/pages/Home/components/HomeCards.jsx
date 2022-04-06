@@ -43,12 +43,12 @@ const HomeCards = (props) => {
 	}, [_id, isConnected, token])
 
 	return (
-		<Card className="mb-5" style={{ width: '18rem' }}>
+		<Card className="mb-5" style={{ width: '70%' }} id={_id}>
 			<Card.Img
 				variant="top"
 				src={process.env.REACT_APP_API_DOMAIN + imageUrl.photo1}
 			/>
-			<Card.Body>
+			<Card.Body className="d-flex flex-column">
 				<Card.Title>
 					{title} de {surface} m²
 				</Card.Title>
@@ -63,7 +63,11 @@ const HomeCards = (props) => {
 						</span>
 					</div>
 				</div>
-				<div className="d-flex justify-content-center align-items-center">
+
+				<div className="d-flex justify-content-between align-items-center">
+					<div className='btnFav'>
+						<Favorite id={_id} default={favExist} setFav={setFav} />
+					</div>
 					<Link
 						to={`/single/${_id}`}
 						className="d-flex justify-content-center"
@@ -73,7 +77,6 @@ const HomeCards = (props) => {
 							text="Voir l'annonce"
 						/>
 					</Link>
-					<Favorite id={_id} default={favExist} setFav={setFav} />
 				</div>
 			</Card.Body>
 		</Card>
