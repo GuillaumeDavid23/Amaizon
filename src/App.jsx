@@ -9,6 +9,7 @@ import Appointment from './pages/Appointment/Appointment'
 import Backoffice from './pages/Backoffice/Backoffice'
 import Connect from './pages/Connect/Connect'
 import Contact from './pages/Contact/Contact'
+import Error from './pages/Error/Error'
 import ForgetPass from './pages/ForgetPass/ForgetPass'
 import Home from './pages/Home/Home'
 import Legals from './pages/Legals/Legals'
@@ -30,9 +31,13 @@ export function App() {
 	const [userInfos, setUserInfos] = useState(null)
 
 	// Check de l'existence d'un token:
-	let tokenLS = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_AMAIZON'))
-	if (tokenLS && token === null) {
-		setToken(tokenLS)
+	if (localStorage.getItem('REACT_TOKEN_AUTH_AMAIZON')) {
+		let tokenLS = JSON.parse(
+			localStorage.getItem('REACT_TOKEN_AUTH_AMAIZON')
+		)
+		if (tokenLS && token === null) {
+			setToken(tokenLS)
+		}
 	}
 
 	useEffect(() => {
@@ -55,40 +60,50 @@ export function App() {
 						setUserInfos(response.userInfos)
 					} else {
 						// On check le refreshToken:
-						let refreshToken = JSON.parse(
+						if (
 							localStorage.getItem(
 								'REACT_REFRESH_TOKEN_AUTH_AMAIZON'
 							)
-						)
-						if (refreshToken) {
-							// Check de la validité du token:
-							fetch(
-								process.env.REACT_APP_API_DOMAIN +
-									'api/user/checkResetToken/' +
-									refreshToken,
-								{ method: 'GET' }
+						) {
+							let refreshToken = JSON.parse(
+								localStorage.getItem(
+									'REACT_REFRESH_TOKEN_AUTH_AMAIZON'
+								)
 							)
-								.then((response) => {
-									return response.json()
-								})
-								.then((response) => {
-									if (
-										response.status_code &&
-										response.status_code === 200
-									) {
-										localStorage.setItem(
-											'REACT_TOKEN_AUTH_AMAIZON',
-											JSON.stringify(response.token)
-										)
-										// On set la connexion à true:
-										setConnexion(true)
-										setUserInfos(response.userInfos)
-									} else {
-										setConnexion(false)
-										localStorage.clear()
-										setToken(null)
-									}
-								})
+							if (refreshToken) {
+								// Check de la validité du token:
+								fetch(
+									process.env.REACT_APP_API_DOMAIN +
+										'api/user/checkResetToken/' +
+										refreshToken,
+									{ method: 'GET' }
+								)
+									.then((response) => {
+										return response.json()
+									})
+									.then((response) => {
+										if (
+											response.status_code &&
+											response.status_code === 200
+										) {
+											localStorage.setItem(
+												'REACT_TOKEN_AUTH_AMAIZON',
+												JSON.stringify(response.token)
+											)
+											// On set la connexion à true:
+											setConnexion(true)
+											setUserInfos(response.userInfos)
+										} else {
+											setConnexion(false)
+											localStorage.clear()
+											setToken(null)
+										}
+									})
+							} else {
+								setConnexion(false)
+								localStorage.clear()
+								setToken(null)
+							}
 						} else {
 							setConnexion(false)
 							localStorage.clear()
@@ -123,14 +138,17 @@ export function App() {
 					<Route path="/backoffice" element={<Backoffice />} />
 					<Route path="/connect" element={<Connect />} />
 					<Route path="/contactus" element={<Contact />} />
-					<Route
-						path="/forgetPass"
-						element={<ForgetPass step="before" />}
-					/>
-					<Route
-						path="/resetPassword/:id/:token"
-						element={<ForgetPass step="after" />}
-					/>
+					{!isConnected && (
+							<Route
+								path="/forgetPass"
+								element={<ForgetPass step="before" />}
+							/>
+						) && (
+							<Route
+								path="/resetPassword/:id/:token"
+								element={<ForgetPass step="after" />}
+							/>
+						)}
 					<Route path="/legals" element={<Legals />} />
 					<Route path="/register" element={<Register />} />
 					<Route
@@ -141,6 +159,7 @@ export function App() {
 						path="/emailVerification/:token"
 						element={<VerifEmail />}
 					/>
+					<Route path="*" element={<Error />} />
 				</Routes>
 				<Footer />
 			</Router>

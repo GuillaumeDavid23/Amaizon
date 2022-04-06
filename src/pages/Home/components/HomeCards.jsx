@@ -18,9 +18,7 @@ const HomeCards = (props) => {
 	const [favExist, setFav] = useState(false)
 	const isConnected = useContext(Context).connected
 
-	const token = JSON.parse(
-		localStorage.getItem('REACT_TOKEN_AUTH_AMAIZON')
-	)
+	const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_AMAIZON'))
 
 	useEffect(() => {
 		if (isConnected) {
@@ -31,9 +29,8 @@ const HomeCards = (props) => {
 				},
 			}
 			fetch(
-				process.env.REACT_APP_API_DOMAIN +
-					'api/user/checkBearer/',
-					
+				process.env.REACT_APP_API_DOMAIN + 'api/user/checkBearer/',
+
 				requestOptions
 			)
 				.then(function (response) {
@@ -41,7 +38,6 @@ const HomeCards = (props) => {
 				})
 				.then(function (resp) {
 					setFav(resp.userInfos.buyer.wishlist.includes(_id))
-					console.log(resp.userInfos)
 				})
 		}
 	}, [_id, isConnected, token])
