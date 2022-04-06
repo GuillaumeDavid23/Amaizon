@@ -20,6 +20,7 @@ import { AnimatePresence } from 'framer-motion'
 export const Context = createContext({
 	connected: false,
 	userInfos: {},
+	setUserInfo:null,
 	authToken: null,
 })
 
@@ -106,6 +107,7 @@ export function App() {
 			value={{
 				connected: isConnected,
 				userInfos: userInfos,
+				setUserInfo: setUserInfos,
 				authToken: token,
 			}}
 		>

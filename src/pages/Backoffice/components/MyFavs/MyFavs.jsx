@@ -61,7 +61,15 @@ const FavListItem = (props) => {
 }
 
 export const MyFavs = (props) => {
-	const { favs, roundness } = props
+	const { user, setUser, roundness } = props
+	const {wishlist:favs} = user?.buyer || []
+
+	React.useEffect(()=>{
+		console.log("props::favs")
+		console.log(favs)
+
+	},[])
+
 
 	const [listFavs, setListFavs] = React.useState(favs ? favs : [])
 
