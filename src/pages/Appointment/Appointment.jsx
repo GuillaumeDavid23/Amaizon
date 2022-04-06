@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import AppointmentForm from './components/AppointmentForm'
 import '../../styles/Appointment.css'
+import AnimatedPage from '../../templates/AnimatedPage'
+
 
 
 const Appointment = () => {
@@ -20,19 +22,21 @@ const Appointment = () => {
 			})
 	}, [id])
 	return (
-		<Container>
-			<Row className="mt-5 mb-5 justify-content-evenly flex-column-reverse flex-lg-row">
-				<Col xs="12" lg="4" className='mt-5 mt-lg-0'>
-					<PropertyCard data={properties} />
-				</Col>
-				<Col className="linear mb-4 d-none d-lg-block" xs="8" lg="1"></Col>
-				<Col xs="12" lg="5">
-					<h2 className='text-center mb-5'>Prise de rendez-vous</h2>
+		<AnimatedPage>
+			<Container>
+				<Row className="mt-5 mb-5 justify-content-evenly flex-column-reverse flex-lg-row">
+					<Col xs="12" lg="4" className='mt-5 mt-lg-0'>
+						<PropertyCard data={properties} />
+					</Col>
+					<Col className="linear mb-4 d-none d-lg-block" xs="8" lg="1"></Col>
+					<Col xs="12" lg="5">
+						<h2 className='text-center mb-5'>Prise de rendez-vous</h2>
 
-					<AppointmentForm idProperty={id} />
-				</Col>
-			</Row>
-		</Container>
+						<AppointmentForm idProperty={id} />
+					</Col>
+				</Row>
+			</Container>
+		</AnimatedPage>
 	)
 }
 

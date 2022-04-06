@@ -9,7 +9,6 @@ import {
 	Collapse,
 } from 'react-bootstrap'
 import { BsChevronDown, BsChevronUp, BsSearch, BsFillCircleFill } from 'react-icons/bs'
-
 const Filters = ({ setProperties, properties }) => {
 	const [filtersActive, setFiltersActive] = useState(false)
 	var lastSearch = JSON.parse(localStorage.getItem('LAST_SEARCH_FILTERS'))
@@ -20,7 +19,6 @@ const Filters = ({ setProperties, properties }) => {
 			setFiltersActive(true)
 		}
 	}
-	console.log(filtersActive);
 
 	function isObjEmpty(obj) {
 		let find = false
