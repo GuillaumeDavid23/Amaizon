@@ -38,21 +38,15 @@ export const Prefs = (props) => {
 		formState: { errors },
 	} = useForm()
 
-	const { prefs } = props
+	const {user:U, prefs } = props
 
-	const [user, setUser] = React.useState()
+	const [user, setUser] = React.useState(U)
 
 	const [isModifying, setIsModifying] = React.useState(false)
 	const [isFetching, setIsFetching] = React.useState(false)
 	const [Pref, setPrefs] = React.useState(prefs ? prefs : default_pref)
 	const [tmpPrefs, setTmpPrefs] = React.useState(prefs ? prefs : default_pref)
 
-	React.useEffect(() => {
-		util.getUser().then((user) => {
-			setUser(user)
-		})
-		return () => {}
-	}, [])
 
 	const onSubmit = (data) => {
 		setPrefs(tmpPrefs)

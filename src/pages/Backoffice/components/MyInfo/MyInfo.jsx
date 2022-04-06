@@ -4,7 +4,25 @@ import * as Bootstrap from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 
 export const MyInfo = (props) => {
-	const { user, roundness, token } = props
+	const { user, setUser, token, roundness } = props
+
+	const [tmpUserInfo, setTmpUserInfo] = React.useState()
+
+	const [isLoading, setIsLoading] = React.useState(false)
+	const [isModifying, setIsModifying] = React.useState(false)
+
+	React.useEffect(()=>{
+		if(!tmpUserInfo){
+			setTmpUserInfo(user)
+		}
+
+		// console.log("MyInfo::userProps")
+		// console.log(user)
+		
+	},[tmpUserInfo, user])
+	
+	// console.log("MyInfo::tmpUserInfo")
+	// console.log(tmpUserInfo)
 
 	const {
 		register,
@@ -14,13 +32,7 @@ export const MyInfo = (props) => {
 	} = useForm()
 
 	const onSubmit = (data) => {
-		console.log('MyInfo::onSubmit_data')
-		console.log(data)
-
-		const updatedUser = { ...userInfo, ...data }
-
-		console.log('MyInfo::UpdatedUser')
-		console.log(updatedUser)
+		const updatedUser = { ...user, ...data }
 
 		// Locking form
 
@@ -40,14 +52,12 @@ export const MyInfo = (props) => {
 		fetch(
 			process.env.REACT_APP_API_DOMAIN + 'api/user/buyer/' + updatedUser._id,
 			{ ...init }
-		)
-			.then((response) => {
-				if (response.status[0] == 2) {
+		).then((response) => {
+				if (response.ok) {
 					// set local changes
-					setUserInfo(updatedUser)
+					setUser({...user, ...updatedUser})
 				}
-			})
-			.catch((error) => {
+			}).catch((error) => {
 				// Print error message
 				console.error(error)
 			})
@@ -56,13 +66,8 @@ export const MyInfo = (props) => {
 
 		// Unlock form
 		setIsModifying(false)
-	}
+	}	
 
-	const [userInfo, setUserInfo] = React.useState(user)
-	const [tmpUserInfo, setTmpUserInfo] = React.useState(user)
-
-	const [isLoading, setIsLoading] = React.useState(false)
-	const [isModifying, setIsModifying] = React.useState(false)
 
 	const style = {
 		borderRadius: roundness ? roundness : '0px',
@@ -70,7 +75,6 @@ export const MyInfo = (props) => {
 
 	return (
 		<Bootstrap.Container className={`bo_subcontainer`} style={style}>
-			{console.log(userInfo)}
 			<Bootstrap.Row>
 				<Bootstrap.Col>
 					<h2>Mes informations personnelles</h2>
@@ -121,7 +125,7 @@ export const MyInfo = (props) => {
 										)}
 									<label>Nom : </label>
 									<input
-										value={tmpUserInfo.lastname}
+										value={tmpUserInfo?.lastname}
 										{...register('lastname', {
 											required: true,
 										})}
@@ -147,7 +151,7 @@ export const MyInfo = (props) => {
 									<label>Téléphone : </label>
 
 									<input
-										value={tmpUserInfo.phone}
+										value={tmpUserInfo?.phone}
 										{...register('phone', {
 											pattern:
 												/^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/,
@@ -173,7 +177,7 @@ export const MyInfo = (props) => {
 									)}
 									<label>Email : </label>
 									<input
-										value={tmpUserInfo.email}
+										value={tmpUserInfo?.email}
 										{...register('email', {
 											required: true,
 											pattern:
@@ -217,10 +221,10 @@ export const MyInfo = (props) => {
 					) : (
 						<>
 							<p className={``}>
-								{userInfo?.firstname} {userInfo?.lastname}
+								{user?.firstname} {user?.lastname}
 							</p>
-							<p className={``}>{userInfo?.phone}</p>
-							<p className={``}>{userInfo?.email}</p>
+							<p className={``}>{user?.phone}</p>
+							<p className={``}>{user?.email}</p>
 						</>
 					)}
 				</Bootstrap.Col>
@@ -238,7 +242,7 @@ export const MyInfo = (props) => {
 								className={`bo_pref_text bo_pref_btn`}
 								onClick={() => {
 									resetForm()
-									setTmpUserInfo(userInfo)
+									setTmpUserInfo({...user})
 									setIsModifying(false)
 								}}
 							>
