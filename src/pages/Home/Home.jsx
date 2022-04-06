@@ -7,12 +7,14 @@ import Banner from './components/Banner'
 
 const Home = (props) => {
 	const [properties, setProperties] = useState([])
-
 	
-	const locate = window.location.hash.substr(1);
-	if(locate){
-		setTimeout(() => (window.location.href = '#' + locate), 300)
-	}
+	//Redirect to last visted announce in the list if exist
+	// const locate = window.location.hash.substr(1);
+	// if(locate){
+	// 	setTimeout(() => {
+	// 		window.location.href = '#' + locate
+	// 	}, 300)
+	// }
 
 	return (
 		<Container fluid className="w-100 p-0">

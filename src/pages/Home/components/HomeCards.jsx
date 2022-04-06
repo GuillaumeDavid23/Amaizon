@@ -4,6 +4,10 @@ import { useEffect, useState, useContext } from 'react'
 import { Context } from '../../../App'
 import Favorite from '../../../templates/Favorite'
 import { Card } from 'react-bootstrap'
+import { BsBorderAll } from 'react-icons/bs'
+import { MdLocationSearching, MdArchitecture } from 'react-icons/md'
+
+
 
 const HomeCards = (props) => {
 	const {
@@ -13,6 +17,8 @@ const HomeCards = (props) => {
 		description,
 		amount,
 		surface,
+		roomNumber,
+		location,
 		transactionType,
 	} = props.propertyDatas
 	const [favExist, setFav] = useState(false)
@@ -52,23 +58,35 @@ const HomeCards = (props) => {
 				src={process.env.REACT_APP_API_DOMAIN + imageUrl.photo1}
 			/>
 			<Card.Body className="d-flex flex-column">
-				<Card.Title>
-					{title} de {surface} m²
-				</Card.Title>
+				<Card.Title>{title}</Card.Title>
 				<div>
 					<p className="card-text">{description}</p>
 					<div className="text-center">
-						<span className="price ">
+						<div className="price ">
 							{amount?.toLocaleString('FR')} €{' '}
 							<small className="location text-secondary">
 								{transactionType === 'Location' ? '/ Mois' : ''}
 							</small>
-						</span>
+						</div>
+						<div className="d-flex justify-content-evenly mt-2">
+							<div className="d-flex flex-column align-items-center fw-bold">
+								<BsBorderAll size={20} />
+								{roomNumber} pièce(s)
+							</div>
+							<div className="d-flex flex-column align-items-center fw-bold">
+								<MdLocationSearching size={20} />
+								{location}
+							</div>
+							<div className="d-flex flex-column align-items-center fw-bold">
+								<MdArchitecture size={20} />
+								{surface} m²
+							</div>
+						</div>
 					</div>
 				</div>
 
 				<div className="d-flex justify-content-between align-items-center">
-					<div className='btnFav'>
+					<div className="btnFav">
 						<Favorite id={_id} default={favExist} setFav={setFav} />
 					</div>
 					<Link
