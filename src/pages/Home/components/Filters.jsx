@@ -1,5 +1,5 @@
 import Input from '../../../templates/Input'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import {
 	Col,
 	Container,

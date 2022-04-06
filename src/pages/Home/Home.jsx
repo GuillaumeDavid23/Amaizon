@@ -1,7 +1,7 @@
 import '../../styles/Home.css'
 import Filters from './components/Filters'
 import HomeCards from './components/HomeCards'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import Banner from './components/Banner'
 
