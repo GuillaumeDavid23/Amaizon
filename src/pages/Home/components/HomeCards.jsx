@@ -56,6 +56,7 @@ const HomeCards = (props) => {
 			<Card.Img
 				variant="top"
 				src={process.env.REACT_APP_API_DOMAIN + imageUrl.photo1}
+				className="h-100"
 			/>
 			<Card.Body className="d-flex flex-column">
 				<Card.Title>{title}</Card.Title>

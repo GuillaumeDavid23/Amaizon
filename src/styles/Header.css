@@ -94,6 +94,10 @@
 	font-size: 1.2em !important;
 }
 
+.header-btn:hover{
+	background-color: #4c6272 !important;
+}
+
 .header-btn-go {
 	width: 60px;
 }

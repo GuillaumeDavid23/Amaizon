@@ -1,16 +1,15 @@
-import { Nav } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 //This component is for create one navigation link with props
-const Link = (props) => {
+const LinkElement = (props) => {
 	return (
-		<Nav.Link
-			href={props.link}
-			key={`${props.name}-${props.index}`}
-			className="header-text"
-		>
-			{props.name}
-		</Nav.Link>
+			<Link
+				to={props.link}
+				className="d-flex justify-content-center header-text nav-link"
+			>
+				{props.name}
+			</Link>
 	)
 }
 
-export default Link
+export default LinkElement
