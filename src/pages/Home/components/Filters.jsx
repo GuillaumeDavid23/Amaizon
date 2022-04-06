@@ -1,5 +1,5 @@
 import Input from '../../../templates/Input'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import {
 	Col,
 	Container,
@@ -8,14 +8,30 @@ import {
 	Button,
 	Collapse,
 } from 'react-bootstrap'
-import { BsChevronDown, BsChevronUp, BsSearch } from 'react-icons/bs'
+import { BsChevronDown, BsChevronUp, BsSearch, BsFillCircleFill } from 'react-icons/bs'
 
-const Filters = ({ setProperties }) => {
+const Filters = ({ setProperties, properties }) => {
+	const [filtersActive, setFiltersActive] = useState(false)
 	var lastSearch = JSON.parse(localStorage.getItem('LAST_SEARCH_FILTERS'))
-	if(!lastSearch){
+	if (!lastSearch) {
 		lastSearch = {}
+	}else{
+		if (isObjEmpty(lastSearch) && !filtersActive) {
+			setFiltersActive(true)
+		}
 	}
-	
+	console.log(filtersActive);
+
+	function isObjEmpty(obj) {
+		let find = false
+		for (var prop in obj) {
+			if(obj[prop] !== ''){
+				find = true
+			}
+		}
+		return find
+	}
+
 	const [transactionType, setTransactionType] = useState(
 		lastSearch.transactionType ? lastSearch.transactionType : ''
 	)
@@ -46,7 +62,7 @@ const Filters = ({ setProperties }) => {
 	const [search, setSearch] = useState(
 		lastSearch.search ? lastSearch.search : ''
 	)
-	
+
 	const [open, setOpen] = useState(false)
 
 	const handleTransactionType = (e) => {
@@ -87,8 +103,10 @@ const Filters = ({ setProperties }) => {
 		setSearch(e.target.value)
 	}
 
-	useEffect(() => handleSearchClick())
-
+	if (properties.length === 0){
+		handleSearchClick()
+	}
+	
 	function handleSearchClick() {
 		let filters = {
 			transactionType,
@@ -104,7 +122,8 @@ const Filters = ({ setProperties }) => {
 		}
 		localStorage.setItem('LAST_SEARCH_FILTERS', JSON.stringify(filters))
 		fetch(
-			process.env.REACT_APP_API_DOMAIN + 'api/property/searchProperties',
+			process.env.REACT_APP_API_DOMAIN +
+				'api/property/searchProperties',
 			{
 				method: 'POST',
 				headers: {
@@ -162,6 +181,11 @@ const Filters = ({ setProperties }) => {
 							aria-controls="filtersAdvanced"
 							aria-expanded={open}
 						>
+							{filtersActive ? (
+								<BsFillCircleFill size={12} color='green' className='me-2' />
+							) : (
+								''
+							)}
 							Recherche avancé
 							{open ? (
 								<BsChevronDown className="ms-1" />

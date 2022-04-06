@@ -8,13 +8,7 @@ import Banner from './components/Banner'
 const Home = (props) => {
 	const [properties, setProperties] = useState([])
 
-	useEffect(() => {
-		fetch(process.env.REACT_APP_API_DOMAIN + 'api/property')
-			.then((response) => {
-				return response.json()
-			})
-			.then((response) => setProperties(response.properties))
-	}, [])
+	
 	const locate = window.location.hash.substr(1);
 	if(locate){
 		setTimeout(() => (window.location.href = '#' + locate), 300)
@@ -23,7 +17,7 @@ const Home = (props) => {
 	return (
 		<Container fluid className="w-100 p-0">
 			<Banner />
-			<Filters setProperties={setProperties} />
+			<Filters setProperties={setProperties} properties={properties} />
 			<Row className="justify-content-center justify-content-lg-center">
 				{properties.map((property) => {
 					return (
