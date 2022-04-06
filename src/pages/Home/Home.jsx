@@ -1,4 +1,3 @@
-
 import '../../styles/Home.css'
 import Filters from './components/Filters'
 import HomeCards from './components/HomeCards'
@@ -20,9 +19,10 @@ const Home = (props) => {
 	if(locate){
 		setTimeout(() => (window.location.href = '#' + locate), 300)
 	}
+
 	return (
-		<Container fluid className='w-100 p-0'>
-			<Banner/>
+		<Container fluid className="w-100 p-0">
+			<Banner />
 			<Filters setProperties={setProperties} />
 			<Row className="justify-content-center justify-content-lg-center">
 				{properties.map((property) => {
@@ -34,7 +34,10 @@ const Home = (props) => {
 							key={property._id}
 							className="d-flex justify-content-center"
 						>
-							<HomeCards propertyDatas={property} setUserInfos={props.setUserInfos} />
+							<HomeCards
+								propertyDatas={property}
+								setUserInfos={props.setUserInfos}
+							/>
 						</Col>
 					)
 				})}

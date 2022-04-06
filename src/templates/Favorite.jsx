@@ -6,7 +6,6 @@ import Flash from './Flash'
 
 import { Context } from '../App'
 
-
 const Favorite = (props) => {
 	const [showMessage, setShowMessage] = useState(false)
 
@@ -14,18 +13,18 @@ const Favorite = (props) => {
 	const isConnected = useContext(Context).connected
 
 	function handleClick() {
-		if (isConnected){
+		if (isConnected) {
 			props.setFav(!props.default)
-	
+
 			if (!props.default) {
 				addFav()
 			} else {
 				removeFav()
 			}
-		} else{
-			setShowMessage(true);
+		} else {
+			setShowMessage(true)
 			setTimeout(() => setShowMessage(false), 5000)
-		} 
+		}
 	}
 	function addFav() {
 		const requestOptions = {
@@ -54,28 +53,25 @@ const Favorite = (props) => {
 		fetch(
 			'http://localhost:8080/api/user/wishlist/' + props.id,
 			requestOptions
-		).then(function (response) {
-		})
+		).then(function (response) {})
 	}
 
-    
-    let animationClasses = props.default ? 'is-active' : ''
-    let moreClass = props.className ? props.className : ''
+	let animationClasses = props.default ? 'is-active' : ''
+	let moreClass = props.className ? props.className : ''
 
 	return (
 		<div>
-				<Flash
-					show={showMessage}
-					className="alert-warning"
-					message="Veuillez vous connecter pour ajouter un favori"
-				/>
+			<Flash
+				show={showMessage}
+				className="alert-warning"
+				message="Veuillez vous connecter pour ajouter un favori"
+			/>
 			<div
 				className={`heart ${animationClasses} ${moreClass}`}
 				onClick={handleClick}
 			></div>
 		</div>
 	)
-	
 }
 
 export default Favorite

@@ -9,6 +9,7 @@ import Appointment from './pages/Appointment/Appointment'
 import Backoffice from './pages/Backoffice/Backoffice'
 import Connect from './pages/Connect/Connect'
 import Contact from './pages/Contact/Contact'
+import ForgetPass from './pages/ForgetPass/ForgetPass'
 import Home from './pages/Home/Home'
 import Legals from './pages/Legals/Legals'
 import Register from './pages/Register/Register'
@@ -122,6 +123,14 @@ export function App() {
 					<Route path="/backoffice" element={<Backoffice />} />
 					<Route path="/connect" element={<Connect />} />
 					<Route path="/contactus" element={<Contact />} />
+					<Route
+						path="/forgetPass"
+						element={<ForgetPass step="before" />}
+					/>
+					<Route
+						path="/resetPassword/:id/:token"
+						element={<ForgetPass step="after" />}
+					/>
 					<Route path="/legals" element={<Legals />} />
 					<Route path="/register" element={<Register />} />
 					<Route

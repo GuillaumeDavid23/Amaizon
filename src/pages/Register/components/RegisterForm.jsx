@@ -211,12 +211,11 @@ const RegisterForm = () => {
 					</div>
 				</div>
 				<div id="pwHelp" className="d-flex justify-content-around my-3">
-					<Alert
-						className={passwordsMatch ? 'd-none' : ''}
-						variant="warning"
-					>
-						Votre email / mot de passe est invalide
-					</Alert>
+					{!passwordsMatch && (
+						<Alert className="text-center" variant="danger">
+							Les deux mots de passe sont différents.
+						</Alert>
+					)}
 					<div className="d-flex">
 						<CheckBox
 							id={'revealPassword'}
