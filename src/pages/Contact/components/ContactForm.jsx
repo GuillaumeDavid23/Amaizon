@@ -18,7 +18,7 @@ const ContactForm = () => {
 		shouldFocusError: true,
 	})
 
-	const { isValid, isSubmitting, isSubmitted, isSubmitSuccessful } = formState
+	const { isValid } = formState
 
 	let isConnected = useContext(Context).connected
 	let userInfos = useContext(Context).userInfos

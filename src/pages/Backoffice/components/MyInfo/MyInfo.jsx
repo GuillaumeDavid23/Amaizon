@@ -42,7 +42,7 @@ export const MyInfo = (props) => {
 			{ ...init }
 		)
 			.then((response) => {
-				if (response.status[0] == 2) {
+				if (response.status[0] === 2) {
 					// set local changes
 					setUserInfo(updatedUser)
 				}
