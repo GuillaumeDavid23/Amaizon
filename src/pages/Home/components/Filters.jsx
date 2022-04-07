@@ -8,13 +8,18 @@ import {
 	Button,
 	Collapse,
 } from 'react-bootstrap'
-import { BsChevronDown, BsChevronUp, BsSearch, BsFillCircleFill } from 'react-icons/bs'
+import {
+	BsChevronDown,
+	BsChevronUp,
+	BsSearch,
+	BsFillCircleFill,
+} from 'react-icons/bs'
 const Filters = ({ setProperties, properties }) => {
 	const [filtersActive, setFiltersActive] = useState(false)
 	var lastSearch = JSON.parse(localStorage.getItem('LAST_SEARCH_FILTERS'))
 	if (!lastSearch) {
 		lastSearch = {}
-	}else{
+	} else {
 		if (isObjEmpty(lastSearch) && !filtersActive) {
 			setFiltersActive(true)
 		}
@@ -23,7 +28,7 @@ const Filters = ({ setProperties, properties }) => {
 	function isObjEmpty(obj) {
 		let find = false
 		for (var prop in obj) {
-			if(obj[prop] !== ''){
+			if (obj[prop] !== '') {
 				find = true
 			}
 		}
@@ -101,10 +106,10 @@ const Filters = ({ setProperties, properties }) => {
 		setSearch(e.target.value)
 	}
 
-	if (properties.length === 0){
+	if (properties.length === 0) {
 		handleSearchClick()
 	}
-	
+
 	function handleSearchClick() {
 		let filters = {
 			transactionType,
@@ -120,8 +125,7 @@ const Filters = ({ setProperties, properties }) => {
 		}
 		localStorage.setItem('LAST_SEARCH_FILTERS', JSON.stringify(filters))
 		fetch(
-			process.env.REACT_APP_API_DOMAIN +
-				'api/property/searchProperties',
+			process.env.REACT_APP_API_DOMAIN + 'api/property/searchProperties',
 			{
 				method: 'POST',
 				headers: {
@@ -180,7 +184,11 @@ const Filters = ({ setProperties, properties }) => {
 							aria-expanded={open}
 						>
 							{filtersActive ? (
-								<BsFillCircleFill size={12} color='green' className='me-2' />
+								<BsFillCircleFill
+									size={12}
+									color="green"
+									className="me-2"
+								/>
 							) : (
 								''
 							)}
@@ -205,32 +213,15 @@ const Filters = ({ setProperties, properties }) => {
 								</label>
 							</div>
 							<select
+								value={transactionType}
 								className="form-select "
 								onChange={handleTransactionType}
 								name="transactionType"
 								id="transactionType"
 							>
 								<option value="">Acheter ou Louer</option>
-								<option
-									value="Achat"
-									selected={
-										transactionType === 'Achat'
-											? true
-											: false
-									}
-								>
-									Achat
-								</option>
-								<option
-									value="Location"
-									selected={
-										transactionType === 'Location'
-											? true
-											: false
-									}
-								>
-									Location
-								</option>
+								<option value="Achat">Achat</option>
+								<option value="Location">Location</option>
 							</select>
 						</Col>
 						<Col xs="10" lg="2">
@@ -240,30 +231,15 @@ const Filters = ({ setProperties, properties }) => {
 								</label>
 							</div>
 							<select
+								value={propertyType}
 								className="form-select "
 								onChange={handlePropertyType}
 								name="propertyType"
 								id="propertyType"
 							>
 								<option value="">Choisissez une valeur</option>
-								<option
-									value="Maison"
-									selected={
-										propertyType === 'Maison' ? true : false
-									}
-								>
-									Maison
-								</option>
-								<option
-									value="Appartement"
-									selected={
-										propertyType === 'Appartement'
-											? true
-											: false
-									}
-								>
-									Appartement
-								</option>
+								<option value="Maison">Maison</option>
+								<option value="Appartement">Appartement</option>
 							</select>
 						</Col>
 						<Col xs="5" lg="2">
