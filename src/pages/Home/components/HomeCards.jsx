@@ -52,7 +52,8 @@ const HomeCards = (props) => {
 		<Card className="mb-5" style={{ width: '70%' }} id={_id}>
 			<Card.Img
 				variant="top"
-				src={process.env.REACT_APP_API_DOMAIN + imageUrl.photo1}
+				src={process.env.REACT_APP_API_DOMAIN + imageUrl?.photo1}
+				alt={"Super photo 1"}
 				className="h-100"
 			/>
 			<Card.Body className="d-flex flex-column">
