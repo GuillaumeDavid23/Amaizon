@@ -6,7 +6,6 @@ import { useForm } from 'react-hook-form'
 import './Preferences.css'
 
 const handle_no_value = (value, price = false, surface = false) => {
-	console.log(value)
 	if (value === '') return 'Non défini'
 	if (price) return value ? value + ' €' : '- €'
 	if (surface) return value ? value + ' m²' : '- m²'
@@ -15,7 +14,6 @@ const handle_no_value = (value, price = false, surface = false) => {
 
 const getURLUpdate = (userId) => {
 	const URL = process.env.REACT_APP_API_DOMAIN + 'api/user/buyer/' + userId
-	console.log(URL)
 	return URL
 }
 
@@ -45,17 +43,8 @@ export const Prefs = (props) => {
 
 	}, [user, Prefs, tmpPrefs])
 
-
-	console.log("Pref::Prefs")
-	console.log(Prefs)
-
-	console.log("Pref::Tmp")
-	console.log(tmpPrefs)
-
 	const onSubmitFetch = (data) => {
 		setIsFetching(true)
-		console.log("Pref::data")
-		console.log(data)
 
 		const updatedUser = {...user, buyer:{...user.buyer, ...data}}
 
@@ -74,9 +63,6 @@ export const Prefs = (props) => {
 					setUser(updatedUser)
 
 					setPrefs(data)
-
-					console.log("Pref::Modified")
-					console.log(Prefs)
 
 					setIsModifying(false)
 				})
