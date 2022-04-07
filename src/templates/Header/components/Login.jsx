@@ -2,7 +2,7 @@
 import { Link as LinkRouterDom } from 'react-router-dom'
 import { Dropdown, Button } from 'react-bootstrap'
 import { BsBoxArrowInRight, BsPerson } from 'react-icons/bs'
-
+import {AiOutlineUserAdd} from 'react-icons/ai'
 
 const Login = ({ isConnected }) => {
 	// Gestion de la déconnexion:
@@ -13,14 +13,24 @@ const Login = ({ isConnected }) => {
 	return (
 		<div>
 			{!isConnected ? (
-				<LinkRouterDom to="/connect" className="me-lg-4">
-					<Button className="header-btn header-btn-connexion h-auto">
-						<div className="d-flex align-items-center">
-							<span className="me-2">Connexion</span>
-							<BsBoxArrowInRight size={25} />
-						</div>
-					</Button>
-				</LinkRouterDom>
+				<div>
+					<LinkRouterDom to="/register" className="me-lg-4">
+						<Button className="header-btn header-btn-connexion h-auto">
+							<div className="d-flex align-items-center">
+								<span className="me-2">Inscription</span>
+								<AiOutlineUserAdd size={25} />
+							</div>
+						</Button>
+					</LinkRouterDom>
+					<LinkRouterDom to="/connect" className="me-lg-4">
+						<Button className="header-btn header-btn-connexion h-auto">
+							<div className="d-flex align-items-center">
+								<span className="me-2">Connexion</span>
+								<BsBoxArrowInRight size={25} />
+							</div>
+						</Button>
+					</LinkRouterDom>
+				</div>
 			) : (
 				<Dropdown className="me-lg-4">
 					<Dropdown.Toggle

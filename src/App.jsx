@@ -1,6 +1,6 @@
 import './styles/App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import { useState, createContext, useEffect } from 'react'
 import Header from './templates/Header/Header'
 import Footer from './templates/Footer/Footer'
@@ -15,6 +15,7 @@ import Legals from './pages/Legals/Legals'
 import Register from './pages/Register/Register'
 import Single from './pages/Single/Single'
 import VerifEmail from './pages/VerifEmail/VerifEmail'
+import { AnimatePresence } from 'framer-motion'
 
 export const Context = createContext({
 	connected: false,
@@ -100,6 +101,7 @@ export function App() {
 		}
 	}, [token])
 
+	const location = useLocation()
 	return (
 		<Context.Provider
 			value={{
@@ -109,43 +111,44 @@ export function App() {
 				authToken: token,
 			}}
 		>
-			<Router>
+			
 				<Header />
-				<Routes>
-					<Route
-						exact
-						path="/"
-						element={<Home setUserInfos={setUserInfos} />}
-					/>
-					<Route path="/aboutus" element={<About />} />
-					<Route
-						path="/takeAppointment/:id"
-						element={<Appointment />}
-					/>
-					<Route path="/backoffice" element={<Backoffice />} />
-					<Route path="/connect" element={<Connect />} />
-					<Route path="/contactus" element={<Contact />} />
-					<Route
-						path="/forgetPass"
-						element={<ForgetPass step="before" />}
-					/>
-					<Route
-						path="/resetPassword/:id/:token"
-						element={<ForgetPass step="after" />}
-					/>
-					<Route path="/legals" element={<Legals />} />
-					<Route path="/register" element={<Register />} />
-					<Route
-						path="/single/:id"
-						element={<Single token={token} />}
-					/>
-					<Route
-						path="/emailVerification/:token"
-						element={<VerifEmail />}
-					/>
-				</Routes>
+				<AnimatePresence exitBeforeEnter >
+					<Routes key={location.pathname} location={location}>
+						<Route
+							exact
+							path="/"
+							element={<Home setUserInfos={setUserInfos} />}
+						/>
+						<Route path="/aboutus" element={<About />} />
+						<Route
+							path="/takeAppointment/:id"
+							element={<Appointment />}
+						/>
+						<Route path="/backoffice" element={<Backoffice />} />
+						<Route path="/connect" element={<Connect />} />
+						<Route path="/contactus" element={<Contact />} />
+						<Route
+							path="/forgetPass"
+							element={<ForgetPass step="before" />}
+						/>
+						<Route
+							path="/resetPassword/:id/:token"
+							element={<ForgetPass step="after" />}
+						/>
+						<Route path="/legals" element={<Legals />} />
+						<Route path="/register" element={<Register />} />
+						<Route
+							path="/single/:id"
+							element={<Single token={token} />}
+						/>
+						<Route
+							path="/emailVerification/:token"
+							element={<VerifEmail />}
+						/>
+					</Routes>
+				</AnimatePresence>
 				<Footer />
-			</Router>
 		</Context.Provider>
 	)
 }

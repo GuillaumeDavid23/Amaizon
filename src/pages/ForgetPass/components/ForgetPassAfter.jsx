@@ -31,7 +31,7 @@ const ForgetPassAfter = () => {
 		} catch (error) {
 			console.log(error)
 		}
-	}, [])
+	}, [id, token])
 
 	if (checkToken) {
 		return <ForgetPassAfterForm id={id} />

@@ -82,7 +82,7 @@ const RegisterForm = () => {
 							})}
 						/>
 						{errors?.lastname && (
-							<span className="invalid-feedback fw-bold">
+							<span className="invalid-feedback fw-bold text-center">
 								{errors.lastname.message}
 							</span>
 						)}
@@ -105,7 +105,7 @@ const RegisterForm = () => {
 							})}
 						/>
 						{errors?.firstname && (
-							<span className="invalid-feedback fw-bold">
+							<span className="invalid-feedback fw-bold text-center">
 								{errors.firstname.message}
 							</span>
 						)}
@@ -130,7 +130,7 @@ const RegisterForm = () => {
 							})}
 						/>
 						{errors?.email && (
-							<span className="invalid-feedback fw-bold">
+							<span className="invalid-feedback fw-bold text-center">
 								{errors.email.message}
 							</span>
 						)}
@@ -153,7 +153,7 @@ const RegisterForm = () => {
 							})}
 						/>
 						{errors?.tel && (
-							<span className="invalid-feedback fw-bold">
+							<span className="invalid-feedback fw-bold text-center">
 								{errors.tel.message}
 							</span>
 						)}
@@ -180,7 +180,7 @@ const RegisterForm = () => {
 							})}
 						/>
 						{errors?.password && (
-							<span className="invalid-feedback fw-bold">
+							<span className="invalid-feedback fw-bold text-center">
 								{errors.password.message}
 							</span>
 						)}
@@ -204,7 +204,7 @@ const RegisterForm = () => {
 							})}
 						/>
 						{errors?.passwordRepeat && (
-							<span className="invalid-feedback fw-bold">
+							<span className="invalid-feedback fw-bold text-center">
 								{errors.passwordRepeat.message}
 							</span>
 						)}

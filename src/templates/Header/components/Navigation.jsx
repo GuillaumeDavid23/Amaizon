@@ -1,9 +1,7 @@
 import { Navbar, Nav } from 'react-bootstrap'
 
-//search form components
-import Search from './Form'
 //navigation link component
-import Link from './Link'
+import LinkElement from './Link'
 //Login/profil button component
 import Login from './Login'
 
@@ -28,7 +26,7 @@ const Navigation = () => {
 				navbarScroll
 			>
 				{linkArray.map((element, index) => (
-					<Link
+					<LinkElement
 						key={element.name + index}
 						name={element.name}
 						link={element.link}
@@ -36,7 +34,6 @@ const Navigation = () => {
 					/>
 				))}
 			</Nav>
-			{/* <Search /> */}
 			<Login isConnected={isConnected} />
 		</Navbar.Collapse>
 	)
