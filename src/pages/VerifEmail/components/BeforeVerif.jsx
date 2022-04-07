@@ -5,7 +5,6 @@ import jwtDecode from 'jwt-decode'
 import { Link } from 'react-router-dom'
 
 const BeforeVerif = () => {
-	// console.log(useContext(Context))
 	let email = useContext(Context).userInfos?.email
 	if (email === undefined) {
 		email = jwtDecode(
