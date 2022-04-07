@@ -5,14 +5,14 @@ import {Context} from "../../App.jsx"
 import '../../styles/Backoffice.css'
 import * as bt from 'react-bootstrap'
 
-import data from './data.json'
-
 import { Prefs, MyAgent, MyInfo, MyFavs } from './components'
 
 const Backoffice = () => {
 	const {userInfos:user, setUserInfo:setUser, authToken:token} = React.useContext(Context)
 
-	const {agent} = user?.buyer || null
+	console.log(user)
+
+	const agent = user?.buyer?.agent ? user.buyer.agent : null
 
 	return (
 		<>
