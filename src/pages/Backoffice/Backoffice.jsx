@@ -9,9 +9,6 @@ import { Prefs, MyAgent, MyInfo, MyFavs } from './components'
 
 const Backoffice = () => {
 	const {userInfos:user, setUserInfo:setUser, authToken:token} = React.useContext(Context)
-
-	console.log(user)
-
 	const agent = user?.buyer?.agent ? user.buyer.agent : null
 
 	return (
