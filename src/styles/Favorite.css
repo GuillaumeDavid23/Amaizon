@@ -1,6 +1,6 @@
 .heart {
-  width: 70px;
-  height: 70px;
+  width: 90px;
+  height: 90px;
   background: url("../assets/heart.png") no-repeat;
   background-position: 0 0;
   background-size: cover;
@@ -10,5 +10,5 @@
 }
 .heart.is-active {
   transition-duration: 1s;
-  background-position: -1950px 0;
+  background-position: -2520px 0;
 }

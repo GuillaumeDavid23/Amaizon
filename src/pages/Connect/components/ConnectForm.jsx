@@ -1,8 +1,11 @@
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
-import { Container, Button, Alert } from 'react-bootstrap'
+import { Container, Button, Alert, Row, Col } from 'react-bootstrap'
 import CheckBox from '../../../templates/CheckBox'
 import { Link } from 'react-router-dom'
+import '../../../styles/Connect.css'
+
+
 
 const ConnectForm = () => {
 	const [passwordRevealed, revealPassword] = useState(false)
@@ -67,7 +70,7 @@ const ConnectForm = () => {
 	}
 
 	return (
-		<Container className="bo_subcontainer" style={{ borderRadius: '30px' }}>
+		<Container className="connectBlock">
 			<form id="connectForm" onSubmit={handleSubmit(onSubmit)}>
 				<Alert
 					className={notFound === '' ? 'd-none' : ''}
@@ -75,8 +78,12 @@ const ConnectForm = () => {
 				>
 					{notFound}
 				</Alert>
-				<div className="my-3">
-					<div className="d-flex justify-content-center align-items-center flex-column text-center">
+				<Row className="flex-column align-items-center">
+					<Col
+						xs="10"
+						lg="6"
+						className="d-flex justify-content-center align-items-center flex-column"
+					>
 						<label
 							htmlFor="email"
 							className="form-label text-center fw-bold"
@@ -87,8 +94,8 @@ const ConnectForm = () => {
 							type="email"
 							className={
 								!errors.email
-									? 'form-control w-50'
-									: 'form-control w-50 is-invalid'
+									? 'form-control'
+									: 'form-control is-invalid'
 							}
 							{...register('email', {
 								required: 'Vous devez indiquer votre email.',
@@ -103,10 +110,12 @@ const ConnectForm = () => {
 								{errors.email.message}
 							</span>
 						)}
-					</div>
-				</div>
-				<div className="mb-4">
-					<div className="d-flex justify-content-center align-items-center flex-column text-center">
+					</Col>
+					<Col
+						xs="10"
+						lg="6"
+						className="d-flex justify-content-center align-items-center flex-column mb-4"
+					>
 						<label
 							htmlFor="password"
 							className="form-label text-center fw-bold"
@@ -117,8 +126,8 @@ const ConnectForm = () => {
 							type={!passwordRevealed ? 'password' : 'text'}
 							className={
 								!errors.password
-									? 'form-control w-50'
-									: 'form-control w-50 is-invalid'
+									? 'form-control'
+									: 'form-control is-invalid'
 							}
 							{...register('password', {
 								required:
@@ -131,8 +140,8 @@ const ConnectForm = () => {
 							</span>
 						)}
 						<Link to="/forgetPass">Mot de passe oublié ?</Link>
-					</div>
-				</div>
+					</Col>
+				</Row>
 				<div id="pwHelp" className="d-flex justify-content-around">
 					<div className="d-flex align-items-center">
 						<CheckBox

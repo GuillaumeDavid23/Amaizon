@@ -15,9 +15,6 @@ html, body{
 #root{
   height: 100%;
 }
-.contact{
-  height: 65%;
-}
 
 /* Reset CSS */
 * {

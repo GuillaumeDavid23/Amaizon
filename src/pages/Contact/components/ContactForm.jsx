@@ -2,6 +2,8 @@ import { useForm } from 'react-hook-form'
 import { Button } from 'react-bootstrap'
 import { useState, useContext } from 'react'
 import { Context } from '../../../App'
+import { Col } from 'react-bootstrap'
+
 
 const ContactForm = () => {
 	const [messageSent, setMessageSent] = useState(false)
@@ -65,7 +67,11 @@ const ContactForm = () => {
 	}
 
 	return (
-		<div className="d-flex flex-column align-items-center justify-content-center w-50">
+		<Col
+			xs="12"
+			lg="6"
+			className="d-flex flex-column align-items-center justify-content-center"
+		>
 			<h2>Contact</h2>
 			<form
 				id="contactForm"
@@ -79,7 +85,7 @@ const ContactForm = () => {
 								type="text"
 								className={
 									!errors.lastname
-										? 'form-control w-50 me-4 rounded-pill'
+										? 'form-control w-50 me-4 rounded-4'
 										: 'form-control w-50 me-4 rounded-pill is-invalid'
 								}
 								placeholder="Votre nom"
@@ -103,7 +109,7 @@ const ContactForm = () => {
 								type="text"
 								className={
 									!errors.firstname
-										? 'form-control w-50 ms-4 rounded-pill'
+										? 'form-control w-50 ms-4 rounded-4'
 										: 'form-control w-50 ms-4 rounded-pill is-invalid'
 								}
 								placeholder="Votre prénom"
@@ -179,7 +185,7 @@ const ContactForm = () => {
 						type="text"
 						className={
 							!errors.subject
-								? 'form-control rounded-pill'
+								? 'form-control rounded-4'
 								: 'form-control rounded-pill is-invalid'
 						}
 						placeholder="Le sujet de votre message"
@@ -200,7 +206,7 @@ const ContactForm = () => {
 						type="text"
 						className={
 							!errors.message
-								? 'form-control rounded-pill'
+								? 'form-control rounded-4'
 								: 'form-control rounded-pill is-invalid'
 						}
 						placeholder="Votre message"
@@ -228,7 +234,7 @@ const ContactForm = () => {
 					)}
 				</div>
 			</form>
-		</div>
+		</Col>
 	)
 }
 
