@@ -10,9 +10,9 @@ import data from './data.json'
 import { Prefs, MyAgent, MyInfo, MyFavs } from './components'
 
 const Backoffice = () => {
-	const { agent: dataAgent, prefs: dataPrefs } = data
-
 	const {userInfos:user, setUserInfo:setUser, authToken:token} = React.useContext(Context)
+
+	const {agent} = user?.buyer || null
 
 	return (
 		<>
@@ -31,7 +31,7 @@ const Backoffice = () => {
 							<Prefs user={user} setUser={setUser} token={token}/>
 						</bt.Col>
 						<bt.Col className={``} sm={4}>
-							<MyAgent agent={dataAgent} roundness="30px" />
+							<MyAgent agent={agent} roundness="30px" />
 						</bt.Col>
 					</bt.Row>
 					<bt.Row

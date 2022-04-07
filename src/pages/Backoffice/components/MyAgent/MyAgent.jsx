@@ -33,7 +33,7 @@ export const MyAgent = (props) => {
 							<p className={`bo_pref_p`}>
 								{agent.firstname + ' ' + agent.lastname}
 							</p>
-							<p className={`bo_pref_p`}>{agent.phone}</p>
+							<p className={`bo_pref_p`}>{agent.agent.phonePro}</p>
 							<p className={`bo_pref_p`}>{agent.email}</p>
 						</Bootstrap.Col>
 
