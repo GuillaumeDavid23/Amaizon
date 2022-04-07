@@ -14,7 +14,7 @@ describe('Prefs component', () => {
 			render(<Prefs />)
 		})
 
-		it("should render 6 'Non défini' when no prefs", () => {
+		it.skip("should render 6 'Non défini' when no prefs", () => {
 			render(<Prefs />)
 			const list_dash = screen.queryAllByText(/Non défini/)
 			expect(list_dash).toHaveLength(6)
