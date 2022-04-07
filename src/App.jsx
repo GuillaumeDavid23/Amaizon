@@ -1,6 +1,11 @@
 import './styles/App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+	useLocation,
+} from 'react-router-dom'
 import { useState, createContext, useEffect } from 'react'
 import Header from './templates/Header/Header'
 import Footer from './templates/Footer/Footer'
@@ -21,7 +26,7 @@ import { AnimatePresence } from 'framer-motion'
 export const Context = createContext({
 	connected: false,
 	userInfos: {},
-	setUserInfo:null,
+	setUserInfo: null,
 	authToken: null,
 })
 
@@ -126,15 +131,13 @@ export function App() {
 				authToken: token,
 			}}
 		>
-			
-				<Header />
-<AnimatePresence exitBeforeEnter >
+			<Header />
+			<AnimatePresence exitBeforeEnter>
 				<Routes key={location.pathname} location={location}>
 					<Route
 						exact
 						path="/"
-						element={<Home setUserInfos={setUserInfos} />
-					}
+						element={<Home setUserInfos={setUserInfos} />}
 					/>
 					<Route path="/aboutus" element={<About />} />
 					<Route
@@ -167,8 +170,8 @@ export function App() {
 					/>
 					<Route path="*" element={<Error />} />
 				</Routes>
-				</AnimatePresence>
-				<Footer />
+			</AnimatePresence>
+			<Footer />
 		</Context.Provider>
 	)
 }
