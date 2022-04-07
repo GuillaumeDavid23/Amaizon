@@ -9,7 +9,10 @@
 		"firstname": "Maurice",
 		"lastname": "GARNIER",
 		"email": "mgarnier@amaizon.com",
-		"phone": "06 06 06 06 06"
+		"phone": "06 06 06 06 06",
+		"agent":{
+			"phonePro":"07 83 07 14 21"
+		}
 	},
 	"prefs": {
 		"sell": "Location",
