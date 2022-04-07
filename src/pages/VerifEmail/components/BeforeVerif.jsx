@@ -12,8 +12,6 @@ const BeforeVerif = () => {
 		).user.email
 	}
 
-	console.log(email)
-
 	return (
 		<Container
 			className="bo_subcontainer w-75"
