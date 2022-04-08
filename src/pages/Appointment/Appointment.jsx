@@ -1,7 +1,7 @@
 import { Col, Container, Row } from 'react-bootstrap'
 import PropertyCard from './components/PropertyCard'
 import { useEffect, useState } from 'react'
-import { useLocation, useParams, Navigate } from 'react-router-dom'
+import { useParams, Navigate } from 'react-router-dom'
 import AppointmentForm from './components/AppointmentForm'
 import '../../styles/Appointment.css'
 import AnimatedPage from '../../templates/AnimatedPage'
