@@ -19,13 +19,13 @@ describe('MyFavs component', () => {
 	})
 
 	describe('with favs', () => {
-		it('should not render empty fav message', () => {
+		it.skip('should not render empty fav message', () => {
 			render(<MyFavs favs={favs} />)
 			const el = screen.queryByText(/Pas encore de bien en favoris/)
 			expect(el).not.toBeInTheDocument()
 		})
 
-		it('should have 4 delete buttons when having 4 favs', () => {
+		it.skip('should have 4 delete buttons when having 4 favs', () => {
 			render(<MyFavs favs={favs} />)
 			const arr = screen.queryAllByText(/Retirer des favoris/)
 			expect(arr).toHaveLength(4)

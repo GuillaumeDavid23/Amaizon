@@ -1,34 +1,70 @@
 import { Col, Form, FormControl, FormLabel } from 'react-bootstrap'
-import { useContext } from 'react'
+import { useState, useContext } from 'react'
 import { Context } from '../../../App'
 import { Button } from 'react-bootstrap'
 
 const Newsletter = () => {
-	const { userInfos, connected } = useContext(Context)
+	const { userInfos, connected, authToken } = useContext(Context)
+	const [isRegistered, setRegistration] = useState(null)
+	const [apiResponse, setApiResponse] = useState()
+
+	if (userInfos !== null && isRegistered === null) {
+		setRegistration(userInfos.newsletter)
+	}
 
 	const setNewsletter = () => {
 		if (connected) {
 			let domain = process.env.REACT_APP_API_DOMAIN + 'api/user/'
 			let method = 'setNewsletter/' + userInfos._id
-			if (!userInfos.newsletter) {
-				fetch(domain + method)
-					.then((res) => {
-						return res.json()
-					})
-					.then((res) => {
-						console.log(res)
-					})
+			let urlToGET = !isRegistered
+				? domain + method
+				: `${domain}un${method}`
+			fetch(urlToGET, {
+				method: 'GET',
+				headers: { Authorization: 'bearer ' + authToken },
+			})
+				.then((res) => {
+					return res.json()
+				})
+				.then((res) => {
+					if (res.status_code === 200) {
+						setApiResponse(res.message)
+						setRegistration(isRegistered ? false : true)
+					} else {
+						setApiResponse('Une erreur est survenue !')
+					}
+				})
+		} else {
+			let email = document.querySelector('#emailNewsletter').value
+			if (email === '') {
+				setApiResponse('Vous devez indiquer votre email !')
+			} else if (
+				!email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i)
+			) {
+				setApiResponse('Vous devez indiquez une email valide !')
 			} else {
-				fetch(`${domain}un${method}`)
+				fetch(
+					process.env.REACT_APP_API_DOMAIN +
+						'api/user/setNewsletterForUnknown',
+					{
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json;charset=utf-8',
+						},
+						body: JSON.stringify({ email }),
+					}
+				)
 					.then((res) => {
 						return res.json()
 					})
 					.then((res) => {
-						console.log(res)
+						if (res.status_code === 200) {
+							setApiResponse(res.message)
+						} else {
+							setApiResponse('Une erreur est survenue !')
+						}
 					})
 			}
-		} else {
-			console.log('setNewsforunknown')
 		}
 	}
 
@@ -37,12 +73,19 @@ const Newsletter = () => {
 			<Form>
 				<div>
 					<FormLabel className="fw-bold">
-						Inscrivez-vous à la newsletter:
+						{isRegistered
+							? 'Se désinscrire de la newsletter:'
+							: 'Inscrivez-vous à la newsletter:'}
 					</FormLabel>
 				</div>
 				{!connected && (
-					<FormControl type="email" placeholder="name@example.com" />
+					<FormControl
+						id="emailNewsletter"
+						type="email"
+						placeholder="name@example.com"
+					/>
 				)}
+				{apiResponse && <div>{apiResponse}</div>}
 				<Button className="header-btn my-2" onClick={setNewsletter}>
 					Go
 				</Button>

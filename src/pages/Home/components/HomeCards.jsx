@@ -24,9 +24,7 @@ const HomeCards = (props) => {
 	const [favExist, setFav] = useState(false)
 	const isConnected = useContext(Context).connected
 
-	const token = JSON.parse(
-		localStorage.getItem('REACT_TOKEN_AUTH_AMAIZON')
-	)
+	const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_AMAIZON'))
 
 	useEffect(() => {
 		if (isConnected) {
@@ -37,16 +35,15 @@ const HomeCards = (props) => {
 				},
 			}
 			fetch(
-				process.env.REACT_APP_API_DOMAIN +
-					'api/user/checkBearer/',
-					
+				process.env.REACT_APP_API_DOMAIN + 'api/user/checkBearer/',
+
 				requestOptions
 			)
 				.then(function (response) {
 					return response.json()
 				})
 				.then(function (resp) {
-					setFav(resp.userInfos.buyer.wishlist.includes(_id))
+					setFav(resp.userInfos.buyer.wishlist.find(item=>item._id === _id))
 				})
 		}
 	}, [_id, isConnected, token])
@@ -55,7 +52,8 @@ const HomeCards = (props) => {
 		<Card className="mb-5" style={{ width: '70%' }} id={_id}>
 			<Card.Img
 				variant="top"
-				src={process.env.REACT_APP_API_DOMAIN + imageUrl.photo1}
+				src={process.env.REACT_APP_API_DOMAIN + imageUrl?.photo1}
+				alt={"Super photo 1"}
 				className="h-100"
 			/>
 			<Card.Body className="d-flex flex-column">

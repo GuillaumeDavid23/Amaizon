@@ -1,10 +1,13 @@
 import * as React from 'react'
 import * as Bootstrap from 'react-bootstrap'
+import {useNavigate} from 'react-router-dom'
 
 const FavListItem = (props) => {
 	const { fav, remove } = props
 
 	const [confirmSuppr, setConfirmSuppr] = React.useState(false)
+
+	const nav = useNavigate()
 
 	return (
 		<Bootstrap.Row
@@ -20,7 +23,7 @@ const FavListItem = (props) => {
 				}}
 			>
 				<h2 style={{ textAlign: 'center' }}>
-					{fav.ref} &gt; {fav.title} - {fav.price}€
+					{fav.propertyRef} &gt; {fav.title} - {fav.amount}€
 				</h2>
 			</Bootstrap.Col>
 			<Bootstrap.Col
@@ -48,12 +51,20 @@ const FavListItem = (props) => {
 						</Bootstrap.Button>
 					</>
 				) : (
-					<Bootstrap.Button
-						className={`bo_btn`}
-						onClick={() => setConfirmSuppr(true)}
-					>
-						Retirer des favoris
-					</Bootstrap.Button>
+					<>
+						<Bootstrap.Button
+							className={`bo_btn`}
+							onClick={() => setConfirmSuppr(true)}
+							>
+							Retirer des favoris
+						</Bootstrap.Button>
+						<Bootstrap.Button
+							className={`bo_btn`}
+							onClick={() => nav("/single/"+fav._id)}
+							>
+							Voir
+						</Bootstrap.Button>
+					</>
 				)}
 			</Bootstrap.Col>
 		</Bootstrap.Row>
@@ -61,20 +72,51 @@ const FavListItem = (props) => {
 }
 
 export const MyFavs = (props) => {
-	const { user, setUser, roundness } = props
-	const {wishlist:favs} = user?.buyer || []
+	const { user, setUser, token, roundness } = props
 
-	React.useEffect(()=>{
-		console.log("props::favs")
-		console.log(favs)
+	const [listFavs, setListFavs] = React.useState()
 
-	},[])
-
-
-	const [listFavs, setListFavs] = React.useState(favs ? favs : [])
+	React.useEffect(() => {
+		if (!listFavs) {
+			setListFavs(user?.buyer?.wishlist)
+		}
+	}, [user, listFavs])
 
 	const removeFav = (fav_id) => {
-		setListFavs(listFavs.filter((item) => item._id !== fav_id))
+		const new_favs = listFavs.filter((item) => item._id !== fav_id)
+		const updated_user = {
+			...user,
+			buyer: { ...user.buyer, wishlist: new_favs },
+		}
+
+		console.log(updated_user)
+
+		const init = {
+			method: 'PUT',
+			headers: {
+				Authorization: 'Bearer ' + token,
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(updated_user),
+		}
+
+		// API Call
+		fetch(process.env.REACT_APP_API_DOMAIN + 'api/user/buyer/' + user._id, {
+			...init,
+		})
+			.then((res) => {
+				// If Success, update local
+				if (res.ok) {
+					setListFavs(new_favs)
+					setUser(updated_user)
+				} else {
+					console.log(res)
+				}
+			})
+			.catch((err) => {
+				// If fail, don't do anything.
+				console.error(err)
+			})
 	}
 
 	const style = {
@@ -89,7 +131,7 @@ export const MyFavs = (props) => {
 				</Bootstrap.Col>
 			</Bootstrap.Row>
 			<Bootstrap.Row className={`bo_scrollable`}>
-				{listFavs.length > 0 ? (
+				{listFavs && listFavs.length > 0 ? (
 					listFavs.map((fav) => {
 						return (
 							<FavListItem
