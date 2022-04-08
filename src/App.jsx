@@ -144,10 +144,25 @@ export function App() {
 						path="/takeAppointment/:id"
 						element={<Appointment />}
 					/>
-					<Route path="/backoffice" element={<Backoffice />} />
+					<Route
+						path="/backoffice"
+						element={isConnected ? <Backoffice /> : <Connect />}
+					/>
 					<Route path="/connect" element={<Connect />} />
 					<Route path="/contactus" element={<Contact />} />
 					{!isConnected && (
+						<Route
+							path="/forgetPass"
+							element={<ForgetPass step="before" />}
+						/>
+					)}
+					{!isConnected && (
+						<Route
+							path="/resetPassword/:id/:token"
+							element={<ForgetPass step="after" />}
+						/>
+					)}
+					{/* {!isConnected && (
 							<Route
 								path="/forgetPass"
 								element={<ForgetPass step="before" />}
@@ -157,7 +172,7 @@ export function App() {
 								path="/resetPassword/:id/:token"
 								element={<ForgetPass step="after" />}
 							/>
-						)}
+						)} */}
 					<Route path="/legals" element={<Legals />} />
 					<Route path="/register" element={<Register />} />
 					<Route
