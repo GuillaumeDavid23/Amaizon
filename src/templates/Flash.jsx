@@ -3,7 +3,7 @@ import FlashMessage from 'react-flash-message'
 const Flash = ({ message, className, show }) => {
 	if (show) {
 		return (
-			<div className="flash flash-out">
+			<div className="flash">
 				<FlashMessage duration={5000}>
 					<strong
 						className={

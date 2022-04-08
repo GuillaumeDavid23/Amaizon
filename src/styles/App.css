@@ -10,6 +10,7 @@
 
 html, body{
   height: 100%;
+  overflow-x: hidden;
 }
 
 #root{
@@ -64,7 +65,9 @@ li {
 .App-link {
   color: #61dafb;
 }
-
+.maxPage{
+  min-height: 80vh;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -194,4 +197,7 @@ input:checked + .slider:before {
   top: 20%;
   right: 0;
   animation: flashEaseIn 5s ease-in-out 0s 1 normal;
+}
+.flash strong{
+  font-size: 20px;
 }

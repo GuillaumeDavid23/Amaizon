@@ -38,7 +38,7 @@ const Single = () => {
 				>
 					<BtnGeneral
 						className="w-75 h-50"
-						text="<< Retour à la recherche"
+						text=" Retour à la recherche"
 					/>
 				</Link>
 				<Row className="justify-content-evenly align-items-center">

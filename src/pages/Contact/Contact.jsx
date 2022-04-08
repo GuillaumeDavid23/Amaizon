@@ -8,7 +8,7 @@ const Contact = () => {
 	return (
 		<AnimatedPage>
 			<Container>
-				<Row className="justify-content-around mt-5 ">
+				<Row className="justify-content-around align-items-center mt-5 maxPage">
 					<ContactForm />
 					<Col xs="12" lg="6">
 						<Img
