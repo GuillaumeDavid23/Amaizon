@@ -38,10 +38,10 @@ const Single = () => {
 				>
 					<BtnGeneral
 						className="w-75 h-50"
-						text="<< Retour à la recherche"
+						text="<< Retour"
 					/>
 				</Link>
-				<Row className="justify-content-evenly align-items-center">
+				<Row className="justify-content-evenly align-items-center mt-4">
 					<Col xs="12" lg="5" className="d-flex flex-column">
 						{data.imageUrl ? (
 							<Photos data={data.imageUrl} />
