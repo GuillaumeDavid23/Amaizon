@@ -21,7 +21,7 @@ const Home = (props) => {
 			<Container fluid className="w-100 p-0">
 				<Banner />
 				<Filters setProperties={setProperties} properties={properties} />
-				<Row className="justify-content-center justify-content-lg-center">
+				<Row className="justify-content-center justify-content-lg-center container">
 					{properties.map((property) => {
 						return (
 							<Col
