@@ -43,7 +43,7 @@ const HomeCards = (props) => {
 					return response.json()
 				})
 				.then(function (resp) {
-					setFav(resp.userInfos.buyer.wishlist.includes(_id))
+					setFav(resp.userInfos.buyer.wishlist.find(item=>item._id === _id))
 				})
 		}
 	}, [_id, isConnected, token])

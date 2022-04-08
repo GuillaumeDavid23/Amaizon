@@ -28,8 +28,7 @@ const Description = (props) => {
 					return response.json()
 				})
 				.then(function (resp) {
-					setFav(resp.userInfos.buyer.wishlist.includes(data._id))
-					console.log(resp.userInfos)
+					setFav(resp.userInfos.buyer.wishlist.find(item=>item._id===data._id))
 				})
 		}
 	}, [data._id, data, token, isConnected])
