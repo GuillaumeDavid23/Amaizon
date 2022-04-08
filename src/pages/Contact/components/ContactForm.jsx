@@ -4,9 +4,12 @@ import { useState, useContext } from 'react'
 import { Context } from '../../../App'
 import { Col } from 'react-bootstrap'
 
+import Flash from '../../../templates/Flash.jsx'
 
 const ContactForm = () => {
 	const [messageSent, setMessageSent] = useState(false)
+	const [showFlash, setShowFlash] = useState(false)
+	const [showErrorFlash, setShowErrorFlash] = useState(false)
 
 	const {
 		register,
@@ -59,7 +62,17 @@ const ContactForm = () => {
 				.then((response) => {
 					if (response.status_code === 200) {
 						setMessageSent(true)
+						setShowFlash(true)
+						setTimeout(() => setShowFlash(false), 5000)
 					}
+				})
+				.catch((err) => {
+					console.error(err)
+
+					setShowErrorFlash(true)
+					setTimeout(() => setShowErrorFlash(false), 5000)
+
+					setMessageSent(false)
 				})
 		} catch (error) {
 			console.log(error)
@@ -72,6 +85,16 @@ const ContactForm = () => {
 			lg="6"
 			className="d-flex flex-column align-items-center justify-content-center"
 		>
+			<Flash
+				show={showErrorFlash}
+				className="alert-danger"
+				message="L'email n'a pas pu être envoyé."
+			/>
+			<Flash
+				show={showFlash}
+				className="alert-success"
+				message="Votre message a été envoyé !"
+			/>
 			<h2>Contact</h2>
 			<form
 				id="contactForm"
@@ -86,7 +109,7 @@ const ContactForm = () => {
 								className={
 									!errors.lastname
 										? 'form-control w-50 me-4 rounded-4'
-										: 'form-control w-50 me-4 rounded-pill is-invalid'
+										: 'form-control w-50 me-4 rounded-4 is-invalid'
 								}
 								placeholder="Votre nom"
 								{...register('lastname', {
@@ -99,6 +122,7 @@ const ContactForm = () => {
 									},
 								})}
 								onBlur={() => console.log(isValid)}
+								disabled={messageSent}
 							/>
 							{errors?.lastname && (
 								<span className="invalid-feedback">
@@ -110,7 +134,7 @@ const ContactForm = () => {
 								className={
 									!errors.firstname
 										? 'form-control w-50 ms-4 rounded-4'
-										: 'form-control w-50 ms-4 rounded-pill is-invalid'
+										: 'form-control w-50 ms-4 rounded-4 is-invalid'
 								}
 								placeholder="Votre prénom"
 								{...register('firstname', {
@@ -122,6 +146,7 @@ const ContactForm = () => {
 									},
 								})}
 								onBlur={() => console.log(isValid)}
+								disabled={messageSent}
 							/>
 							{errors?.firstname && (
 								<span className="invalid-feedback">
@@ -134,8 +159,8 @@ const ContactForm = () => {
 								type="email"
 								className={
 									!errors.email
-										? 'form-control w-50 me-4 rounded-pill'
-										: 'form-control w-50 me-4 rounded-pill is-invalid'
+										? 'form-control w-50 me-4 rounded-4'
+										: 'form-control w-50 me-4 rounded-4 is-invalid'
 								}
 								placeholder="Votre email"
 								{...register('email', {
@@ -147,6 +172,7 @@ const ContactForm = () => {
 									},
 								})}
 								onBlur={() => console.log(isValid)}
+								disabled={messageSent}
 							/>
 							{errors?.email && (
 								<span className="invalid-feedback">
@@ -157,8 +183,8 @@ const ContactForm = () => {
 								type="tel"
 								className={
 									!errors.tel
-										? 'form-control w-50 ms-4 rounded-pill'
-										: 'form-control w-50 ms-4 rounded-pill is-invalid'
+										? 'form-control w-50 ms-4 rounded-4'
+										: 'form-control w-50 ms-4 rounded-4 is-invalid'
 								}
 								placeholder="Votre téléphone"
 								{...register('tel', {
@@ -169,6 +195,7 @@ const ContactForm = () => {
 									},
 								})}
 								onBlur={() => console.log(isValid)}
+								disabled={messageSent}
 							/>
 							{errors?.tel && (
 								<span className="invalid-feedback">
@@ -186,7 +213,7 @@ const ContactForm = () => {
 						className={
 							!errors.subject
 								? 'form-control rounded-4'
-								: 'form-control rounded-pill is-invalid'
+								: 'form-control rounded-4 is-invalid'
 						}
 						placeholder="Le sujet de votre message"
 						{...register('subject', {
@@ -194,6 +221,7 @@ const ContactForm = () => {
 								'Vous devez entrer le sujet de votre message.',
 						})}
 						onBlur={() => console.log(isValid)}
+						disabled={messageSent}
 					/>
 					{errors?.subject && (
 						<span className="invalid-feedback">
@@ -207,13 +235,14 @@ const ContactForm = () => {
 						className={
 							!errors.message
 								? 'form-control rounded-4'
-								: 'form-control rounded-pill is-invalid'
+								: 'form-control rounded-4 is-invalid'
 						}
 						placeholder="Votre message"
 						{...register('message', {
 							required: 'Vous devez entrer votre message.',
 						})}
 						onBlur={() => console.log(isValid)}
+						disabled={messageSent}
 					/>
 					{errors?.message && (
 						<span className="invalid-feedback">
@@ -222,7 +251,7 @@ const ContactForm = () => {
 					)}
 				</div>
 				<div className="d-flex justify-content-center align-items-center my-3">
-					<Button type="submit" className="header-btn">
+					<Button type="submit" className="header-btn" disabled={messageSent}>
 						Envoyer
 					</Button>
 					{messageSent ? (
