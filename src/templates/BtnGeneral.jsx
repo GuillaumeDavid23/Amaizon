@@ -2,7 +2,7 @@ import { Button } from 'react-bootstrap'
 //This components is for create search forms
 const BtnGeneral = (props) => {
 	return (
-		<Button type={props.type} className={`btn-general ${props.className}`} variant="primary">
+		<Button type={props.type} className={`btn-general ${props.className}`} variant="primary" disabled={props.disabled}>
 			{props.text}
 		</Button>
 	)
