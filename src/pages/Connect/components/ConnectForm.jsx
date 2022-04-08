@@ -16,8 +16,8 @@ const ConnectForm = () => {
 		handleSubmit,
 		formState: { errors, isValid },
 	} = useForm({
-		mode: 'onBlur',
-		reValidateMode: 'onBlur',
+		mode: 'onTouched',
+		reValidateMode: 'onTouched',
 		shouldFocusError: true,
 	})
 
