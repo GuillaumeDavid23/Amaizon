@@ -3,15 +3,15 @@ import Photos from './components/Photos'
 import Description from './components/Description'
 import '../../styles/Single.css'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Navigate } from 'react-router-dom'
 import { BsBorderAll } from 'react-icons/bs'
 import { MdLocationSearching, MdArchitecture } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import BtnGeneral from '../../templates/BtnGeneral'
 import AnimatedPage from '../../templates/AnimatedPage'
 
-
 const Single = () => {
+	const [isAPIOK, setIsAPIOK] = useState(true)
 	const [data, setData] = useState({})
 
 	const { id } = useParams()
@@ -19,6 +19,10 @@ const Single = () => {
 	useEffect(() => {
 		fetch(process.env.REACT_APP_API_DOMAIN + `api/property/${id}`)
 			.then((response) => {
+				if (!response.ok) {
+					setIsAPIOK(false)
+					return
+				}
 				return response.json()
 			})
 			.then((response) => {
@@ -26,20 +30,18 @@ const Single = () => {
 			})
 			.catch((error) => {
 				console.log(error)
+				setIsAPIOK(false)
 			})
 	}, [id])
 
-	return (
+	return isAPIOK ? (
 		<AnimatedPage>
 			<Container className="mt-4 mb-4">
 				<Link
-					to={{ pathname: '/', hash: '#'+id }}
+					to={{ pathname: '/', hash: '#' + id }}
 					className="d-flex justify-content-center w-25"
 				>
-					<BtnGeneral
-						className="w-75 h-50"
-						text="<< Retour"
-					/>
+					<BtnGeneral className="w-75 h-50" text="<< Retour" />
 				</Link>
 				<Row className="justify-content-evenly align-items-center mt-4">
 					<Col xs="12" lg="5" className="d-flex flex-column">
@@ -69,6 +71,8 @@ const Single = () => {
 				</Row>
 			</Container>
 		</AnimatedPage>
+	) : (
+		<Navigate to="/" />
 	)
 }
 
