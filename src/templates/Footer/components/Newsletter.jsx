@@ -81,37 +81,41 @@ const Newsletter = () => {
 					</FormLabel>
 				</div>
 				{!connected && (
-					<FormControl
-						id="emailNewsletter"
-						type="email"
-						placeholder="name@example.com"
-					/>
+					<div>
+						<FormControl
+							id="emailNewsletter"
+							type="email"
+							placeholder="name@example.com"
+						/>
+						<div className="d-flex align-items-center justify-content-center">
+							<input
+								type="checkbox"
+								name="checkNews"
+								required
+								className="me-2"
+								onChange={() => setCheckNews(!checkNews)}
+							/>
+							<label htmlFor="checkNews" id="checkNews">
+								J'accepte les{' '}
+								<Link to="/legals">
+									<span
+										style={{ textDecoration: 'underline' }}
+									>
+										mentions légales
+									</span>
+								</Link>
+							</label>
+						</div>
+					</div>
 				)}
 				{apiResponse && <div>{apiResponse}</div>}
-				<div className="d-flex align-items-center justify-content-center">
-					<input
-						type="checkbox"
-						name="checkNews"
-						required
-						className="me-2"
-						onChange={() => setCheckNews(!checkNews)}
-					/>
-					<label htmlFor="checkNews" id="checkNews">
-						J'accepte les{' '}
-						<Link to="/legals">
-							<span style={{ textDecoration: 'underline' }}>
-								mentions légales
-							</span>
-						</Link>
-					</label>
-				</div>
 				<Button
 					className="header-btn my-2"
 					style={{ fontSize: '5px' }}
 					onClick={setNewsletter}
-					disabled={!checkNews}
+					disabled={checkNews === true || isRegistered ? false : true}
 				>
-					M'inscrire
+					{isRegistered ? 'Me désinscrire' : "M'inscrire"}
 				</Button>
 			</Form>
 		</Col>
