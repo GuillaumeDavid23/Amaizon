@@ -30,18 +30,19 @@ const FavListItem = (props) => {
 				style={{
 					display: 'flex',
 					justifyContent: 'flex-end',
+					alignItems: 'center'
 				}}
 			>
 				{confirmSuppr ? (
 					<>
 						<Bootstrap.Button
-							className={`bo_btn`}
+							className={`bo_btn custom-btn`}
 							onClick={() => setConfirmSuppr(false)}
 						>
 							Annuler
 						</Bootstrap.Button>
 						<Bootstrap.Button
-							className={`bo_btn`}
+							className={`bo_btn custom-btn`}
 							onClick={() => {
 								remove(fav._id)
 								setConfirmSuppr(false)
@@ -53,15 +54,15 @@ const FavListItem = (props) => {
 				) : (
 					<>
 						<Bootstrap.Button
-							className={`bo_btn`}
+							className={`bo_btn custom-btn`}
 							onClick={() => setConfirmSuppr(true)}
-							>
+						>
 							Retirer des favoris
 						</Bootstrap.Button>
 						<Bootstrap.Button
-							className={`bo_btn`}
-							onClick={() => nav("/single/"+fav._id)}
-							>
+							className={`bo_btn custom-btn`}
+							onClick={() => nav('/single/' + fav._id)}
+						>
 							Voir
 						</Bootstrap.Button>
 					</>

@@ -176,9 +176,9 @@ const Filters = ({ setProperties, properties }) => {
 						lg="12"
 						className="d-flex justify-content-center mt-3"
 					>
-						<button
+						<Button
 							href="#"
-							className="custom-btn-advanced"
+							className="custom-btn ps-3 pe-3"
 							onClick={() => setOpen(!open)}
 							aria-controls="filtersAdvanced"
 							aria-expanded={open}
@@ -198,7 +198,7 @@ const Filters = ({ setProperties, properties }) => {
 							) : (
 								<BsChevronUp className="ms-1" />
 							)}
-						</button>
+						</Button>
 					</Col>
 				</Row>
 				<Collapse in={open} className="mt-3">

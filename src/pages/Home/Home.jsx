@@ -26,8 +26,8 @@ const Home = (props) => {
 						return (
 							<Col
 								xs="12"
-								md="7"
-								lg="4"
+								md="4"
+								lg="3"
 								key={property._id}
 								className="d-flex justify-content-center"
 							>

@@ -236,10 +236,11 @@ export const MyInfo = (props) => {
 							style={{
 								display: 'flex',
 								justifyContent: 'flex-end',
+								marginTop: 10
 							}}
 						>
 							<Bootstrap.Button
-								className={`bo_pref_text bo_pref_btn`}
+								className={`bo_pref_text bo_pref_btn custom-btn`}
 								onClick={() => {
 									resetForm()
 									setTmpUserInfo({...user})
@@ -255,7 +256,7 @@ export const MyInfo = (props) => {
 								></Bootstrap.Spinner>
 							) : (
 								<Bootstrap.Button
-									className={`bo_pref_text bo_pref_btn`}
+									className={`bo_pref_text bo_pref_btn custom-btn`}
 									onClick={handleSubmit(onSubmit)}
 								>
 									Enregistrer
@@ -272,7 +273,7 @@ export const MyInfo = (props) => {
 							}}
 						>
 							<Bootstrap.Button
-								className={`bo_pref_text bo_pref_btn`}
+								className={`bo_pref_text bo_pref_btn custom-btn`}
 								onClick={() => {
 									setIsModifying(true)
 								}}

@@ -2,6 +2,7 @@ import { Col, Form, FormControl, FormLabel } from 'react-bootstrap'
 import { useState, useContext } from 'react'
 import { Context } from '../../../App'
 import { Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 const Newsletter = () => {
 	const { userInfos, connected, authToken } = useContext(Context)
@@ -86,8 +87,24 @@ const Newsletter = () => {
 					/>
 				)}
 				{apiResponse && <div>{apiResponse}</div>}
-				<Button className="header-btn my-2" onClick={setNewsletter}>
-					Go
+				<div className='d-flex align-items-center justify-content-center'>
+					<input type="checkbox" name="checkNews" required className='me-2'/>
+					<label htmlFor="checkNews" id="checkNews">
+						J'accepte les {' '}
+						<Link to="/legals">
+							<span style={{textDecoration: "underline"}}>
+
+							mentions légales
+							</span>
+						</Link>
+					</label>
+				</div>
+				<Button
+					className="header-btn my-2"
+					style={{ fontSize: '5px' }}
+					onClick={setNewsletter}
+				>
+					M'inscrire
 				</Button>
 			</Form>
 		</Col>

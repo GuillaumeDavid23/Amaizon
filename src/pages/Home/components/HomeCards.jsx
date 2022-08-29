@@ -25,7 +25,6 @@ const HomeCards = (props) => {
 	const isConnected = useContext(Context).connected
 
 	const token = JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH_AMAIZON'))
-
 	useEffect(() => {
 		if (isConnected) {
 			const requestOptions = {
@@ -49,7 +48,7 @@ const HomeCards = (props) => {
 	}, [_id, isConnected, token])
 
 	return (
-		<Card className="mb-5" style={{ width: '70%' }} id={_id}>
+		<Card className="m-3 mb-5" style={{ width: '100%' }} id={_id}>
 			<Card.Img
 				variant="top"
 				src={process.env.REACT_APP_API_DOMAIN + imageUrl?.photo1}
@@ -74,7 +73,7 @@ const HomeCards = (props) => {
 							</div>
 							<div className="d-flex flex-column align-items-center fw-bold">
 								<MdLocationSearching size={20} />
-								{location}
+								{location ? location[0] : ''}
 							</div>
 							<div className="d-flex flex-column align-items-center fw-bold">
 								<MdArchitecture size={20} />

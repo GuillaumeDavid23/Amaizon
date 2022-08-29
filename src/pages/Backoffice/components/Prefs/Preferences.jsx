@@ -251,7 +251,7 @@ export const Prefs = (props) => {
 					{isModifying ? (
 						<>
 							<Bootstrap.Button
-								className={`bo_pref_text bo_pref_btn`}
+								className={`bo_pref_text bo_pref_btn custom-btn m-3`}
 								onClick={() => {
 									resetForm()
 									setIsModifying(false)
@@ -260,7 +260,7 @@ export const Prefs = (props) => {
 								Annuler
 							</Bootstrap.Button>
 							<Bootstrap.Button
-								className={`bo_pref_text bo_pref_btn`}
+								className={`bo_pref_text bo_pref_btn custom-btn mb-3 mt-3`}
 								onClick={handleSubmit(onSubmitFetch)}
 							>
 								{isFetching ? (
@@ -272,7 +272,7 @@ export const Prefs = (props) => {
 						</>
 					) : (
 						<Bootstrap.Button
-							className={`bo_pref_text bo_pref_btn`}
+							className={`bo_pref_text bo_pref_btn custom-btn mb-3`}
 							onClick={() => {
 								setIsModifying(true)
 							}}

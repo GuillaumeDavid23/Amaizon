@@ -3,6 +3,10 @@ import { Button } from 'react-bootstrap'
 import { useState, useContext } from 'react'
 import { Context } from '../../../App'
 import { Col } from 'react-bootstrap'
+import {
+	GoogleReCaptchaProvider,
+	GoogleReCaptcha,
+} from 'react-google-recaptcha-v3'
 
 import Flash from '../../../templates/Flash.jsx'
 
@@ -10,6 +14,7 @@ const ContactForm = () => {
 	const [messageSent, setMessageSent] = useState(false)
 	const [showFlash, setShowFlash] = useState(false)
 	const [showErrorFlash, setShowErrorFlash] = useState(false)
+	const [captchaToken, setCaptchaToken] = useState()
 
 	const {
 		register,
@@ -95,7 +100,7 @@ const ContactForm = () => {
 				className="alert-success"
 				message="Votre message a été envoyé !"
 			/>
-			<h2>Contact</h2>
+			<h2>Contactez nous !</h2>
 			<form
 				id="contactForm"
 				onSubmit={handleSubmit(onSubmit)}
@@ -103,7 +108,10 @@ const ContactForm = () => {
 			>
 				{!isConnected ? (
 					<>
-						<div className="d-flex justify-content-around my-3">
+						<div
+							className="d-flex justify-content-around my-3"
+							style={{ height: '50px' }}
+						>
 							<input
 								type="text"
 								className={
@@ -154,7 +162,10 @@ const ContactForm = () => {
 								</span>
 							)}
 						</div>
-						<div className="d-flex justify-content-around my-3">
+						<div
+							className="d-flex justify-content-around my-3"
+							style={{ height: '50px' }}
+						>
 							<input
 								type="email"
 								className={
@@ -207,7 +218,7 @@ const ContactForm = () => {
 				) : (
 					''
 				)}
-				<div className="my-3">
+				<div className="d-flex my-3" style={{ height: '50px' }}>
 					<input
 						type="text"
 						className={
@@ -229,7 +240,7 @@ const ContactForm = () => {
 						</span>
 					)}
 				</div>
-				<div className="my-3">
+				<div className="d-flex my-3" style={{ height: '100px' }}>
 					<textarea
 						type="text"
 						className={
@@ -251,7 +262,20 @@ const ContactForm = () => {
 					)}
 				</div>
 				<div className="d-flex justify-content-center align-items-center my-3">
-					<Button type="submit" className="header-btn" disabled={messageSent}>
+					<GoogleReCaptchaProvider
+						reCaptchaKey={process.env.REACT_APP_SITE_KEY}
+					>
+						<GoogleReCaptcha
+							onVerify={(token) => {
+								setCaptchaToken(token)
+							}}
+						/>
+					</GoogleReCaptchaProvider>
+					<Button
+						type="submit"
+						className="header-btn"
+						disabled={messageSent}
+					>
 						Envoyer
 					</Button>
 					{messageSent ? (

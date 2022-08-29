@@ -2,7 +2,7 @@
 import { Link as LinkRouterDom } from 'react-router-dom'
 import { Dropdown, Button } from 'react-bootstrap'
 import { BsBoxArrowInRight, BsPerson } from 'react-icons/bs'
-import {AiOutlineUserAdd} from 'react-icons/ai'
+import { AiOutlineUserAdd } from 'react-icons/ai'
 
 const Login = ({ isConnected }) => {
 	// Gestion de la déconnexion:
@@ -43,9 +43,11 @@ const Login = ({ isConnected }) => {
 							<BsPerson size={25} />
 						</div>
 					</Dropdown.Toggle>
-					<Dropdown.Menu align="center">
-						<Dropdown.Item href="/backoffice">
-							<span>Accès au profil</span>
+					<Dropdown.Menu align="center" style={{ marginTop: 10 }}>
+						<Dropdown.Item>
+							<LinkRouterDom to="/backoffice">
+								<span>Accès au profil</span>
+							</LinkRouterDom>
 						</Dropdown.Item>
 						<Dropdown.Item>
 							<span onClick={disconnect}>Déconnexion</span>
