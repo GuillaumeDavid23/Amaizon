@@ -93,7 +93,7 @@ export const MyFavs = (props) => {
 		console.log(updated_user)
 
 		const init = {
-			method: 'PUT',
+			method: 'DELETE',
 			headers: {
 				Authorization: 'Bearer ' + token,
 				'Content-Type': 'application/json',
@@ -102,7 +102,7 @@ export const MyFavs = (props) => {
 		}
 
 		// API Call
-		fetch(process.env.REACT_APP_API_DOMAIN + 'api/user/buyer/' + user._id, {
+		fetch(process.env.REACT_APP_API_DOMAIN + 'api/user/wishlist/' + fav_id, {
 			...init,
 		})
 			.then((res) => {

@@ -8,6 +8,7 @@ const Newsletter = () => {
 	const { userInfos, connected, authToken } = useContext(Context)
 	const [isRegistered, setRegistration] = useState(null)
 	const [apiResponse, setApiResponse] = useState()
+	const [checkNews, setCheckNews] = useState(false)
 
 	if (userInfos !== null && isRegistered === null) {
 		setRegistration(userInfos.newsletter)
@@ -87,14 +88,19 @@ const Newsletter = () => {
 					/>
 				)}
 				{apiResponse && <div>{apiResponse}</div>}
-				<div className='d-flex align-items-center justify-content-center'>
-					<input type="checkbox" name="checkNews" required className='me-2'/>
+				<div className="d-flex align-items-center justify-content-center">
+					<input
+						type="checkbox"
+						name="checkNews"
+						required
+						className="me-2"
+						onChange={() => setCheckNews(!checkNews)}
+					/>
 					<label htmlFor="checkNews" id="checkNews">
-						J'accepte les {' '}
+						J'accepte les{' '}
 						<Link to="/legals">
-							<span style={{textDecoration: "underline"}}>
-
-							mentions légales
+							<span style={{ textDecoration: 'underline' }}>
+								mentions légales
 							</span>
 						</Link>
 					</label>
@@ -103,6 +109,7 @@ const Newsletter = () => {
 					className="header-btn my-2"
 					style={{ fontSize: '5px' }}
 					onClick={setNewsletter}
+					disabled={!checkNews}
 				>
 					M'inscrire
 				</Button>

@@ -22,6 +22,7 @@ import Register from './pages/Register/Register'
 import Single from './pages/Single/Single'
 import VerifEmail from './pages/VerifEmail/VerifEmail'
 import { AnimatePresence } from 'framer-motion'
+import Cguv from './pages/CGUV/Cguv'
 
 export const Context = createContext({
 	connected: false,
@@ -182,6 +183,10 @@ export function App() {
 					<Route
 						path="/emailVerification/:token"
 						element={<VerifEmail />}
+					/>
+					<Route
+						path="/cguv"
+						element={<Cguv />}
 					/>
 					<Route path="*" element={<Error />} />
 				</Routes>

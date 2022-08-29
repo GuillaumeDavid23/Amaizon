@@ -12,7 +12,7 @@ const LegalsFooter = () => {
 					<Link to="/legals">Conditions générales d'utilisation</Link>
 				</li>
 				<li>
-					<Link to="legals">Conditions générales de vente</Link>
+					<Link to="/cguv">Conditions générales de vente</Link>
 				</li>
 			</ul>
 		</Col>
