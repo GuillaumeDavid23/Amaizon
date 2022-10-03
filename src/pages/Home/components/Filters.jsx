@@ -1,5 +1,5 @@
 import Input from '../../../templates/Input'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import {
 	Col,
 	Container,
@@ -106,9 +106,11 @@ const Filters = ({ setProperties, properties }) => {
 		setSearch(e.target.value)
 	}
 
-	if (properties.length === 0) {
-		handleSearchClick()
-	}
+	React.useEffect(() => {
+		if (properties.length === 0) {
+			handleSearchClick()
+		}
+	}, [])
 
 	function handleSearchClick() {
 		let filters = {
@@ -177,7 +179,7 @@ const Filters = ({ setProperties, properties }) => {
 						className="d-flex justify-content-center mt-3"
 					>
 						<Button
-							href="#"
+							href="#filters"
 							className="custom-btn ps-3 pe-3"
 							onClick={() => setOpen(!open)}
 							aria-controls="filtersAdvanced"
