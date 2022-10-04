@@ -36,7 +36,9 @@ const Favorite = (props) => {
 		}
 
 		fetch(
-			'http://localhost:8080/api/user/wishlist/' + props.id,
+			process.env.REACT_APP_API_DOMAIN +
+				'api/user/wishlist/' +
+				props.id,
 			requestOptions
 		).then(function (response) {})
 	}
@@ -51,7 +53,7 @@ const Favorite = (props) => {
 		}
 
 		fetch(
-			'http://localhost:8080/api/user/wishlist/' + props.id,
+			process.env.REACT_APP_API_DOMAIN + 'api/user/wishlist/' + props.id,
 			requestOptions
 		).then(function (response) {})
 	}
