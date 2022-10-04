@@ -50,7 +50,7 @@ const RegisterForm = () => {
 								'REACT_TOKEN_AUTH_AMAIZON',
 								JSON.stringify(response.token)
 							)
-							window.location.href = '/connect'
+							window.location.href = '/backoffice'
 						}
 					})
 			}
