@@ -89,3 +89,57 @@
 .custom-btn:hover {
 	background-color: #3a4f5f !important;
 }
+
+.section-cro{
+    width: 100%;
+    overflow: hidden;
+    min-height: 560px;
+    margin: 50px 0px;
+    background: url('../assets/bg-cro.jpg') no-repeat center center transparent;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='', sizingMethod='scale')";
+    position: relative;
+}
+
+.croCorps{
+    font-size: 20px;
+    color: white;
+}
+
+.themTitle {
+    font: 300 1.5em/1em 'Josefin Sans', Arial, Verdana, Helvetica, helve, sans-serif;
+    letter-spacing: 1px;
+    color: #4b4b4b;
+    margin-bottom: 50px;
+    text-transform: initial;
+    text-align: center;
+}
+
+.themTitle h1 {
+    font: 300 1.5em/1em 'Dosis', Arial, Verdana, Helvetica, helve, sans-serif;
+    letter-spacing: 1px;
+    color: #4b4b4b;
+    margin: 0;
+    padding: 10px 0;
+    margin-bottom: 10px;
+    display: inline-block;
+    border-bottom: 1px solid #ffffff;
+    position: relative;
+}
+
+.themTitle h1:after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 20px 20px 0 20px;
+    border-color: #ffffff transparent transparent transparent;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -20px;
+}

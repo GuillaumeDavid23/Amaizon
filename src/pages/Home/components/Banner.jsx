@@ -7,14 +7,15 @@ import logoFull from '../../../assets/logoFull.png'
 const Banner = (props) => {
 	return (
 		<div className="homeBanner d-flex flex-column justify-content-evenly">
-			<div className="w-75 text-center">
-				<img src={logoFull} className="w-25" alt="" />
+			<div className="text-center d-flex flex-column w-50 ms-5">
+				<img src={logoFull} className="d-block d-md-none w-75 align-self-center" alt="" />
+				<img src={logoFull} className="d-none d-md-block w-50 align-self-center" alt="" />
 				<h1 className="text-center fw-bold">
 					Le meilleur moyen de trouver la maison de vos rêves ?
 				</h1>
 			</div>
-			<Row className="mt-3 justify-content-center align-items-center w-75">
-				<Col xs={3} className="text-center">
+			<Row className="ms-5 mt-3 flex-column flex-md-row justify-content-center align-items-center w-50">
+				<Col xs={5} className="text-center">
 					<Link
 						to={`/contactus`}
 						className="LinkBtn"
@@ -26,10 +27,10 @@ const Banner = (props) => {
 						/>
 					</Link>
 				</Col>
-				<Col xs={1}>
-					<p className="m-0 p-0 text-center">OU</p>
+				<Col xs={2} className="text-center">
+					<p className="m-0 p-0 text-center fw-bold">OU</p>
 				</Col>
-				<Col xs={3} className="text-center">
+				<Col xs={5} className="text-center">
 					<Link
 						to={`/announces`}
 						className="LinkBtn"
