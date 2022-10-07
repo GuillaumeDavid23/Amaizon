@@ -1,16 +1,19 @@
 import BtnGeneral from "../../../templates/BtnGeneral"
 import { Link } from 'react-router-dom'
 import { Col, Row } from "react-bootstrap"
+import logoFull from '../../../assets/logoFull.png'
+
 
 const Banner = (props) => {
 	return (
 		<div className="homeBanner d-flex flex-column justify-content-evenly">
-			<div className="w-75">
+			<div className="w-75 text-center">
+				<img src={logoFull} className="w-25" alt="" />
 				<h1 className="text-center fw-bold">
 					Le meilleur moyen de trouver la maison de vos rêves ?
 				</h1>
 			</div>
-			<Row className="mt-3 flex-column justify-content-between align-items-center w-75">
+			<Row className="mt-3 justify-content-center align-items-center w-75">
 				<Col xs={3} className="text-center">
 					<Link
 						to={`/contactus`}
