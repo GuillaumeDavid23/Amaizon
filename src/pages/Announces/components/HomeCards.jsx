@@ -52,9 +52,12 @@ const HomeCards = (props) => {
 			<Card.Img
 				variant="top"
 				src={process.env.REACT_APP_API_DOMAIN + imageUrl?.photo1}
-				alt={"Super photo 1"}
+				alt={'Super photo 1'}
 				className="h-100"
-				onError={}
+				onError={({ currentTarget }) => {
+					currentTarget.onerror = null // prevents looping
+					currentTarget.src = require('../../../assets/announceDefault.png')
+				}}
 			/>
 			<Card.Body className="d-flex flex-column">
 				<Card.Title>{title}</Card.Title>
