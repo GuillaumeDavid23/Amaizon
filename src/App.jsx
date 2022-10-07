@@ -23,6 +23,7 @@ import Single from './pages/Single/Single'
 import VerifEmail from './pages/VerifEmail/VerifEmail'
 import { AnimatePresence } from 'framer-motion'
 import Cguv from './pages/CGUV/Cguv'
+import Announces from './pages/Announces/Annouces'
 
 export const Context = createContext({
 	connected: false,
@@ -176,6 +177,7 @@ export function App() {
 						)} */}
 					<Route path="/legals" element={<Legals />} />
 					<Route path="/register" element={<Register />} />
+					<Route path="/announces" element={<Announces />} />
 					<Route
 						path="/single/:id"
 						element={<Single token={token} />}
@@ -184,10 +186,7 @@ export function App() {
 						path="/emailVerification/:token"
 						element={<VerifEmail />}
 					/>
-					<Route
-						path="/cguv"
-						element={<Cguv />}
-					/>
+					<Route path="/cguv" element={<Cguv />} />
 					<Route path="*" element={<Error />} />
 				</Routes>
 			</AnimatePresence>

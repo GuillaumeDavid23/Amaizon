@@ -14,6 +14,7 @@ const Navigation = () => {
 	const linkArray = [
 		{ name: 'Accueil', link: '/' },
 		{ name: 'A propos', link: '/aboutus' },
+		{ name: 'Nos annonces', link: '/announces' },
 		{ name: 'Contact', link: '/contactus' },
 	]
 

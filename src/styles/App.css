@@ -8,7 +8,7 @@
   src: url("../assets/font/Dosis-SemiBold.ttf") format("ttf"),
 }
 
-html, body{
+html, body, #root{
   min-height: 100vh;
   overflow-x: hidden;
 }

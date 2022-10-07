@@ -22,7 +22,7 @@ const boxAnimation = {
     },
 }
 const AnimatedPage = ({ children }) => {
-	return <motion.div {...boxAnimation} style={{flex: 1}}>{children}</motion.div>
+	return <motion.div {...boxAnimation} style={{flex: 1, height: '100%'}}>{children}</motion.div>
 }
 
 export default AnimatedPage

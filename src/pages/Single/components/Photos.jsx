@@ -1,7 +1,7 @@
 import { Carousel } from 'react-bootstrap'
 
 const Photos = (props) => {
-	if (props.data === null) {
+	if (props.data === null || props.data === []) {
 		return (
 			<Carousel>
 				<Carousel.Item>
@@ -15,7 +15,7 @@ const Photos = (props) => {
 		)
 	} else {
 		return (
-			<Carousel >
+			<Carousel>
 				{Object.keys(props.data).map((keyImage) => {
 					return (
 						<Carousel.Item key={keyImage}>
