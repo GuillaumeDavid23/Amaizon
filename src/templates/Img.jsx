@@ -1,8 +1,14 @@
 import PropTypes from 'prop-types'
 
-const Img = ({ idValue, classList, srcValue, altValue }) => {
+const Img = ({ idValue, classList, srcValue, altValue, onError }) => {
 	return (
-		<img id={idValue} className={classList} src={srcValue} alt={altValue} />
+		<img
+			id={idValue}
+			className={classList}
+			src={srcValue}
+			alt={altValue}
+			onError={onError}
+		/>
 	)
 }
 

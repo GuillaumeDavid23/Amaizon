@@ -10,6 +10,10 @@ const Profil = (props) => {
 				classList="profilAvatar"
 				srcValue={srcValue}
 				altValue={altValue}
+				onError={({ currentTarget }) => {
+					currentTarget.onerror = null // prevents looping
+					currentTarget.src = require('../../../assets/blank_profile.png')
+				}}
 			/>
 			<span className="profilText text-center">{name}</span>
 			<span className="profilText text-center">{role}</span>

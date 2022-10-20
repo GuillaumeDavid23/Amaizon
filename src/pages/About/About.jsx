@@ -57,7 +57,8 @@ const About = () => {
 					</Row>
 					<Row className="justify-content-center">
 						{agents.map((agent) => {
-							return agent.agent.position === 'Directrice' ? (
+							return agent.agent.position === 'Directrice' ||
+								agent.agent.position === 'Directeur' ? (
 								<Col xs="6" lg="2" key={'agent-' + agent._id}>
 									<Profil
 										srcValue={`${process.env.REACT_APP_API_DOMAIN}avatar/${agent._id}.png`}
