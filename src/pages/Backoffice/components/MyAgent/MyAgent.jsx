@@ -16,6 +16,7 @@ export const MyAgent = (props) => {
 				borderRadius: '30px',
 				border: '1px solid black',
 				padding: '2rem',
+				height:"100%"
 			}}
 			className={`bo_pref_text`}
 		>

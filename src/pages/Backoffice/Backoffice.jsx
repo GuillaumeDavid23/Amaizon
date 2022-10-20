@@ -28,7 +28,7 @@ const Backoffice = () => {
 					<bt.Col className={``} sm={7}>
 						<Prefs user={user} setUser={setUser} token={token} />
 					</bt.Col>
-					<bt.Col className={``} sm={4}>
+					<bt.Col sm={4}>
 						<MyAgent agent={agent} roundness="30px" />
 					</bt.Col>
 				</bt.Row>
